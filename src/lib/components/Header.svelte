@@ -10,6 +10,7 @@
         <h1>Martijn Vriesman</h1>
         <p>Webdeveloper</p>
     </div>
+    <!-- svelte-ignore a11y-missing-content -->
     <a href="#aboutMe" class="scroll-down" />
 </div>
 
