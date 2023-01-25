@@ -59,7 +59,8 @@
 <style lang="scss">
     #aboutMe {
         width: 100vw;
-        height: 100vh;
+        height: 100%;
+        padding-bottom: 5vh;
 
         max-width: 125vh;
         margin: 0 auto;
@@ -108,7 +109,7 @@
                 font-weight: 500;
                 background-color: #202837;
                 padding: 0.25vw;
-                border-radius: 0.5vw;
+                border-radius: 15px;
                 text-shadow: 1px 2px 2.5px #202837;
                 transition: 0.5s;
                 cursor: pointer;
