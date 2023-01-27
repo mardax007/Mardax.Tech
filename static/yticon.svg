@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 394 300" style="enable-background:new 0 0 394 300;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FF3D00;}
+	.st1{fill:#FFFFFF;}
+</style>
+<path class="st0" d="M385,249c-4,21-21,37-42,40c-33,5-88,11-150,11c-61,0-116-6-150-11c-21-3-38-19-42-40c-4-23-8-57-8-99
+	s4-76,8-99c4-21,21-37,42-40C76,6,131,0,193,0s116,6,150,11c21,3,38,19,42,40c4,23,9,57,9,99C393,192,389,226,385,249z"/>
+<polygon class="st1" points="153,220 153,80 273,150 "/>
+</svg>

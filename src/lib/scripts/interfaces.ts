@@ -6,8 +6,26 @@ interface Project {
     textDate: string;
     date: Date;
     description: string;
-    image: string;
+    mediaType: "yt" | "img";
+    media: string;
     links: link[];
+    projectInfo: ProjectInfo;
+}
+
+interface ProjectInfo {
+    type?: string;
+    texts: TextElement[];
+    headerImage?: string;
+    tagline?: string;
+    hideTitle?: boolean;
+}
+
+interface TextElement {
+    type: string;
+    title: string;
+    text: string;
+    image?: string;
+    video?: string;
 }
 
 interface link {
@@ -16,4 +34,4 @@ interface link {
     url: string;
 }
 
-export type { Project, link };
+export type { Project, ProjectInfo, TextElement, link };

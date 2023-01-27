@@ -1,21 +1,7 @@
 <script lang="ts">
+	import type { Project } from "$lib/scripts/interfaces";
+
     export let project: Project;
-
-    interface Project {
-        id?: string;
-        title: string;
-        textDate: string;
-        date: Date;
-        description: string;
-        image: string;
-        links: link[];
-    }
-
-    interface link {
-        name: string;
-        icon: string;
-        url: string;
-    }
 </script>
 
 {#if project}
@@ -24,9 +10,6 @@
             <div id="left">
                 <p>{project.textDate}</p>
                 <h1>{project.title}</h1>
-            </div>
-            <div id="right">
-                <p>{project.description}</p>
                 <div id="links">
                     {#each project.links as link}
                         <a href={link.url}>
@@ -35,10 +18,19 @@
                     {/each}
                 </div>
             </div>
+            <div id="right">
+                <p>{project.description}</p>
+            </div>
         </div>
-        <a href="/project?{project.id ?? project.title}">
-            <img src="https://res.cloudinary.com/braydoncoyer/image/upload/v1670723660/photo-1550684848-86a5d8727436_j4pgmt.jpg" alt="">
-        </a>
+        <div id="media">
+            <a href="/project?{project.id ?? project.title}">
+                {#if project.mediaType == "yt"}
+                    <iframe width="560" height="315" src={project.media} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {:else}
+                    <img src={project.media} alt="">
+                {/if}
+            </a>
+        </div>
     </div>
 {/if}
 
@@ -51,70 +43,97 @@
         backdrop-filter: blur(2px);
         box-shadow: 2px 3px 10px 5px rgba(0,0,0,0.75);
         background-color: #131314;
-        padding: 1vw 2vw;
+        padding: 2%;
         border-radius: 15px;
 
         margin-bottom: 5vh;
 
         #top {
             display: grid;
-            grid-template-columns: 35% 65%;
+            grid-template-columns: 40% 60%;
 
             #left {
                 h1 {
-                    font-size: calc(2.5vw + 1.5vh);
-                    margin: 0 auto;
+                    font-size: 250%;
+                    margin: 0;
+                    width: 90%;
+                    word-wrap: break-word;
                 }
 
                 p {
-                    font-size: calc(1.5vw + 1vh);
+                    font-size: 150%;
                     margin: 0 auto;
+                }
+
+                #links {
+                    margin-top: calc(.25vh + .25vw);
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    img:hover {
+                        scale: 1.1;
+                    }
+
+                    img {
+                        transition: 0.5s;
+                        height: calc(.5vw + 5vh);
+                    }
                 }
             }
 
             #right {
                 p {
-                    font-size: calc(1vw + 1vh);
-                    line-height: calc(1vw + 1vh);
+                    font-size: 150%;
+                    line-height: 120%;
                     margin: 0;
-                }
-
-                #links {
-                    margin-top: calc(.25vh + .25vw);
-                    margin-bottom: calc(1vh + 1vw);
-
-                    img {
-                        height: calc(.5vw + 5vh);
-                        width: calc(.5vw + 5vh);
-                        fill: white;
-                    }
+                    margin-bottom: 5%;
                 }
             }
         }
 
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
+        #media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            a {
+                max-width: 60%;
+                cursor: default;
+
+                img:hover {
+                    scale: 1.05;
+                }
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: contain;
+
+                    border-radius: 30px;
+                    cursor: pointer;
+                    transition: 0.5s;
+                }
+                
+                iframe {
+                    height: 25vh;
+                    width: 70vw;
+                    border-radius: 30px;
+                }
+            }
         }
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1000px) { // 100000px is a placeholder for "infinity"
             #top {
                 display: block;
 
                 #right {
                     margin-top: 1vh;
                     p {
-                        font-size: calc(1vw + 1.5vh);
-                        line-height: calc(1vw + 1.5vh);
+                        font-size: 150%;
+                        line-height: 120%;
                         margin: 0 auto;
                     }
                 }
-            }
-
-            img {
-                margin-top: calc(1vh + 1vw);
             }
         }
 

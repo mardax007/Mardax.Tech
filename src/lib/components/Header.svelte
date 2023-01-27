@@ -35,8 +35,8 @@
 
             h1 {
                 margin: 0;
-                line-height: calc(10vw - 2vh);
-                font-size: calc(10vw - 2vh);
+                line-height: 100%;
+                font-size: 300%;
                 font-weight: 400;
                 text-align: center;
                 color: white;
@@ -45,8 +45,8 @@
 
             p {
                 margin: 0;
-                line-height: calc(7vw - 1vh);
-                font-size: calc(5vw - 1vh);
+                line-height: 150%;
+                font-size: 200%;
                 text-align: center;
                 font-weight: 400;
                 color: white;
@@ -54,7 +54,7 @@
             }
 
             #avatar {
-                width: calc(10vh + 10vw);
+                width: 20%;
                 display: block;
                 margin: 0 auto;
                 border-radius: 50%;

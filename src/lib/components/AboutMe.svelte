@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
 
-    let startDate = Date.parse("2016-08-21T19:05:00.941Z");
+    let startDate = Date.parse("2016-08-23T19:05:00.941Z");
 
     export let time: number[] = get(Date.now() - startDate);
 
@@ -58,7 +58,7 @@
 
 <style lang="scss">
     #aboutMe {
-        width: 100vw;
+        width: 100%;
         height: 100%;
         padding-bottom: 5vh;
 
@@ -68,11 +68,12 @@
         #tag {
             display: flex;
             padding-top: 2.5vh;
+            padding-bottom: 1vh;
             justify-content: center;
             align-items: center;
 
             h1 {
-                font-size: 10vw;
+                font-size: calc(5vh + 3vw);
                 font-weight: 400;
                 margin: 0;
                 color: white;
@@ -83,24 +84,21 @@
                     width: 97.5%;
                     height: calc(0.1vh + 0.1vw);
                     background: linear-gradient(135deg, #ffa361 0%, #638de0 100%);
-                    position: relative;
-                    top: -1.75vw;
-                    left: 0.875vw;
                 }
             }
 
             img {
-                width: 16%;
+                width: calc(10vh + 6vw);
             }
         }
 
         p {
             width: 75%;
             margin: 0 auto;
-            font-size: calc(1.5vw + 2vh);
+            font-size: 150%;
             font-weight: 200;
             color: white;
-            line-height: calc(2.5vw + 2.5vh);
+            line-height: 120%;
             text-align: justify;
 
             span {
