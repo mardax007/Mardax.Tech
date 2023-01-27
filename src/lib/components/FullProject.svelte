@@ -27,6 +27,9 @@
                 <MainContentItem textElement={textElement} />
             {/if}
         {/each}
+        {#if project.projectInfo.bottomVideo}
+            <iframe width="100%" style="height: 50vw;" src={project.projectInfo.bottomVideo} title="Player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
+        {/if}
     </div>
 </div>
 
@@ -37,6 +40,7 @@
         #content {
             width: 80%;
             margin: 0 auto;
+            margin-bottom: 2.5vh;
         }
 
         #header {

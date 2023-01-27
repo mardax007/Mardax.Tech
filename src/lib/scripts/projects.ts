@@ -25,10 +25,20 @@ const projects: Project[] = [
         date: new Date(2022, 0, 1),
         description: "Voor dit project kregen wij de opdracht om een tiny cabin te bouwen. Het doel was om een opslagplaats voor fietsen te bouwen die ook gebruikt kon worden als slaapkamer.",
         mediaType: "img",
-        media: "/huiz.png",
+        media: "huiz full.png",
         links: [],
         projectInfo: {
-            texts: []
+            headerImage: "/huiz.png",
+            hideTitle: true,
+            bottomVideo: "https://www.youtube-nocookie.com/embed/ezScvCkMqSY",
+            texts: [
+                {
+                    type: "imageText",
+                    title: "Tiny cabin",
+                    text: "Voor dit project kregen wij de opdracht om een tiny cabin te bouwen. Het doel was om een opslagplaats voor fietsen te bouwen die ook gebruikt kon worden als slaapkamer.<br><br>Maar er was een klein probleem, het huis mocht niet groter zijn dan 2x2 Daarom moesten wij gebruik maken van een uiklapbaar bed en bureau. Maar wanneer er mensen in slapen heb je ook verwarming, verlichting en een tafel nodig. Ook vonden wij het belangrijk om een computer aan dit huis toe te voegen zodat de kleinkinderen zich konden vermaken op een regenachtige dag. Maar dit vereist wel veel stroom. Daarom zijn wij gegaan voor een Jackery 1500 powerbank met zonnepanelen. Hiermee kan alles worden voorzien van stroom.",
+                    image: "https://p.mardax.tech/images/Poster.png"
+                }
+            ]
         }
     },
     {

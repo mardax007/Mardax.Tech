@@ -18,6 +18,7 @@ interface ProjectInfo {
     headerImage?: string;
     tagline?: string;
     hideTitle?: boolean;
+    bottomVideo?: string;
 }
 
 interface TextElement {
