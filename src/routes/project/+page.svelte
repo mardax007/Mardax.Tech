@@ -1,7 +1,7 @@
 <script lang="ts">
 	import FullProject from "$lib/components/FullProject.svelte";
 	import type { Project } from "$lib/scripts/interfaces";
-	import getProjects from "$lib/scripts/projects";
+	import {getProjects} from "$lib/scripts/data";
     import { onMount } from "svelte";
 
     

@@ -16,7 +16,7 @@
     <div id="header">
         <img id="headerImage" src={project.projectInfo.headerImage} alt="">
         <div id="main">
-            {#if !project.projectInfo.hideTitle}<h1>{project.title}</h1>{/if}
+            {#if !project.projectInfo.hideTitle}<h1>{@html project.title}</h1>{/if}
             {#if project.projectInfo.tagline}<p>{project.projectInfo.tagline}</p>{/if}
         </div>
     </div>

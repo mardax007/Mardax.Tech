@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ProjectItem from "$lib/components/ProjectItem.svelte";
-    import getProjects from "$lib/scripts/projects";
+    import {getProjects} from "$lib/scripts/data";
 
     export let max: number | undefined;
     const projects = getProjects().slice(0, max);

@@ -5,7 +5,7 @@
 
 <div id="header">
     <div id="main">
-        <img src="avatar.png" alt="avatar" id="avatar" >
+        <img src="icons/avatar.png" alt="avatar" id="avatar" >
         <div id="separator" />
         <h1>Martijn Vriesman</h1>
         <p>Webdeveloper</p>

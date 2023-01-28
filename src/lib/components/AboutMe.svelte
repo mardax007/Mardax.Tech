@@ -1,13 +1,14 @@
 <script lang="ts">
+	import { getIntroduction } from "$lib/scripts/data";
     import { onMount } from "svelte";
 
-    let startDate = Date.parse("2016-08-23T19:05:00.941Z");
+    let intro = getIntroduction();
 
-    export let time: number[] = get(Date.now() - startDate);
+    export let time: number[] = get(Date.now() - intro.startDate);
 
     onMount(() => {
         setInterval(() => {
-            time = get(Date.now() - startDate);
+            time = get(Date.now() - intro.startDate);
         }, 1);
     })
 
@@ -29,96 +30,8 @@
 
 <div id="aboutMe">
     <div id="tag">
-        <img src="laptop.svg" alt="laptop">
-        <h1>Introductie</h1>
+        <img src={intro.icon} alt="laptop">
+        <h1>{@html intro.title}</h1>
     </div>
-    <p>
-        Welkom op mijn portfolio! Mijn naam is Martijn Vriesman en ik heb
-        <span class="excludeHover">
-            {time[6]}y
-            {time[5]}m
-            {time[4]}d
-            {extend(time[3], 2)}:{extend(time[2], 2)}:{extend(time[1], 2)}.{extend(time[0], 3)}
-        </span> ervaring met software ontwikkeling.
-        Momenteel zit ik in 5VWO op het Antoniuscollege in <span class="excludeHover">Gouda, Nederland</span> waar ik het N&T profiel volg.
-        Ik heb ervaring met het ontwikkelen van websites en applicaties met behulp van:<br>
-        <span style="color: #dd4b25;">HTML</span>,
-        <span style="color: #2449d8;">CSS</span>,
-        <span style="color: #2e72bc;">Typescript</span>,
-        <span style="color: #f23b00;">Svelte</span>,
-        <span style="color: #f2cb40;">Python</span>,
-        <span style="color: #549453;">NodeJS</span>,
-        <span style="color: #651471;">C#</span>
-            en
-        <span>
-            <span style="color: #eeb205;">Firebase</span>
-        </span>.
-    </p>
+    <p>{@html intro.text.replace("[INSERTTIME]", `${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}.${extend(time[0], 3)}`)}</p>
 </div>
-
-<style lang="scss">
-    #aboutMe {
-        width: 100%;
-        height: 100%;
-        padding-bottom: 5vh;
-
-        max-width: 125vh;
-        margin: 0 auto;
-
-        #tag {
-            display: flex;
-            padding-top: 2.5vh;
-            padding-bottom: 1vh;
-            justify-content: center;
-            align-items: center;
-
-            h1 {
-                font-size: calc(5vh + 3vw);
-                font-weight: 400;
-                margin: 0;
-                color: white;
-
-                &::after {
-                    display: block;
-                    content: '';
-                    width: 97.5%;
-                    height: calc(0.1vh + 0.1vw);
-                    background: linear-gradient(135deg, #ffa361 0%, #638de0 100%);
-                }
-            }
-
-            img {
-                width: calc(10vh + 6vw);
-            }
-        }
-
-        p {
-            width: 75%;
-            margin: 0 auto;
-            font-size: 150%;
-            font-weight: 200;
-            color: white;
-            line-height: 120%;
-            text-align: justify;
-
-            span {
-                display: inline-flex;
-                text-align: center;
-                font-weight: 500;
-                background-color: #202837;
-                padding: 0.25vw;
-                border-radius: 15px;
-                text-shadow: 1px 2px 2.5px #202837;
-                transition: 0.5s;
-                cursor: pointer;
-            }
-
-            span:hover:not(.excludeHover) {
-                text-shadow: 1px 2px 3px #212121;
-
-                background-color: #e0e0e0;
-
-            }
-        }
-    }
-</style>

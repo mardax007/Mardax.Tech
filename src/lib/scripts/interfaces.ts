@@ -35,4 +35,16 @@ interface link {
     url: string;
 }
 
-export type { Project, ProjectInfo, TextElement, link };
+interface Introduction {
+    title: string;
+    icon: string;
+    text: string;
+    startDate: number;
+    languages: {
+        name: string;
+        color: string;
+        url: string;
+    }[]
+}
+
+export type { Project, ProjectInfo, TextElement, link, Introduction};

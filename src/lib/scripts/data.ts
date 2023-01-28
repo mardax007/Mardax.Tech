@@ -1,4 +1,4 @@
-import type { Project } from "./interfaces";
+import type { Project, Introduction } from "./interfaces";
 
 const projects: Project[] = [
     {
@@ -62,7 +62,7 @@ const projects: Project[] = [
                 {
                     type: "imageText",
                     title: "Tiny cabin",
-                    text: "Voor dit project kregen wij de opdracht om een tiny cabin te bouwen. Het doel was om een opslagplaats voor fietsen te bouwen die ook gebruikt kon worden als slaapkamer.<br><br>Maar er was een klein probleem, het huis mocht niet groter zijn dan 2x2 Daarom moesten wij gebruik maken van een uiklapbaar bed en bureau. Maar wanneer er mensen in slapen heb je ook verwarming, verlichting en een tafel nodig. Ook vonden wij het belangrijk om een computer aan dit huis toe te voegen zodat de kleinkinderen zich konden vermaken op een regenachtige dag. Maar dit vereist wel veel stroom. Daarom zijn wij gegaan voor een Jackery 1500 powerbank met zonnepanelen. Hiermee kan alles worden voorzien van stroom.",
+                    text: "Voor dit project kregen wij de opdracht om een tiny cabin te bouwen. Het doel was om een opslagplaats voor fietsen te bouwen die ook gebruikt kon worden als slaapkamer.<br><br>Maar er was een klein probleem, het huis mocht niet groter zijn dan 2x2 Daarom moesten wij gebruik maken van een uiklapbaar bed en bureau. Maar wanneer er mensen in slapen heb je ook verwarming, verlichting en een tafel nodig. Ook vonden wij het belangrijk om een computer aan dit huis toe te voegen zodat de kleinkinderen zich konden vermaken op een regenachtige dag. Maar dit vereist wel veel stroom. Daarom zijn wij gegaan voor een Jackery 1500 powerbank met zonnepanelen. Hiermee kan alles worden voorzien van stroom. <br><br>Mijn leerdoel voor dit project was om een goede planning te maken zodat ik wist wat er aan zat te komen. De planning voor het gehele project is door omstandigheden vaak veranderd maar mijn eigen korte termijn planning daar in tegen was zeer stabiel.",
                     image: "/Huiz/Poster.png"
                 }
             ]
@@ -80,7 +80,7 @@ const projects: Project[] = [
                 name: "Play store",
                 icon: "icons/play.svg",
                 url: "https://play.google.com/store/apps/details?id=com.MardaxTech.GoudaGo&gl=NL"
-            }
+            },
         ],
         projectInfo: {
             hideTitle: true,
@@ -96,7 +96,7 @@ const projects: Project[] = [
                     type: "imageText",
                     title: "Hoe werkt het?",
                     image: "/GoudaGo/GoudaGo.png",
-                    text: "In de app Gouda GO! ga je op zoek naar interessante gebouwen van Gouda.<br><br>Zodra je in de app komt zie je een personage op de kaart staan. Zodra je dichter naar een gebouw komt, zul je een marker zien, als je daar op drukt komen er 2 vragen per marker in beeld. Per goed antwoord krijg je een coin, desde meer coins je hebt, desde meer plaatsen je hebt bezocht en vragen goed beantwoord hebt.<br><br>Naast dat de app een superleuke ervaring is, je kennis op de proef stelt, is het dus ook nog eens interactief, daardoor heb je het extra leuk tijdens het wandelen of fietsen. (Natuurlijk niet op je telefoon tijdens het fietsen 😊."
+                    text: "In de app Gouda GO! ga je op zoek naar interessante gebouwen van Gouda.<br><br>Zodra je in de app komt zie je een personage op de kaart staan. Zodra je dichter naar een gebouw komt, zul je een marker zien, als je daar op drukt komen er 2 vragen per marker in beeld. Per goed antwoord krijg je een coin, desde meer coins je hebt, desde meer plaatsen je hebt bezocht en vragen goed beantwoord hebt.<br><br>Naast dat de app een superleuke ervaring is, je kennis op de proef stelt, is het dus ook nog eens interactief, daardoor heb je het extra leuk tijdens het wandelen of fietsen. (Natuurlijk niet op je telefoon tijdens het fietsen 😊.<br><br>Mijn leerdoel voor dit project was hoe je een leerzaam spel maakt gebaseerd op GPS en map data"
                 }
             ]
         }
@@ -113,7 +113,7 @@ const projects: Project[] = [
                 name: "Download",
                 icon: "icons/download.svg",
                 url: "https://mardax.tech/downloads/Game.zip"
-            }
+            },
         ],
         projectInfo: {
             headerImage: "/Game/Unity2.jpg",
@@ -154,7 +154,7 @@ const projects: Project[] = [
                     type: "textImage",
                     title: "Mijn bijdrage aan dit project",
                     image: "/Duurzaam/Me.svg",
-                    text: "<ul> <li>Ik heb 30% van het marketing plan geschreven.</li> <li>Onze 5 3D prototypes heb ik in Tinkercad gemaakt.</li> <li>Onderzocht wie ons product zou willen kopen en waar we onze materialen vandaan zouden kunnen halen.</li> </ul>"
+                    text: "<ul> <li>Ik heb 30% van het marketing plan geschreven.</li> <li>Onze 5 3D prototypes heb ik in Tinkercad gemaakt.</li> <li>Onderzocht wie ons product zou willen kopen en waar we onze materialen vandaan zouden kunnen halen.</li> </ul><br>Ik heb bij dit project geleerd hoe je een marketing plan schrijft en hoe je een 3D model maakt. Ook heb ik geleerd hoe je een markt onderzoekt en hoe je een product moet promoten."
                 }
             ]
         }
@@ -170,7 +170,7 @@ const projects: Project[] = [
             {
                 name: "Video",
                 icon: "icons/yticon.svg",
-                url: "https://youtu.be/8CbyJ-3atiA"
+                url: "https://www.youtube-nocookie.com/embed/8CbyJ-3atiA"
             }
         ],
         projectInfo: {
@@ -179,7 +179,7 @@ const projects: Project[] = [
                 {
                     type: "videoText",
                     title: "Videopresentatie",
-                    text: "Voor dit project gingen we onderzoeken hoe we energie konden opwekken zonder het milleu negatief te beïnvloeden. We hebben meerdere basis ontwerpen onderzocht en hun voor en nadelen geïndexeerd. Met deze informatie hebben we één ontwerp uitgekozen en verder uitgewerkt door middel van een 3D model. Na het digitaal uitwerken van het ontwerpen hebben we het in de echte wereld gemaakt. Na het uitbouwen van ons plan hebben kleine aanpassingen gedaan om het te verbeteren. Helaas konden we deze aanpassingen niet testen vanwege tijdsgebrek. Ten slotte hebben we een video presentatie gemaakt over ons eind ontwerp.",
+                    text: "Voor dit project gingen we onderzoeken hoe we energie konden opwekken zonder het milleu negatief te beïnvloeden. We hebben meerdere basis ontwerpen onderzocht en hun voor en nadelen geïndexeerd. Met deze informatie hebben we één ontwerp uitgekozen en verder uitgewerkt door middel van een 3D model. Na het digitaal uitwerken van het ontwerpen hebben we het in de echte wereld gemaakt. Na het uitbouwen van ons plan hebben kleine aanpassingen gedaan om het te verbeteren. Helaas konden we deze aanpassingen niet testen vanwege tijdsgebrek. Ten slotte hebben we een video presentatie gemaakt over ons eind ontwerp.<br><br>Ik heb bij dit project geleerd hoe we energie halen uit water.",
                     video: "https://www.youtube-nocookie.com/embed/8CbyJ-3atiA"
                 }
             ]
@@ -196,7 +196,7 @@ const projects: Project[] = [
             {
                 name: "Video",
                 icon: "icons/yticon.svg",
-                url: "https://youtu.be/4_tbO5xqmJs"
+                url: "https://www.youtube-nocookie.com/embed/4_tbO5xqmJs"
             }
         ],
         projectInfo: {
@@ -205,7 +205,7 @@ const projects: Project[] = [
                 {
                     type: "videoText",
                     title: "Biologische stroopwafel ijs",
-                    text: "Voor dit project was de opdracht om een gouds product te nemen en het te verbeteren door er een biologische versie van te maken. Wij hebben biologische stroopwafel ijs gekozen omdat het nog best onbekent is. We hebben het recept van Laurasbakery gebruikt. We hebben de biologische en niet biologische versie van het ijs gebakken en beoordeelt of er verschil was tussen de twee varianten. We hebben hier ook een verslag over gemaakt. Wat we over het algemeen zagen was dat de biologische versie minder smaak had. Dit konden we compenseren door er meer van de smaak toevoegende ingrediënten erbij te doen. <br>In deze video laten wij het procces zien van het maken van biologische stroopwafel ijs. Dit heb ik gemaakt in in Adobe Premiere Pro.",
+                    text: "Voor dit project was de opdracht om een gouds product te nemen en het te verbeteren door er een biologische versie van te maken. Wij hebben biologische stroopwafel ijs gekozen omdat het nog best onbekent is. We hebben het recept van Laurasbakery gebruikt. We hebben de biologische en niet biologische versie van het ijs gebakken en beoordeelt of er verschil was tussen de twee varianten. We hebben hier ook een verslag over gemaakt. Wat we over het algemeen zagen was dat de biologische versie minder smaak had. Dit konden we compenseren door er meer van de smaak toevoegende ingrediënten erbij te doen. <br>In deze video laten wij het procces zien van het maken van biologische stroopwafel ijs. Dit heb ik gemaakt in in Adobe Premiere Pro.<br><br>Mijn leerdoel voor dit project was om meer te leren hoe biologisch eten word gemaakt.",
                     video: "https://www.youtube-nocookie.com/embed/4_tbO5xqmJs"
                 }
             ]
@@ -226,18 +226,18 @@ const projects: Project[] = [
             }
         ],
         projectInfo: {
-            headerImage: "",
+            headerImage: "/EscapeRoom/Escape.jpeg",
             texts: [
                 {
                     type: "imageText",
                     title: "De opdracht",
                     text: "We hebben een escape room gebouwd met een mini computer erin verwerkt. Wij hebben voor onze escape room de Raspberry Pi gekozen. We hebben de Raspberry Pi gekozen omdat het de programeer taal python gebruik in plaats van processing (arduino taal). De pi is ook veel uitgebreider dan een Arduino. Onze Raspberry pi had maar liefst 38 bruikbare pins die je kunt onder verdelen in 5 categorieën:<ul><li>General Purpose Input/Output(GPIO) pins: deze pins kan je aan of uitzetten.</li><li>Normale 3V pins: constante 3V pins.</li><li>Normale 6V pins: constante 6V pins.</li><li>Ground pins: Ground pins ook wel bekend als de min</li></ul>",
-                    image: "/EscapeRoom/Escape.jpeg"
+                    image: "/EscapeRoom/EscapeRoom.webp"
                 },
                 {
                     type: "textImage",
                     title: "Wat we gemaakt hebben",
-                    text: "<ul><li>We hebben een deurbel gemaakt.</li> <li>Als je op deze deurbel klikt gaan de ledjes onder de voetstappen aan.</li> <li>Deze voetstappen je leiden naar een beeldscherm in een kippenhok.</li> <li>In het kippenhok zit een digitaal spel genaamd Flappy Code.</li> </ul>",
+                    text: "<ul><li>We hebben een deurbel gemaakt.</li> <li>Als je op deze deurbel klikt gaan de ledjes onder de voetstappen aan.</li> <li>Deze voetstappen je leiden naar een beeldscherm in een kippenhok.</li> <li>In het kippenhok zit een digitaal spel genaamd Flappy Code.</li> </ul><br>Ik heb bij dit project geleerd over electrische circuits en ",
                     image: "/EscapeRoom/Raspi.jpg"
                 }
             ]
@@ -257,7 +257,7 @@ const projects: Project[] = [
                 {
                     type: "imageText",
                     title: "De opdracht",
-                    text: "We kregen de opdracht om een fietsroute uit te stippelen en daar 3 gevaarlijke verkeers situaties te vinden en mogelijke oplossingen voor te bedenken. De opdrachtgever(s) van Veilig Verkeer Gouda kozen 1 knooppunt die veiliger en over het algemeen verbeterd kon worden. Het eindresultaat is een 3D ontwerp en een machete van de gekozen klooppunt en een powerpoint presentatie die we aan de opdrachtgever(s) hebben gepresenteerd. Het 3D ontwerp kunt u hiernaast zien.",
+                    text: "We kregen de opdracht om een fietsroute uit te stippelen en daar 3 gevaarlijke verkeers situaties te vinden en mogelijke oplossingen voor te bedenken. De opdrachtgever(s) van Veilig Verkeer Gouda kozen 1 knooppunt die veiliger en over het algemeen verbeterd kon worden. Het eindresultaat is een 3D ontwerp en een machete van de gekozen klooppunt en een powerpoint presentatie die we aan de opdrachtgever(s) hebben gepresenteerd. Het 3D ontwerp kunt u hiernaast zien.<br><br>Mijn leerdoel voor dit project was om meer te leren over 3D ontwerpen en hoe je wegen veilig maakt.",
                     image: "/VeiligeFietsRoute/3Dontwerp.png"
                 },
                 {
@@ -291,8 +291,76 @@ const projects: Project[] = [
     },
 ];
 
+const introduction: Introduction = {
+    title: "Introductie",
+    icon: "icons/laptop.svg",
+    text: `
+    Welkom op mijn portfolio!
+    Mijn naam is Martijn Vriesman en ik heb <span class='excludeHover'>[INSERTTIME]</span> ervaring met software ontwikkeling.
+    Momenteel zit ik in 5VWO op het
+    <a href="https://www.antoniuscollegegouda.nl/"><span style="color: #00afd3;">Antoniuscollege</span></a>
+    in
+    <span class='excludeHover' style="color: #ffca27;">Gouda,&nbsp;&#x1F1F3;&#x1F1F1;</span>
+    waar ik het N&T profiel volg.
+    Ik heb ervaring met het ontwikkelen van websites en applicaties met behulp van:
+    <br>[INSERTLANGUAGES].
+    `,
+    languages: [
+        {
+            name: "HTML",
+            color: "#dd4b25",
+            url: "https://www.w3schools.com/html/"
+        },
+        {
+            name: "CSS",
+            color: "#2449d8",
+            url: "https://www.w3schools.com/css/"
+        },
+        {
+            name: "Typescript",
+            color: "#2e72bc",
+            url: "https://www.typescriptlang.org/"
+        },
+        {
+            name: "Svelte(kit)",
+            color: "#f23b00",
+            url: "https://svelte.dev/"
+        },
+        {
+            name: "Python",
+            color: "#f2cb40",
+            url: "https://www.python.org/"
+        },
+        {
+            name: "NodeJS",
+            color: "#549453",
+            url: "https://nodejs.org/"
+        },
+        {
+            name: "C#",
+            color: "#651471",
+            url: "https://learn.microsoft.com/dotnet/csharp/"
+        },
+        {
+            name: "Firebase",
+            color: "#eeb205",
+            url: "https://firebase.google.com/"
+        }
+    ],
+    startDate: 1472319999999
+}
+
 function getProjects(): Project[] {
     return projects;
 }
 
-export default getProjects;
+function getIntroduction(): Introduction {
+    let languages = "";
+    introduction.languages.forEach(language => {
+        languages = `${languages}${introduction.languages.indexOf(language) == introduction.languages.length - 1 ? " en " : introduction.languages.indexOf(language) != 0 ? ", ": ""}<a href='${language.url}'><span class='language' style='color: ${language.color}'>${language.name}</span></a>`;
+    });
+    introduction.text = introduction.text.replace("[INSERTLANGUAGES]", languages);
+    return introduction;
+}
+
+export { getProjects, getIntroduction };
