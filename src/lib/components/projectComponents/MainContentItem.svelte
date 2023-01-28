@@ -27,7 +27,7 @@
         margin-top: 5%;
 
         div {
-            max-height: 75vw;
+            max-height: 100vw;
             color: white;
             background-color: #131314;
 
