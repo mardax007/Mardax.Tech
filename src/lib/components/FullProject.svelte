@@ -4,12 +4,6 @@
 	import MainContentItem from "./projectComponents/MainContentItem.svelte";
 
     export let project: Project;
-
-    onMount(() => {
-        const header = document.getElementById("header");
-        // if(header) header.style.backgroundImage = `url(${project.projectInfo.headerImage})`;
-        // if(header) header.style.backgroundSize = `contain no-repeat;`;
-    })
 </script>
 
 <div id="project">
@@ -43,11 +37,11 @@
 </div>
 
 <style lang="scss">
+    @import '$lib/variables.scss';
     #project {
         width: 100%;
 
         #links {
-            
             display: flex;
             justify-content: center;
             margin: 0 auto;
@@ -55,7 +49,7 @@
             height: 100%;
 
             a {
-                background-color: #131314;
+                background-color: $primaryColor;
                 padding: 1.5%;
                 border-radius: 30px;
 
@@ -112,8 +106,8 @@
                     font-size: 300%;
                     font-weight: 400;
                     text-align: center;
-                    color: white;
-                    text-shadow: 1px 2px 3px #212121;
+                    color: $fontColor;
+                    text-shadow: 1px 2px 3px $tertiaryColor;
                 }
 
                 p {
@@ -121,10 +115,10 @@
                     font-size: 125%;
                     text-align: center;
                     font-weight: 400;
-                    color: white;
-                    text-shadow: 1px 2px 3px #212121;
+                    color: $fontColor;
+                    text-shadow: 1px 2px 3px $tertiaryColor;
                 }
-            
+
             }
         }
 

@@ -7,8 +7,10 @@
     export let time: number[] = get(Date.now() - intro.startDate);
 
     onMount(() => {
+        let stopTime = false;
+
         setInterval(() => {
-            time = get(Date.now() - intro.startDate);
+            if (!stopTime) time = get(Date.now() - intro.startDate);
         }, 1);
     })
 
@@ -24,7 +26,7 @@
     }
     function extend(num: number, digits: number) {
         let _num = num.toFixed(0).toString();
-        return ("0".repeat(Math.max(0, digits - _num.length))) + _num; 
+        return ("0".repeat(Math.max(0, digits - _num.length))) + _num;
     }
 </script>
 
@@ -33,5 +35,5 @@
         <img src={intro.icon} alt="laptop">
         <h1>{@html intro.title}</h1>
     </div>
-    <p>{@html intro.text.replace("[INSERTTIME]", `${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}.${extend(time[0], 3)}`)}</p>
+    <p id="introText">{@html intro.text.replace("[INSERTTIME]", `${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}`).replace("[INSERTNAME]", `<span>${intro.name}</span>`)}</p>
 </div>

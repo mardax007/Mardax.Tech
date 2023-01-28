@@ -4,10 +4,7 @@
 	import {getProjects} from "$lib/scripts/data";
     import { onMount } from "svelte";
 
-    
-    
     let project: Project = {} as Project;
-
 
     onMount(() => {
         project = getProjects().filter(project => {if ("?" + project.title == decodeURIComponent(window.location.search)) return project})[0]

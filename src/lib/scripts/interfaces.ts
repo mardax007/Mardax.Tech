@@ -37,6 +37,8 @@ interface link {
 
 interface Introduction {
     title: string;
+    name: string;
+    tag: string;
     icon: string;
     text: string;
     startDate: number;

@@ -1,11 +1,12 @@
 
 <div id="more">
-    <a href="/projects">
+    <a href="/projects#3">
         <h1>Meer projecten</h1>
     </a>
 </div>
 
 <style lang="scss">
+    @import '$lib/variables.scss';
     #more {
         display: flex;
         justify-content: center;
@@ -17,9 +18,9 @@
     }
 
     #more h1 {
-        font-size: calc(4vh + 1vw);
+        font-size: 300%;
         font-weight: 600;
-        color: white;
+        color: $fontColor;
         margin: 0;
         margin-bottom: calc(2vh + 1vw);
         transition: 0.5s;

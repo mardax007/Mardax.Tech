@@ -2,14 +2,15 @@
 	import type { Project } from "$lib/scripts/interfaces";
 
     export let project: Project;
+    export let index: number;
 </script>
 
 {#if project}
-    <div class="project">
+    <div class="project" id={index.toString()}>
         <div id="top">
             <div id="left">
-                <p>{project.textDate}</p>
-                <h1>{project.title}</h1>
+                <p>{@html project.textDate}</p>
+                <h1>{@html project.title}</h1>
                 <div id="links">
                     {#if project.links}
                         {#each project.links as link}
@@ -37,14 +38,15 @@
 {/if}
 
 <style lang="scss">
+    @import '$lib/variables.scss';
     .project {
         width: 80%;
-        color: white;
+        color: $fontColor;
         margin: 0 auto;
 
         backdrop-filter: blur(2px);
         box-shadow: 2px 3px 10px 5px rgba(0,0,0,0.75);
-        background-color: #131314;
+        background-color: $primaryColor;
         padding: 2%;
         border-radius: 15px;
 
@@ -115,7 +117,7 @@
                     cursor: pointer;
                     transition: 0.5s;
                 }
-                
+
                 iframe {
                     height: 25vh;
                     width: 70vw;

@@ -3,23 +3,32 @@
     import Header from "$lib/components/Header.svelte";
 	import MoreProjects from "$lib/components/MoreProjects.svelte";
 	import Projects from "$lib/components/Projects.svelte";
+	import { onMount } from "svelte";
+
+	let flag = "";
+
+	onMount(() => {
+        flag = decodeURIComponent(window.location.search)
+    })
 </script>
 
 <div id="wrapper">
 	<Header />
 	<AboutMe />
-	<Projects max={3} />
-	<MoreProjects />
+	{#if flag === "?school"}
+		<Projects max={3} />
+		<MoreProjects />
+	{/if}
 </div>
 
 <style lang="scss">
+	@import '$lib/variables.scss';
 	#wrapper {
-        max-width: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 0 auto;
-		max-width: 1200px;
-		min-width: 425px;
+		max-width: 1300px;
+		min-width: 375px;
 	}
 </style>

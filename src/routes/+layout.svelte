@@ -2,4 +2,5 @@
     import "../app.scss"
 </script>
 
+<div class="overlay-black" />
 <slot />

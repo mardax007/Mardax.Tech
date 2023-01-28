@@ -20,6 +20,7 @@
 </div>
 
 <style lang="scss">
+    @import '$lib/variables.scss';
     .projectItem {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -28,8 +29,8 @@
 
         div {
             max-height: 100vw;
-            color: white;
-            background-color: #131314;
+            color: $fontColor;
+            background-color: $primaryColor;
 
             h1, p {
                 padding: 3%;

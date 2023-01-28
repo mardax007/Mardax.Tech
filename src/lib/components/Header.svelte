@@ -1,20 +1,23 @@
 
 <script lang="ts">
+    import { getIntroduction } from "$lib/scripts/data";
 
+    let intro = getIntroduction();
 </script>
 
 <div id="header">
     <div id="main">
         <img src="icons/avatar.png" alt="avatar" id="avatar" >
         <div id="separator" />
-        <h1>Martijn Vriesman</h1>
-        <p>Webdeveloper</p>
+        <h1>{@html intro.name}</h1>
+        <p>{@html intro.tag}</p>
     </div>
     <!-- svelte-ignore a11y-missing-content -->
     <a href="#aboutMe" class="scroll-down" />
 </div>
 
 <style lang="scss">
+    @import '$lib/variables.scss';
     #header {
         position: relative;
         overflow: hidden;
@@ -39,8 +42,8 @@
                 font-size: 300%;
                 font-weight: 400;
                 text-align: center;
-                color: white;
-                text-shadow: 1px 2px 3px #212121;
+                color: $fontColor;
+                text-shadow: 1px 2px 3px $tertiaryColor;
             }
 
             p {
@@ -49,8 +52,8 @@
                 font-size: 200%;
                 text-align: center;
                 font-weight: 400;
-                color: white;
-                text-shadow: 1px 2px 3px #212121;
+                color: $fontColor;
+                text-shadow: 1px 2px 3px $tertiaryColor;
             }
 
             #avatar {
@@ -65,31 +68,33 @@
                 margin: 0 auto;
                 width: 12.5%;
                 height: calc(0.5vw - 0.35vh);
-                background-color: #0e141b;
+                background-color: $primaryColor;
                 opacity: 0.75;
                 margin-top: 2vw;
                 margin-bottom: 2vw;
             }
-        
+
         }
     }
 
-    .scroll-down {
-        position: absolute;
-        left: 49vw;
-        bottom: 5vh;
-        display: block;
-        text-align: center;
-        font-size: 1.25rem;
-        z-index: 100;
-        text-decoration: none;
-        text-shadow: 0;
-        width: calc(5vh - 5vw);
-        height: calc(5vh - 5vw);
-        border-bottom: 2px solid #fff;
-        border-right: 2px solid #fff;
-        transform: translate(-50%, 0%) rotate(45deg);
-        animation: fade_move_down 3s ease-in-out infinite;
+    @media only screen and (min-width: 600px) {
+        .scroll-down {
+            position: absolute;
+            left: 49vw;
+            bottom: 5vh;
+            display: block;
+            text-align: center;
+            font-size: 1.25rem;
+            z-index: 100;
+            text-decoration: none;
+            text-shadow: 0;
+            width: calc(1vh);
+            height: calc(1vh);
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+            transform: translate(-50%, 0%) rotate(45deg);
+            animation: fade_move_down 3s ease-in-out infinite;
+        }
     }
 
     @keyframes fade_move_down {
