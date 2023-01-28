@@ -56,7 +56,7 @@
 
             a {
                 background-color: #131314;
-                padding: 1%;
+                padding: 1.5%;
                 border-radius: 30px;
 
                 img {
@@ -70,12 +70,12 @@
             }
 
             .first {
-                padding-right: 2.5%;
+                padding-left: 2.5%;
                 border-radius: 30px 0px 0px 30px;
             }
 
             .last {
-                padding-left: 2.5%;
+                padding-right: 2.5%;
                 border-radius: 0px 30px 30px 0px;
             }
         }
