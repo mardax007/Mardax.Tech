@@ -8,7 +8,7 @@ interface Project {
     description: string;
     mediaType: "yt" | "img";
     media: string;
-    links: link[];
+    links?: link[];
     projectInfo: ProjectInfo;
 }
 

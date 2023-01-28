@@ -11,11 +11,13 @@
                 <p>{project.textDate}</p>
                 <h1>{project.title}</h1>
                 <div id="links">
-                    {#each project.links as link}
-                        <a href={link.url}>
-                            <img src={link.icon} alt={link.name}>
-                        </a>
-                    {/each}
+                    {#if project.links}
+                        {#each project.links as link}
+                            <a href={link.url}>
+                                <img src={link.icon} alt={link.name}>
+                            </a>
+                        {/each}
+                    {/if}
                 </div>
             </div>
             <div id="right">
@@ -69,7 +71,7 @@
                     margin-top: calc(.25vh + .25vw);
 
                     display: flex;
-                    justify-content: space-between;
+                    gap: 10%;
                     align-items: center;
                     img:hover {
                         scale: 1.1;

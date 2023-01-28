@@ -27,6 +27,7 @@
         margin-top: 5%;
 
         div {
+            max-height: 75vw;
             color: white;
             background-color: #131314;
 
@@ -51,10 +52,10 @@
         }
 
         img, iframe {
-            min-height: 25vw;
+            min-height: 20vw;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: fill;
         }
     }
 

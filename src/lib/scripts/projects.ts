@@ -16,7 +16,35 @@ const projects: Project[] = [
             }
         ],
         projectInfo: {
-            texts: []
+            headerImage: "/Muziekfabriek-Rollingsticks-logo-350px-wit.png",
+            hideTitle: true,
+            texts: [
+                {
+                    type: "imageText",
+                    title: "Rollingsticks",
+                    text: "Wij kregen de opdacht van muziek fabriek rollingsticks om een online muziek les applicatie te ontwikkelen. Het doel was om een app te maken die leerlingen kunnen gebruiken om bladmuziek af te spelen die hun docent hen heeft toegewezen. Dit project valt in de beta werelden:<br>Hi-Tech & Sience, Digitaal Media & Entertainment en Ontwerp, Productie & Wereldhandel.<h2>Mijn bijdrage</h2>Ik heb voornamelijk backend code geschreven en aan de muziek speler. Backend is de kant van de applicatie die de gebruiker niet ziet. Hieronder valt niet alleen alles rond de server (beveiliging, connectie, opslag, authenticatie) maar ook dingen die op de client gebeuren als, laad snelheid en audio (gedeeltelijk).",
+                    image: "https://p.mardax.tech/images/Screenshot2022-05-200727031.png"
+
+                },
+                {
+                    type: "textImage",
+                    title: "Technologiën",
+                    text: "Om de app simpel te houden wilde we één platform gebruiken voor alle infrastructuur. Daarnaast wilde we ook voorkomen dat we onze eigen server moesten gebruiken omdat dit extra veel kosten en onderhoud teweeg brengt.<br><br>Daarom hebben we gekozen voor Firebase. Firebase is een platform van Google die alles heeft voor het bouwen van een app. Het is simpel maar nog steeds zeer krachtig. Firebase regelt alle backend voor ons, authenticatie, opslag van muziek en gebruikers data, analytics en beveiliging. Ze laten je app ook bij hun hosten alleen deze feature was nog in beta toen we begonnen met bouwen dus hiervoor hebben we een andere service gebruikt genaamt netlify. We waren al best bekend met netlify (ik host er al mijn websites op) en met firebase heb ik al een paar jaar ervaring. Dat is ook de reden waarom ik vooral alles rond firebase regelde.<br><br>Voor het maken van de website zelf hebben zij gekozen voor het framework svelte. Svelte betekent letterlijk slender en de naam is passend. Svelte is zeer licht waardoor websites razend snel laden. Daarnaast is het makkelijk om te leren wat fijn is voor de team leden die het nooit gebruikt hebben. Daarnaast is het schaalbaar dus als we later onze eigen server eraan willen toevoegen is dat heel simpel.",
+                    image: "/stack.png"
+                },
+                {
+                    type: "imageText",
+                    title: "Muziek speler",
+                    text: "De muziek speler was een van de lastigste. Omdat we niet 6 jaar hebben om de website te bouwen hebben we OpenSheetMusicDisplay gepakt en die aangepast naar onze wensen. OSMD is een opensource project om een muziek speler te maken die makkelijk is om te intergreren maar nog steeds zeer flexibel is.",
+                    image: "/OSMD.png"
+                },
+                {
+                    type: "textImage",
+                    title: "Mijn leerdoel",
+                    text: "Mijn leerdoel voor dit project was een goede planning voor mezelf en het team maken zodat ik wist wat er aan zat te komen. De planning voor het gehele project is door omstandigheden vaak veranderd maar mijn eigen korte termijn planning daar in tegen was zeer stabiel.",
+                    image: "/Goal.jpg"
+                }
+            ]
         }
     },
     {
@@ -26,7 +54,6 @@ const projects: Project[] = [
         description: "Voor dit project kregen wij de opdracht om een tiny cabin te bouwen. Het doel was om een opslagplaats voor fietsen te bouwen die ook gebruikt kon worden als slaapkamer.",
         mediaType: "img",
         media: "huiz full.png",
-        links: [],
         projectInfo: {
             headerImage: "/huiz.png",
             hideTitle: true,
@@ -113,7 +140,6 @@ const projects: Project[] = [
         description: "Bij dit project waren de opdrachtgevers dpg, gemeente Gouda en gemeente Krimpenerwaard. Zij gaven ons de opdracht om een duurzaam en circulair product te ontwikkelen. Wij kozen voor een duurzame en circulaire etui. We moesten aan het einde van het project een fysiek of digitaal eindmodel hebben, Een marketing plan die ons product presenteerd, wat het kost, waar het gemaakt word en hoe we het gaan promoten. Ook hebben we de markt verkent en in kaart gebracht hoe het er op dit moment uit ziet.",
         mediaType: "img",
         media: "https://p.mardax.tech/images/etui1.jpg",
-        links: [],
         projectInfo: {
             hideTitle: true,
             headerImage: "/span.png",
@@ -224,7 +250,6 @@ const projects: Project[] = [
         description: "We kregen de opdracht om een fietsroute uit te stippelen en daar 3 gevaarlijke verkeers situaties te vinden en mogelijke oplossingen voor te bedenken. De opdrachtgevers van Veilig Verkeer Gouda kozen 1 knooppunt die veiliger en over het algemeen verbeterd kon worden. Het eindresultaat is een 3D ontwerp en een machete van de gekozen klooppunt en een powerpoint presentatie die we aan de opdrachtgevers hebben gepresenteerd.",
         mediaType: "img",
         media: "https://p.mardax.tech/images/VVR.png",
-        links: [],
         projectInfo: {
             hideTitle: true,
             headerImage: "/vvn.png",
@@ -245,7 +270,6 @@ const projects: Project[] = [
         description: "Wij kregen de opdracht om een dominobaan ontwerpen voor Stichting Domino voor het jaarlijkse evenement: Domino Day! Dit was mijn aller eerste O&O project en ik heb veel geleerd over hoe je in een team samenwerkt.",
         mediaType: "img",
         media: "https://p.mardax.tech/images/DD.png",
-        links: [],
         projectInfo: {
             headerImage: "/dominoday.webp",
             tagline: "Get ready for game day",

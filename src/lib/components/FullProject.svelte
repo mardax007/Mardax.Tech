@@ -22,6 +22,15 @@
     </div>
 
     <div id="content">
+        {#if project.links}
+            <div id="links">
+                {#each project.links as link}
+                    <a href={link.url} class={project.links.indexOf(link) == 0 ? "first" + (project.links.indexOf(link) == project.links.length - 1 ? "last" : "") : project.links.indexOf(link) == project.links.length - 1 ? "last" : ""}>
+                        <img src={link.icon} alt={link.name}>
+                    </a>
+                {/each}
+            </div>
+        {/if}
         {#each project.projectInfo.texts as textElement}
             {#if ["imageText", "textImage", "videoText"].includes(textElement.type)}
                 <MainContentItem textElement={textElement} />
@@ -36,6 +45,40 @@
 <style lang="scss">
     #project {
         width: 100%;
+
+        #links {
+            
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            margin-top: 5vh;
+            height: 100%;
+
+            a {
+                background-color: #131314;
+                padding: 1%;
+                border-radius: 30px;
+
+                img {
+                    height: 5vh;
+                    transition: .5s;
+
+                    &:hover {
+                        scale: 1.1;
+                    }
+                }
+            }
+
+            .first {
+                padding-right: 2.5%;
+                border-radius: 30px 0px 0px 30px;
+            }
+
+            .last {
+                padding-left: 2.5%;
+                border-radius: 0px 30px 30px 0px;
+            }
+        }
 
         #content {
             width: 80%;
