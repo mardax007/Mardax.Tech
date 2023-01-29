@@ -71,7 +71,7 @@
                 margin: 0 auto;
                 width: 12.5%;
                 height: calc(0.5vw - 0.35vh);
-                background-color: $primaryColor;
+                // background-color: $primaryColor;
                 opacity: 0.75;
                 margin-top: 2vw;
                 margin-bottom: 2vw;
