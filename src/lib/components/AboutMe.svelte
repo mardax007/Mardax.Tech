@@ -41,7 +41,7 @@
     <div id="aboutMe">
         <div id="tag">
             {#await loadImage(intro.icon ?? "") then image}
-                <img src={image} alt="laptop">
+                <img loading="lazy" src={image} alt="laptop">
             {/await}
             <h1>{@html intro.title}</h1>
         </div>

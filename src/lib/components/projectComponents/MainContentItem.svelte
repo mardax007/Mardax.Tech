@@ -8,7 +8,7 @@
 <div id="textImage" class="projectItem {["videoText", "textImage"].includes(textElement.type) ? 'imgtxt': 'txtimg'}">
     {#if textElement.type === "textImage"}
         {#await loadImage(textElement.image ?? "") then image}
-            <img src={image} alt="">
+            <img loading="lazy" src={image} alt="">
         {/await}
     {:else if textElement.type === "videoText"}
         <iframe src={textElement.video} title="Player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -19,7 +19,7 @@
     </div>
     {#if textElement.type === "imageText"}
         {#await loadImage(textElement.image ?? "") then image}
-            <img src={image} alt="">
+            <img loading="lazy" src={image} alt="">
         {/await}
     {/if}
 </div>

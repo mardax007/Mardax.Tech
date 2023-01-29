@@ -8,7 +8,7 @@
     <div id="header">
         <div id="main">
             {#await loadImage(intro.avatar ?? "") then image}
-                <img src={image} alt="avatar" id="avatar">
+                <img loading="lazy" src={image} alt="avatar" id="avatar">
             {/await}
             <div id="separator" />
             <h1>{@html intro.name}</h1>

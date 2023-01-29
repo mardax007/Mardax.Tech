@@ -22,7 +22,7 @@
                         {#each project.links as link}
                             <a href={link.url}>
                                 {#await loadImage(link.icon ?? "") then image}
-                                    <img src={image} alt={link.name}>
+                                    <img loading="lazy" src={image} alt={link.name}>
                                 {/await}
                             </a>
                         {/each}
@@ -39,7 +39,7 @@
                     <iframe width="560" height="315" src={project.media} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 {:else}
                     {#await loadImage(project.media ?? "") then image}
-                        <img src={image} alt="">
+                        <img loading="lazy" src={image} alt="">
                     {/await}
                 {/if}
             </a>

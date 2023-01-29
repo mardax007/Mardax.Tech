@@ -9,7 +9,7 @@
 <div id="project">
     <div id="header">
         {#await loadImage(project.projectInfo?.headerImage ?? "") then image}
-            <img id="headerImage" src={image} alt="">
+            <img loading="lazy" id="headerImage" src={image} alt="">
         {/await}
         <div id="main">
             {#if !project.projectInfo.hideTitle}<h1>{@html project.title}</h1>{/if}
@@ -23,7 +23,7 @@
                 {#each project.links as link}
                     <a href={link.url} class={project.links.indexOf(link) == 0 ? "first" + (project.links.indexOf(link) == project.links.length - 1 ? "last" : "") : project.links.indexOf(link) == project.links.length - 1 ? "last" : ""}>
                         {#await loadImage(link.icon ?? "") then image}
-                            <img src={image} alt={link.name}>
+                            <img loading="lazy" src={image} alt={link.name}>
                         {/await}
                     </a>
                 {/each}
