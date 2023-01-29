@@ -39,6 +39,7 @@ interface Introduction {
     title: string;
     name: string;
     tag: string;
+    avatar: string;
     icon: string;
     text: string;
     startDate: number;

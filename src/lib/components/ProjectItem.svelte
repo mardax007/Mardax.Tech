@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Project } from "$lib/scripts/interfaces";
+	import loadImage from "$lib/scripts/loadImage";
 
     export let project: Project;
     export let index: number;
@@ -15,7 +16,9 @@
                     {#if project.links}
                         {#each project.links as link}
                             <a href={link.url}>
-                                <img src={link.icon} alt={link.name}>
+                                {#await loadImage(link.icon ?? "") then image}
+                                    <img src={image} alt={link.name}>
+                                {/await}
                             </a>
                         {/each}
                     {/if}
@@ -30,7 +33,9 @@
                 {#if project.mediaType == "yt"}
                     <iframe width="560" height="315" src={project.media} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 {:else}
-                    <img src={project.media} alt="">
+                    {#await loadImage(project.media ?? "") then image}
+                        <img src={image} alt="">
+                    {/await}
                 {/if}
             </a>
         </div>

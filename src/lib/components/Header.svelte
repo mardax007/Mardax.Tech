@@ -1,20 +1,23 @@
 
 <script lang="ts">
     import { getIntroduction } from "$lib/scripts/data";
-
-    let intro = getIntroduction();
+	import loadImage from "$lib/scripts/loadImage";
 </script>
 
-<div id="header">
-    <div id="main">
-        <img src="icons/avatar.png" alt="avatar" id="avatar" >
-        <div id="separator" />
-        <h1>{@html intro.name}</h1>
-        <p>{@html intro.tag}</p>
+{#await getIntroduction() then intro}
+    <div id="header">
+        <div id="main">
+            {#await loadImage(intro.avatar ?? "") then image}
+                <img src={image} alt="avatar" id="avatar">
+            {/await}
+            <div id="separator" />
+            <h1>{@html intro.name}</h1>
+            <p>{@html intro.tag}</p>
+        </div>
+        <!-- svelte-ignore a11y-missing-content -->
+        <a href="#aboutMe" class="scroll-down" />
     </div>
-    <!-- svelte-ignore a11y-missing-content -->
-    <a href="#aboutMe" class="scroll-down" />
-</div>
+{/await}
 
 <style lang="scss">
     @import '$lib/variables.scss';
@@ -26,7 +29,7 @@
 
         max-height: 100vw;
 
-        background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(14, 20, 27, 1)), url("water.jpg");
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(14, 20, 27, 1)), url("https://firebasestorage.googleapis.com/v0/b/mardaxtech-portfolio.appspot.com/o/header.jpg?alt=media");
         background-size: cover;
 
         #main {

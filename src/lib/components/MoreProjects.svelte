@@ -1,6 +1,6 @@
 
 <div id="more">
-    <a href="/projects#3">
+    <a href="/projects">
         <h1>Meer projecten</h1>
     </a>
 </div>

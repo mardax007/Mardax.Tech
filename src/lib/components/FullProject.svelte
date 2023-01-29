@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Project } from "$lib/scripts/interfaces";
-	import { onMount } from "svelte";
+	import loadImage from "$lib/scripts/loadImage";
 	import MainContentItem from "./projectComponents/MainContentItem.svelte";
 
     export let project: Project;
@@ -8,7 +8,9 @@
 
 <div id="project">
     <div id="header">
-        <img id="headerImage" src={project.projectInfo.headerImage} alt="">
+        {#await loadImage(project.projectInfo?.headerImage ?? "") then image}
+            <img id="headerImage" src={image} alt="">
+        {/await}
         <div id="main">
             {#if !project.projectInfo.hideTitle}<h1>{@html project.title}</h1>{/if}
             {#if project.projectInfo.tagline}<p>{project.projectInfo.tagline}</p>{/if}
@@ -20,7 +22,9 @@
             <div id="links">
                 {#each project.links as link}
                     <a href={link.url} class={project.links.indexOf(link) == 0 ? "first" + (project.links.indexOf(link) == project.links.length - 1 ? "last" : "") : project.links.indexOf(link) == project.links.length - 1 ? "last" : ""}>
-                        <img src={link.icon} alt={link.name}>
+                        {#await loadImage(link.icon ?? "") then image}
+                            <img src={image} alt={link.name}>
+                        {/await}
                     </a>
                 {/each}
             </div>
@@ -81,14 +85,17 @@
         }
 
         #header {
+            animation: fadeIn 1s;
             position: relative;
             overflow: hidden;
             width: 100vw;
+            height: 100%;
 
             max-height: 50vw;
             margin-bottom: -2.5%;
 
             #headerImage {
+                height: 100%;
                 width: 100%;
                 object-fit: cover;
             }
@@ -122,6 +129,13 @@
             }
         }
 
-
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
     }
 </style>

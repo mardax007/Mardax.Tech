@@ -4,6 +4,7 @@
 	import MoreProjects from "$lib/components/MoreProjects.svelte";
 	import Projects from "$lib/components/Projects.svelte";
 	import { onMount } from "svelte";
+	import "../app.scss";
 
 	let flag = "";
 

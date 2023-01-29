@@ -1,8 +1,15 @@
 <script lang="ts">
 	import { getIntroduction } from "$lib/scripts/data";
+	import loadImage from "$lib/scripts/loadImage";
+    import type { DocumentData } from "@firebase/firestore";
     import { onMount } from "svelte";
 
-    let intro = getIntroduction();
+    let intro: DocumentData = {startDate: 1472319999999};
+
+    async function loadIntroduction() {
+        intro = await getIntroduction();
+        return intro;
+    }
 
     export let time: number[] = get(Date.now() - intro.startDate);
 
@@ -30,10 +37,14 @@
     }
 </script>
 
-<div id="aboutMe">
-    <div id="tag">
-        <img src={intro.icon} alt="laptop">
-        <h1>{@html intro.title}</h1>
+{#await loadIntroduction() then intro}
+    <div id="aboutMe">
+        <div id="tag">
+            {#await loadImage(intro.icon ?? "") then image}
+                <img src={image} alt="laptop">
+            {/await}
+            <h1>{@html intro.title}</h1>
+        </div>
+        <p id="introText">{@html intro.text.replace("[INSERTTIME]", `${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}`).replace("[INSERTNAME]", `<span>${intro.name}</span>`)}</p>
     </div>
-    <p id="introText">{@html intro.text.replace("[INSERTTIME]", `${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}`).replace("[INSERTNAME]", `<span>${intro.name}</span>`)}</p>
-</div>
+{/await}

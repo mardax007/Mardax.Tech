@@ -1,12 +1,15 @@
 <script lang="ts">
     import type { TextElement } from "$lib/scripts/interfaces";
+    import loadImage from "$lib/scripts/loadImage";
 
     export let textElement: TextElement;
 </script>
 
 <div id="textImage" class="projectItem {["videoText", "textImage"].includes(textElement.type) ? 'imgtxt': 'txtimg'}">
     {#if textElement.type === "textImage"}
-        <img src={textElement.image} alt="">
+        {#await loadImage(textElement.image ?? "") then image}
+            <img src={image} alt="">
+        {/await}
     {:else if textElement.type === "videoText"}
         <iframe src={textElement.video} title="Player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
     {/if}
@@ -15,20 +18,22 @@
         <p>{@html textElement.text}</p>
     </div>
     {#if textElement.type === "imageText"}
-        <img src={textElement.image} alt="">
+        {#await loadImage(textElement.image ?? "") then image}
+            <img src={image} alt="">
+        {/await}
     {/if}
 </div>
 
 <style lang="scss">
     @import '$lib/variables.scss';
     .projectItem {
+        animation: fadeIn 1s;
         display: grid;
         grid-template-columns: 1fr 1fr;
         margin-bottom: 5%;
         margin-top: 5%;
 
         div {
-            max-height: 100vw;
             color: $fontColor;
             background-color: $primaryColor;
 
@@ -56,7 +61,8 @@
             min-height: 20vw;
             width: 100%;
             height: 100%;
-            object-fit: fill;
+            object-fit: cover;
+            background-color: $primaryColor;
         }
     }
 
@@ -80,7 +86,7 @@
         }
     }
 
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 600px) {
         #textImage {
             grid-template-rows: 1fr 1fr;
             grid-template-columns: 1fr;
@@ -104,6 +110,15 @@
             img, iframe {
                 border-radius: 30px 30px 0px 0px;
             }
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
         }
     }
 </style>

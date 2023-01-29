@@ -3,14 +3,15 @@
     import {getProjects} from "$lib/scripts/data";
 
     export let max: number | undefined;
-    const projects = getProjects().slice(0, max);
 </script>
 
 <div id="projects">
     <h1>School projecten</h1>
-    {#each projects as project}
-        <ProjectItem {project} index={projects.indexOf(project)} />
-    {/each}
+    {#await getProjects(max) then projects}
+        {#each projects as project}
+            <ProjectItem {project} index={projects.indexOf(project)} />
+        {/each}
+    {/await}
 </div>
 
 <style lang="scss">
