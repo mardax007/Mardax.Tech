@@ -30,6 +30,7 @@
             margin: 0;
             margin-bottom: 2.5%;
             color: $fontColor;
+            text-align: center;
         }
     }
 </style>
