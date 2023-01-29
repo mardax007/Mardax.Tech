@@ -23,6 +23,7 @@
         color: $fontColor;
         margin: 0;
         margin-bottom: 5%;
+        margin-top: -7.5%;
         transition: 0.5s;
     }
 
