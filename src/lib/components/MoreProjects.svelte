@@ -1,9 +1,18 @@
+<script>
+	import { browser } from "$app/environment";
+
+</script>
 
 <div id="more">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <h1 on:click={() => {
         dispatchEvent(new CustomEvent("ShowMoreProj"))
         document.getElementById("more").style.display = "none";
+        if (navigator.userAgent.search("Firefox") > -1) {
+            setTimeout(() => {
+                window.scrollTo({ top: 3000 })
+            }, 75);
+        }
     }}>Meer projecten</h1>
 </div>
 
