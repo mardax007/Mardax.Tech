@@ -4,7 +4,7 @@ import { firestore } from "./firebase";
 async function getProjects(max: number | undefined) {
     const local = localStorage.getItem("projects")
     if (local != null && JSON.parse(local).time + 1000 * 60 < new Date().getTime()) {
-        return JSON.parse(localStorage.getItem("projects") ?? "[]");
+        return JSON.parse(localStorage.getItem("projects") ?? "[]").projects;
     } else {
         const projects = ((await getDoc(doc(firestore, "projects", "school"))).data() ?? []).projects.slice(0, max == undefined ? 9999 : max);
         localStorage.setItem("projects", JSON.stringify({"projects": projects, time: new Date().getTime()}));
@@ -15,7 +15,7 @@ async function getProjects(max: number | undefined) {
 async function getIntroduction() {
     const local = localStorage.getItem("introduction")
     if (local != null && JSON.parse(local).time + 1000 * 60 < new Date().getTime()) {
-        return JSON.parse(localStorage.getItem("introduction") ?? "{}");
+        return JSON.parse(localStorage.getItem("introduction") ?? "{}").introduction;
     } else {
         const introduction = (await getDoc(doc(firestore, "introduction", "school"))).data()?.intro ?? {}
         let languages = "";
