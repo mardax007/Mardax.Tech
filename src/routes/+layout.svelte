@@ -4,8 +4,12 @@
 
 <div class="overlay-black" />
 <slot />
+<div id="footer">
+    <p>© Mardax.Tech {new Date().getFullYear()}</p>
+</div>
 
 <style lang="scss">
+    @import '$lib/variables.scss';
     .overlay-black {
         animation: fadeInAnimation ease 3s;
     }
@@ -28,5 +32,12 @@
             opacity: 0;
             z-index: -1;
         }
+    }
+
+    #footer {
+        bottom: 0;
+        width: 100%;
+        color: $fontColor;
+        text-align: center;
     }
 </style>

@@ -22,7 +22,7 @@
         font-weight: 600;
         color: $fontColor;
         margin: 0;
-        margin-bottom: calc(2vh + 1vw);
+        margin-bottom: 5%;
         transition: 0.5s;
     }
 
