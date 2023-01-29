@@ -24,7 +24,7 @@
     #header {
         position: relative;
         overflow: hidden;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
 
         max-height: 100vw;
@@ -88,8 +88,8 @@
             display: block;
             text-align: center;
             z-index: 100;
-            width: calc(2%);
-            height: calc(2%);
+            width: calc(2vh);
+            height: calc(2vh);
             border-bottom: 2px solid #fff;
             border-right: 2px solid #fff;
             animation: fade_move_down 3s ease-in-out infinite;
