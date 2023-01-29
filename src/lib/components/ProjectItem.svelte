@@ -4,9 +4,14 @@
 
     export let project: Project;
     export let index: number;
+    export let hide: boolean;
+
+    addEventListener("ShowMoreProj", () => {
+        hide = false;
+    })
 </script>
 
-{#if project}
+{#if project && !hide}
     <div class="project" id={index.toString()}>
         <div id="top">
             <div id="left">

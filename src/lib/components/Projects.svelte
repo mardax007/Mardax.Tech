@@ -1,22 +1,15 @@
 <script lang="ts">
 	import ProjectItem from "$lib/components/ProjectItem.svelte";
     import {getProjects} from "$lib/scripts/data";
-	import { onMount } from "svelte";
 
     export let max: number | undefined;
-
-    onMount(() => {
-        addEventListener("ShowMoreProj", () => {
-            max = undefined;
-        })
-    })
 </script>
 
 <div id="projects">
     <h1>School projecten</h1>
-    {#await getProjects(max) then projects}
+    {#await getProjects(undefined) then projects}
         {#each projects as project}
-            <ProjectItem {project} index={projects.indexOf(project)} />
+            <ProjectItem {project} index={projects.indexOf(project)} hide={max ? projects.indexOf(project) > max -1 : false} />
         {/each}
     {/await}
 </div>
