@@ -1,8 +1,10 @@
 
 <div id="more">
-    <a href="/projects">
-        <h1>Meer projecten</h1>
-    </a>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <h1 on:click={() => {
+        dispatchEvent(new CustomEvent("ShowMoreProj"))
+        document.getElementById("more").style.display = "none";
+    }}>Meer projecten</h1>
 </div>
 
 <style lang="scss">
@@ -13,10 +15,6 @@
         align-items: center;
     }
 
-    a {
-        text-decoration: none;
-    }
-
     #more h1 {
         font-size: 300%;
         font-weight: 600;
@@ -25,6 +23,7 @@
         margin-bottom: 5%;
         margin-top: -7.5%;
         transition: 0.5s;
+        cursor: pointer;
     }
 
     #more h1:hover {

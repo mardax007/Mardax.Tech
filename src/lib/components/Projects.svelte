@@ -1,8 +1,15 @@
 <script lang="ts">
 	import ProjectItem from "$lib/components/ProjectItem.svelte";
     import {getProjects} from "$lib/scripts/data";
+	import { onMount } from "svelte";
 
     export let max: number | undefined;
+
+    onMount(() => {
+        addEventListener("ShowMoreProj", () => {
+            max = undefined;
+        })
+    })
 </script>
 
 <div id="projects">

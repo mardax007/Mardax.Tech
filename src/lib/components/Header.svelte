@@ -14,8 +14,8 @@
             <h1>{@html intro.name}</h1>
             <p>{@html intro.tag}</p>
         </div>
-        <!-- svelte-ignore a11y-missing-content -->
-        <a href="#aboutMe" class="scroll-down" />
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <div on:click={() => {window.scrollTo({ top: 900, behavior: 'smooth' })}} class="scroll-down" />
     </div>
 {/await}
 
@@ -24,7 +24,7 @@
     #header {
         position: relative;
         overflow: hidden;
-        width: 100vw;
+        width: 100%;
         height: 100vh;
 
         max-height: 100vw;
@@ -83,20 +83,17 @@
     @media only screen and (min-width: 600px) {
         .scroll-down {
             position: absolute;
-            left: 49vw;
-            bottom: 5vh;
+            left: 50%;
+            bottom: 5%;
             display: block;
             text-align: center;
-            font-size: 1.25rem;
             z-index: 100;
-            text-decoration: none;
-            text-shadow: 0;
-            width: calc(1vh);
-            height: calc(1vh);
+            width: calc(2%);
+            height: calc(2%);
             border-bottom: 2px solid #fff;
             border-right: 2px solid #fff;
-            transform: translate(-50%, 0%) rotate(45deg);
             animation: fade_move_down 3s ease-in-out infinite;
+            cursor: pointer;
         }
     }
 
