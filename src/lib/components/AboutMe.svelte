@@ -45,6 +45,6 @@
             {/await}
             <h1>{@html intro.title}</h1>
         </div>
-        <p id="introText">{@html intro.text.replace("[INSERTTIME]", `${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}`).replace("[INSERTNAME]", `<span>${intro.name}</span>`)}</p>
+        <p id="introText">{@html intro.text.replace("[INSERTTIME]", `<span class='excludeHover'>${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}</span>`).replace("[INSERTNAME]", `<span>${intro.name}</span>`).replace("[INSERTSCHOOL]", `<a href="${intro.schoolInfo.ul}"><span style="color: ${intro.schoolInfo.color};">${intro.schoolInfo.name}</span></a>`).replace("[INSERTSCHOOLYEAR]", `<span class='excludeHover'>${intro.schoolInfo.yearName}</span>`).replace("[INSERTLOCATION]", `<span class='excludeHover' style="color: ${intro.schoolInfo.locationColor};">${intro.schoolInfo.location}</span>`).replace("[INSERTSTUDIE]", `<span class='excludeHover'>${intro.schoolInfo.studie}</span>`)}</p>
     </div>
 {/await}

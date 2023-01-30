@@ -3,9 +3,11 @@
 	import { onMount } from "svelte";
     import { getAnalytics } from "firebase/analytics";
 	import { app } from "$lib/scripts/firebase";
+	import { getProjects } from "$lib/scripts/data";
 
     onMount(() => {
         const analytics = getAnalytics(app);
+        getProjects(undefined, true)
     })
 </script>
 

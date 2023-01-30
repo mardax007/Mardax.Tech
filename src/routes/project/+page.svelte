@@ -7,7 +7,7 @@
     let project: Project = {} as Project;
 
     onMount(async () => {
-        project = (await getProjects(undefined)).filter((project: Project) => {if ("?" + project.title == decodeURIComponent(window.location.search)) return project})[0]
+        project = (await getProjects()).filter((project: Project) => {if ("?" + project.title == decodeURIComponent(window.location.search)) return project})[0]
     })
 </script>
 

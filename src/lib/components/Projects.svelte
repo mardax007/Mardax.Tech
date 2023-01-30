@@ -7,8 +7,8 @@
 
 <div id="projects">
     <h1>School projecten</h1>
-    {#await getProjects(undefined) then projects}
-        {#each projects as project}
+    {#await getProjects() then projects}
+        {#each projects.sort((a,b) => b.date.seconds - a.date.seconds) as project}
             <ProjectItem {project} index={projects.indexOf(project)} hide={max ? projects.indexOf(project) > max -1 : false} />
         {/each}
     {/await}
