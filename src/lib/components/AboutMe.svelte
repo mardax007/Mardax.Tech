@@ -2,7 +2,7 @@
 	import { getIntroduction } from "$lib/scripts/data";
 	import loadImage from "$lib/scripts/loadImage";
     import type { DocumentData } from "@firebase/firestore";
-    import { onMount } from "svelte";
+    import Exp from "$lib/components/Exp.svelte";
 
     let intro: DocumentData = {startDate: 1472319999999};
 
@@ -11,30 +11,7 @@
         return intro;
     }
 
-    export let time: number[] = get(Date.now() - intro.startDate);
-
-    onMount(() => {
-        let stopTime = false;
-
-        setInterval(() => {
-            if (!stopTime) time = get(Date.now() - intro.startDate);
-        }, 1);
-    })
-
-    function get(num: number): number[] {
-        const mili = Math.floor(num);
-        const seconds = Math.floor(num / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
-        const months = Math.floor(days / 30);
-        const years = Math.floor(days / 365);
-        return [mili % 1000, seconds % 60, minutes % 60, hours % 24, days % 30, months % 12, years];
-    }
-    function extend(num: number, digits: number) {
-        let _num = num.toFixed(0).toString();
-        return ("0".repeat(Math.max(0, digits - _num.length))) + _num;
-    }
+    // let exp = time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)
 </script>
 
 {#await loadIntroduction() then intro}
@@ -45,6 +22,10 @@
             {/await}
             <h1>{@html intro.title}</h1>
         </div>
-        <p id="introText">{@html intro.text.replace("[INSERTTIME]", `<span class='excludeHover'>${time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)}</span>`).replace("[INSERTNAME]", `<span>${intro.name}</span>`).replace("[INSERTSCHOOL]", `<a href="${intro.schoolInfo.ul}"><span style="color: ${intro.schoolInfo.color};">${intro.schoolInfo.name}</span></a>`).replace("[INSERTSCHOOLYEAR]", `<span class='excludeHover'>${intro.schoolInfo.yearName}</span>`).replace("[INSERTLOCATION]", `<span class='excludeHover' style="color: ${intro.schoolInfo.locationColor};">${intro.schoolInfo.location}</span>`).replace("[INSERTSTUDIE]", `<span class='excludeHover'>${intro.schoolInfo.studie}</span>`)}</p>
+        <p id="introText">
+            {@html (intro.text.replace("[INSERTNAME]", `<span>${intro.name}</span>`).replace("[INSERTSCHOOL]", `<a href="${intro.schoolInfo.ul}"><span style="color: ${intro.schoolInfo.color};">${intro.schoolInfo.name}</span></a>`).replace("[INSERTSCHOOLYEAR]", `<span class='excludeHover'>${intro.schoolInfo.yearName}</span>`).replace("[INSERTLOCATION]", `<span class='excludeHover' style="color: ${intro.schoolInfo.locationColor};">${intro.schoolInfo.location}</span>`).replace("[INSERTSTUDIE]", `<span class='excludeHover'>${intro.schoolInfo.studie}</span>`)).split("[INSERTTIME]")[0]}
+            <Exp startDate={intro.startDate} />
+            {@html (intro.text.replace("[INSERTNAME]", `<span>${intro.name}</span>`).replace("[INSERTSCHOOL]", `<a href="${intro.schoolInfo.ul}"><span style="color: ${intro.schoolInfo.color};">${intro.schoolInfo.name}</span></a>`).replace("[INSERTSCHOOLYEAR]", `<span class='excludeHover'>${intro.schoolInfo.yearName}</span>`).replace("[INSERTLOCATION]", `<span class='excludeHover' style="color: ${intro.schoolInfo.locationColor};">${intro.schoolInfo.location}</span>`).replace("[INSERTSTUDIE]", `<span class='excludeHover'>${intro.schoolInfo.studie}</span>`)).split("[INSERTTIME]")[1]}
+        </p>
     </div>
 {/await}
