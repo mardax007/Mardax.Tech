@@ -1,8 +1,10 @@
 <script lang="ts">
     import AboutMe from "$lib/components/AboutMe.svelte";
+	import GithubDisplay from "$lib/components/GithubDisplay.svelte";
     import Header from "$lib/components/Header.svelte";
 	import MoreProjects from "$lib/components/MoreProjects.svelte";
 	import Projects from "$lib/components/Projects.svelte";
+	import { getIntroduction } from "$lib/scripts/data";
 	import { onMount } from "svelte";
 	import "../app.scss";
 
@@ -17,8 +19,14 @@
 	<Header />
 	<AboutMe />
 	{#if flag === "?school"}
-		<Projects max={3} />
+		<Projects max={1} />
 		<MoreProjects />
+	{:else}
+		{#await getIntroduction() then projects}
+			{#if projects.showGithub}
+				<GithubDisplay />
+			{/if}
+		{/await}
 	{/if}
 </div>
 

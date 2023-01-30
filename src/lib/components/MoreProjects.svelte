@@ -8,7 +8,7 @@
         <h1 on:click={() => {
             dispatchEvent(new CustomEvent("ShowMoreProj"))
             show = false
-        }}>Meer projecten</h1>
+        }}>Laad meer projecten</h1>
     </div>
 {/if}
 
@@ -18,18 +18,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: $backgroundColor;
+        border-radius: 30px;
+        padding: 1.5%;
+        margin: 3%;
+        margin-top: -1.25%;
     }
 
     #more h1 {
-        font-size: 300%;
+        font-size: calc(3vh + 2vw);
         font-weight: 600;
         color: $fontColor;
         margin: 0;
-        margin-bottom: 5%;
-        margin-top: -7.5%;
         transition: 0.5s;
         cursor: pointer;
         user-select: none;
+        text-align: center;
     }
 
     #more h1:hover {
