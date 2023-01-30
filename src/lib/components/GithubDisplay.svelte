@@ -42,7 +42,7 @@
         background-color: $primaryColor;
         border-radius: 30px;
         width: 70%;
-        padding: 1% 5%;
+        padding: 1% 2.5%;
         backdrop-filter: blur(2px);
         box-shadow: 2px 3px 10px 5px rgba(0,0,0,0.75);
         max-width: 60vh;
