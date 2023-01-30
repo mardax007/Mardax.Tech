@@ -96,8 +96,10 @@ html,
 		line-height: 120%;
 		text-align: center;
 		margin-bottom: 2.5%;
+		// user-select: all;
 
 		a {
+			user-select: none;
 			text-decoration: none;
 
 			:hover {
@@ -106,6 +108,7 @@ html,
 		}
 
 		span {
+			user-select: all;
 			display: inline-flex;
 			text-align: center;
 			font-weight: 500;
