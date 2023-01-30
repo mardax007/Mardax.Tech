@@ -12,7 +12,7 @@
 </script>
 
 {#if project && !hide}
-    <div class="project" id={index.toString()}>
+    <a href="/project?{project.id ?? project.title}" class="project" id={index.toString()}>
         <div id="top">
             <div id="left">
                 <p>{@html project.textDate}</p>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div id="media">
-            <a href="/project?{project.id ?? project.title}">
+            <div id="content">
                 {#if project.mediaType == "yt"}
                     <iframe width="560" height="315" src={project.media} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 {:else}
@@ -42,14 +42,15 @@
                         <img loading="lazy" src={image} alt="">
                     {/await}
                 {/if}
-            </a>
+            </div>
         </div>
-    </div>
+    </a>
 {/if}
 
 <style lang="scss">
     @import '$lib/variables.scss';
     .project {
+        transition: 0.5s;
         width: 80%;
         color: $fontColor;
         margin: 0 auto;
@@ -59,6 +60,7 @@
         background-color: $primaryColor;
         padding: 2%;
         border-radius: 15px;
+        text-decoration: none;
 
         margin-bottom: 5vh;
 
@@ -110,13 +112,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            a {
+            #content {
                 max-width: 60%;
                 cursor: default;
-
-                img:hover {
-                    scale: 1.05;
-                }
 
                 img {
                     height: 100%;
@@ -125,7 +123,6 @@
 
                     border-radius: 30px;
                     cursor: pointer;
-                    transition: 0.5s;
                 }
 
                 iframe {
@@ -152,5 +149,9 @@
         }
 
         padding-bottom: calc(1vh + 1vw);
+    }
+
+    .project:hover {
+        scale: 1.05;
     }
 </style>
