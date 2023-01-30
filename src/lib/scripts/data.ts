@@ -4,7 +4,11 @@ import { firestore } from "./firebase";
 async function getProjects(max: number | undefined) {
     const local = localStorage.getItem("projects")
     if (local != null && JSON.parse(local).time + 1000 * 60 < new Date().getTime()) {
-        return JSON.parse(localStorage.getItem("projects") ?? "[]").projects;
+        const projects = JSON.parse(localStorage.getItem("projects") ?? "[]").projects;
+        console.log(projects)
+        projects.sort((a, b) => b.date.seconds - a.date.seconds)
+        console.log(projects)
+        return projects
     } else {
         const projects = ((await getDoc(doc(firestore, "projects", "school"))).data() ?? []).projects.slice(0, max == undefined ? 9999 : max);
         localStorage.setItem("projects", JSON.stringify({"projects": projects, time: new Date().getTime()}));

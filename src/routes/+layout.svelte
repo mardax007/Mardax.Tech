@@ -1,5 +1,12 @@
 <script lang="ts">
     import "../app.scss"
+	import { onMount } from "svelte";
+    import { getAnalytics } from "firebase/analytics";
+	import { app } from "$lib/scripts/firebase";
+
+    onMount(() => {
+        const analytics = getAnalytics(app);
+    })
 </script>
 
 <div class="overlay-black" />
