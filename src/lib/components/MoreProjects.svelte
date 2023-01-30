@@ -30,6 +30,8 @@
         margin-top: -7.5%;
         transition: 0.5s;
         cursor: pointer;
+        user-select: none;
+        
     }
 
     #more h1:hover {
