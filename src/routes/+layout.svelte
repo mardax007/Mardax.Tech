@@ -44,9 +44,8 @@
     }
 
     #footer {
-        bottom: 0;
-        width: 100%;
         color: $fontColor;
+        width: 100%;
         text-align: center;
     }
 </style>
