@@ -10,8 +10,6 @@
         intro = await getIntroduction();
         return intro;
     }
-
-    // let exp = time[6]}y ${time[5]}m ${time[4]}d ${extend(time[3], 2)}:${extend(time[2], 2)}:${extend(time[1], 2)
 </script>
 
 {#await loadIntroduction() then intro}

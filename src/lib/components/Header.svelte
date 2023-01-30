@@ -15,7 +15,7 @@
             <p>{@html intro.tag}</p>
         </div>
         <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div on:click={() => {window.scrollTo({ top: 900, behavior: 'smooth' })}} class="scroll-down" />
+        <div on:click={() => {window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}} class="scroll-down" />
     </div>
 {/await}
 
