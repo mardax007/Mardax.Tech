@@ -19,10 +19,9 @@
 	<Header />
 	<AboutMe />
 	{#if flag === "?school"}
-		<Projects max={1} />
-		<MoreProjects />
+		<Projects max={1} flag={flag.replace("?", "")} />
 	{:else}
-		{#await getIntroduction() then projects}
+		{#await getIntroduction("school") then projects}
 			{#if projects.showGithub}
 				<GithubDisplay />
 			{/if}

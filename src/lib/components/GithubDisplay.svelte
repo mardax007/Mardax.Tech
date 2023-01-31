@@ -57,6 +57,8 @@
 
         a {
             transition: 0.5s;
+            color: $fontColor;
+            text-decoration: none;
         }
 
         a:hover {
@@ -81,20 +83,18 @@
                     font-size: 2.5vh;
                     margin: 0;
 
-                    a {
-                        color: $fontColor;
-                        text-decoration: none;
+                    a:hover {
+                        text-decoration: underline;
                     }
                 }
 
                 p {
                     margin: 0;
-
-                    a {
-                        color: $fontColor;
-                    }
-
                     transition: 0.5s;
+
+                    a:hover {
+                        text-decoration: underline;
+                    }
                 }
 
                 #repos {
@@ -104,8 +104,8 @@
                         margin: 0;
                         margin-bottom: 1%;
 
-                        a {
-                            color: $fontColor;
+                        a:hover {
+                            text-decoration: underline;
                         }
                     }
 
@@ -120,11 +120,6 @@
                             margin: 0 .5vh .5vh 0;
                             font-size: 100%;
                             line-height: 100%;
-
-                            a {
-                                color: $fontColor;
-                                text-decoration: none;
-                            }
 
                             a:hover {
                                 scale: 1.1;

@@ -7,7 +7,7 @@
 
     onMount(() => {
         const analytics = getAnalytics(app);
-        getProjects(undefined, true)
+        getProjects(true)
     })
 </script>
 
