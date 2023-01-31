@@ -54,7 +54,8 @@
             width: 50%;
             padding: 2.5%;
             h2 {
-                font-size: calc(2vw + 2vh);
+                font-size: calc(3vw + 2vh);
+                word-wrap: break-word;
             }
             p {
                 font-size: calc(.5vw + 1vh);
