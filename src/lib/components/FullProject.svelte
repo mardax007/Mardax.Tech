@@ -79,7 +79,7 @@
         }
 
         #content {
-            width: 80%;
+            width: 90%;
             margin: 0 auto;
             margin-bottom: 2.5vh;
         }

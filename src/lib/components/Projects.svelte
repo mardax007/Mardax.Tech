@@ -4,7 +4,6 @@
 	import MoreProjects from "./MoreProjects.svelte";
 
     export let max: number | undefined;
-    export let flag: string;
 </script>
 
 <div id="projects">
