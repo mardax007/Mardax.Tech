@@ -48,6 +48,7 @@
             animation: fadeIn 1s;
             margin: 0 auto;
             object-fit: fill;
+            max-width: 500px;
         }
 
         #textBox {
