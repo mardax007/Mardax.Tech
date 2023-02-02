@@ -3,11 +3,13 @@
 	import { onMount } from "svelte";
     import { getAnalytics } from "firebase/analytics";
 	import { app } from "$lib/scripts/firebase";
-	import { getProjects } from "$lib/scripts/data";
+	import { getIntroduction, getProjects } from "$lib/scripts/data";
 
     onMount(() => {
-        const analytics = getAnalytics(app);
-        getProjects(true)
+        getAnalytics(app);
+        const flag = decodeURIComponent(window.location.search).replace("?", "") == "" ? "default" : decodeURIComponent(window.location.search).replace("?", "");
+        if (flag == "school") getProjects(true, flag)
+        getIntroduction(flag)
     })
 </script>
 

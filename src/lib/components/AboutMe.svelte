@@ -7,8 +7,10 @@
     let intro: DocumentData = {startDate: 1472319999999};
     let introText = "";
 
+    export let flag = "default"
+
     async function loadIntroduction() {
-        intro = await getIntroduction();
+        intro = await getIntroduction(flag);
         introText = (intro.text.replace("[INSERTNAME]", `<span>${intro.name}</span>`).replace("[INSERTSCHOOL]", `<a href="${intro.schoolInfo.url}"><span style="color: ${intro.schoolInfo.color};">${intro.schoolInfo.name}</span></a>`).replace("[INSERTSCHOOLYEAR]", `<span class='excludeHover'>${intro.schoolInfo.yearName}</span>`).replace("[INSERTLOCATION]", `<span class='excludeHover' style="color: ${intro.schoolInfo.locationColor};">${intro.schoolInfo.location}</span>`).replace("[INSERTSTUDIE]", `<span class='excludeHover'>${intro.schoolInfo.studie}</span>`)).split("[INSERTTIME]")
         return intro;
     }

@@ -2,9 +2,11 @@
 <script lang="ts">
     import { getIntroduction } from "$lib/scripts/data";
 	import loadImage from "$lib/scripts/loadImage";
+
+    export let flag: string = "default";
 </script>
 
-{#await getIntroduction() then intro}
+{#await getIntroduction(flag == "" ? "default" : flag) then intro}
     <div id="header">
         <div id="main">
             {#await loadImage(intro.avatar ?? "") then image}

@@ -8,26 +8,28 @@
 	import { onMount } from "svelte";
 	import "../app.scss";
 
-	let flag = "";
+	let flag: string | undefined;
 
 	onMount(() => {
-        flag = decodeURIComponent(window.location.search)
+        flag = decodeURIComponent(window.location.search).replace("?", "") == "" ? "default" : decodeURIComponent(window.location.search).replace("?", "");
     })
 </script>
 
-<div id="wrapper">
-	<Header />
-	<AboutMe />
-	{#if flag === "?school"}
-		<Projects max={1} flag={flag.replace("?", "")} />
-	{:else}
-		{#await getIntroduction("school") then projects}
-			{#if projects.showGithub}
-				<GithubDisplay />
-			{/if}
-		{/await}
-	{/if}
-</div>
+{#if flag != undefined}
+	<div id="wrapper">
+		<Header flag={flag} />
+		<AboutMe flag={flag} />
+		{#if flag === "school"}
+			<Projects max={1} flag={flag} />
+		{:else}
+			{#await getIntroduction(flag) then projects}
+				{#if projects.showGithub}
+					<GithubDisplay />
+				{/if}
+			{/await}
+		{/if}
+	</div>
+{/if}
 
 <style lang="scss">
 	@import '$lib/variables.scss';
