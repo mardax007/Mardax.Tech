@@ -29,9 +29,8 @@
         min-width: 375px;
 
         h1 {
-            font-size: calc((5vh + 3vw)*0.7);
-            margin: 0;
-            margin-bottom: 2.5%;
+            font-size: calc((5vh + 3vw)*0.8);
+            margin: 5% 0;
             color: $fontColor;
             text-align: center;
         }
