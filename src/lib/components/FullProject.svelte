@@ -49,12 +49,11 @@
             display: flex;
             justify-content: center;
             margin: 0 auto;
-            margin-top: 5vh;
-            height: 100%;
+            margin-top: 5%;
 
             a {
                 background-color: $primaryColor;
-                padding: 2%;
+                padding: 1%;
 
                 img {
                     height: 5vh;
@@ -67,12 +66,12 @@
             }
 
             .first {
-                padding-left: 5%;
+                padding-left: 2%;
                 border-radius: 30px 0px 0px 30px;
             }
 
             .last {
-                padding-right: 5%;
+                padding-right: 2%;
                 border-radius: 0px 30px 30px 0px;
             }
         }
