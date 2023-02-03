@@ -54,8 +54,7 @@
 
             a {
                 background-color: $primaryColor;
-                padding: 1.5%;
-                border-radius: 30px;
+                padding: 2%;
 
                 img {
                     height: 5vh;
@@ -68,12 +67,12 @@
             }
 
             .first {
-                padding-left: 2.5%;
+                padding-left: 5%;
                 border-radius: 30px 0px 0px 30px;
             }
 
             .last {
-                padding-right: 2.5%;
+                padding-right: 5%;
                 border-radius: 0px 30px 30px 0px;
             }
         }

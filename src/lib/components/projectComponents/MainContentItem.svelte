@@ -59,7 +59,7 @@
                 word-wrap: break-word;
             }
             p {
-                font-size: calc(.5vw + 1vh);
+                font-size: calc(1vw + 1.5vh);
             }
         }
 
