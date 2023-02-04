@@ -44,6 +44,7 @@
     @import '$lib/variables.scss';
     #project {
         width: 100%;
+        min-width: 300px;
 
         #links {
             display: flex;
@@ -96,6 +97,7 @@
                 height: 100%;
                 width: 100%;
                 object-fit: cover;
+                min-width: 300px;
             }
 
             #main {

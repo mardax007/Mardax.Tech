@@ -44,11 +44,11 @@
         border-radius: 30px;
 
         img, iframe {
-            width: 50%;
+            height: 100%;
             animation: fadeIn 1s;
             margin: 0 auto;
             object-fit: contain;
-            max-width: 500px;
+            max-height: 500px;
         }
 
         #textBox {
@@ -94,7 +94,7 @@
         }
     }
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 1300px) {
         #wrapper {
             flex-direction: column;
             img, iframe {
