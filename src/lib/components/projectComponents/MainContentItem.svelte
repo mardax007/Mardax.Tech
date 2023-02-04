@@ -44,11 +44,10 @@
         border-radius: 30px;
 
         img, iframe {
-            height: 100%;
+            width: 40%;
             animation: fadeIn 1s;
-            margin: 0 auto;
-            object-fit: contain;
-            max-height: 500px;
+            object-fit: cover;
+            margin: auto;
         }
 
         #textBox {
