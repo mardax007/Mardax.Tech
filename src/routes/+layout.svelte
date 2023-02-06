@@ -49,5 +49,6 @@
         color: $fontColor;
         width: 100%;
         text-align: center;
+        margin-bottom: 2%;
     }
 </style>
