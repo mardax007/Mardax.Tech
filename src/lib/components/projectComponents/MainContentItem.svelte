@@ -48,6 +48,10 @@
             animation: fadeIn 1s;
             object-fit: cover;
             margin: auto;
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
         }
 
         #textBox {
