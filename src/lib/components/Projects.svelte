@@ -16,7 +16,7 @@
             <ProjectItem {project} flag={flag} index={projects.indexOf(project)} hide={max ? projects.indexOf(project) > max -1 : false} />
         {/each}
         {#if moreProj && projects.length > (max ?? 0)}
-            <MoreProjects />
+            <MoreProjects flag={flag} />
         {/if}
     {/await}
 </div>

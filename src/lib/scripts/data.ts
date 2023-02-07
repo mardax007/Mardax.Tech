@@ -7,10 +7,10 @@ async function getProjects(force = false, where = "default", max?: number) {
         const projects = ((await getDoc(doc(firestore, "projects", where))).data() ?? []).projects.slice(0, max == undefined ? 9999 : max).sort((a,b) => b.date.seconds - a.date.seconds);
 
         localStorage.setItem("projects/" + where, JSON.stringify({"projects": projects, time: new Date().getTime()}));
-        return projects;
+        return projects.filter((project: { hidden: boolean; }) => project.hidden != true);
     } else {
         const projects = JSON.parse(localStorage.getItem("projects/" + where) ?? "[]").projects.sort((a,b) => b.date.seconds - a.date.seconds);
-        return projects;
+        return projects.filter((project: { hidden: boolean; }) => project.hidden != true);
     }
 }
 

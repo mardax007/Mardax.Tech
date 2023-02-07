@@ -125,7 +125,7 @@
 
         .textImage {
             img {
-                border-radius: 30px 30px 0px 0px;
+                border-radius: 0px 0px 30px 30px;
             }
 
             #textBox {
