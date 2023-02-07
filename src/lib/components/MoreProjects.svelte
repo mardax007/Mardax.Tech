@@ -1,14 +1,16 @@
-<script>
+<script lang="ts">
     let show = true;
+    export let flag: string | undefined = undefined;
+    console.log(flag)
 </script>
 
-{#if show}
+{#if show && flag}
     <div id="more">
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <h1 on:click={() => {
             dispatchEvent(new CustomEvent("ShowMoreProj"))
             show = false
-        }}>Laad meer projecten</h1>
+        }}>{flag == "school" ? "Laad meer projecten" : "Load more"}</h1>
     </div>
 {/if}
 
