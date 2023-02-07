@@ -29,11 +29,13 @@
                 {/each}
             </div>
         {/if}
-        {#each project.projectInfo.texts as textElement}
-            {#if ["imageText", "textImage", "videoText"].includes(textElement.type)}
-                <MainContentItem textElement={textElement} />
-            {/if}
-        {/each}
+        {#if project.projectInfo.texts}
+            {#each project.projectInfo.texts as textElement}
+                {#if ["imageText", "textImage", "videoText"].includes(textElement.type)}
+                    <MainContentItem textElement={textElement} />
+                {/if}
+            {/each}
+        {/if}
         {#if project.projectInfo.bottomVideo}
             <iframe width="100%" style="height: 50vw;" src={project.projectInfo.bottomVideo} title="Player" frameborder="0" allow="clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>
         {/if}
@@ -74,6 +76,12 @@
             .last {
                 padding-right: 2%;
                 border-radius: 0px 30px 30px 0px;
+            }
+
+            .firstlast {
+                padding-left: 2%;
+                padding-right: 2%;
+                border-radius: 30px;
             }
         }
 
