@@ -2,7 +2,6 @@
     import AboutMe from "$lib/components/AboutMe.svelte";
 	import GithubDisplay from "$lib/components/GithubDisplay.svelte";
     import Header from "$lib/components/Header.svelte";
-	import MoreProjects from "$lib/components/MoreProjects.svelte";
 	import Projects from "$lib/components/Projects.svelte";
 	import { getIntroduction } from "$lib/scripts/data";
 	import { onMount } from "svelte";
@@ -26,6 +25,7 @@
 				{#if projects.showGithub}
 					<GithubDisplay />
 				{/if}
+				<Projects max={1} flag={flag} moreProj={true} title="Projecten" />
 			{/await}
 		{/if}
 	</div>

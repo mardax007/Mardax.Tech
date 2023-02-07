@@ -5,6 +5,7 @@
     export let project: Project;
     export let index: number;
     export let hide: boolean;
+    export let flag: string;
 
     addEventListener("ShowMoreProj", () => {
         hide = false;
@@ -12,7 +13,7 @@
 </script>
 
 {#if project && !hide}
-    <a href="/project?{project.id ?? project.title}" class="project" id={index.toString()}>
+    <a href="/project?{flag}-{project.id ?? project.title}" class="project" id={index.toString()}>
         <div id="top">
             <div id="left">
                 <p>{@html project.textDate}</p>

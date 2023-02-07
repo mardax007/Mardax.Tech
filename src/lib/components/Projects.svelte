@@ -4,16 +4,20 @@
 	import MoreProjects from "./MoreProjects.svelte";
 
     export let max: number | undefined;
-    export let flag: string | undefined;
+    export let flag: string = "default";
+    export let title: string = "School projecten";
+    export let moreProj = true;
 </script>
 
 <div id="projects">
     {#await getProjects(false, flag) then projects}
-        <h1>School projecten</h1>
+        <h1>{title}</h1>
         {#each projects as project}
-            <ProjectItem {project} index={projects.indexOf(project)} hide={max ? projects.indexOf(project) > max -1 : false} />
+            <ProjectItem {project} flag={flag} index={projects.indexOf(project)} hide={max ? projects.indexOf(project) > max -1 : false} />
         {/each}
-        <MoreProjects />
+        {#if moreProj && projects.length > (max ?? 0)}
+            <MoreProjects />
+        {/if}
     {/await}
 </div>
 

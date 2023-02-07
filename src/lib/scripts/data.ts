@@ -5,6 +5,7 @@ async function getProjects(force = false, where = "default", max?: number) {
     const local = localStorage.getItem("projects/" + where)
     if (local == null || JSON.parse(local).time + 1000 * 60 < new Date().getTime() || force) {
         const projects = ((await getDoc(doc(firestore, "projects", where))).data() ?? []).projects.slice(0, max == undefined ? 9999 : max).sort((a,b) => b.date.seconds - a.date.seconds);
+
         localStorage.setItem("projects/" + where, JSON.stringify({"projects": projects, time: new Date().getTime()}));
         return projects;
     } else {

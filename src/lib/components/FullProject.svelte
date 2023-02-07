@@ -75,6 +75,12 @@
                 padding-right: 2%;
                 border-radius: 0px 30px 30px 0px;
             }
+
+            .firstlast {
+                padding-left: 2%;
+                padding-right: 2%;
+                border-radius: 30px;
+            }
         }
 
         #content {
