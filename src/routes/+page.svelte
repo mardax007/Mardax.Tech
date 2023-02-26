@@ -25,7 +25,7 @@
 				{#if projects.showGithub}
 					<GithubDisplay />
 				{/if}
-				<Projects max={1} flag={flag} moreProj={true} title="Projecten" />
+				<Projects max={1} flag={flag} moreProj={true} title="My Projects" />
 			{/await}
 		{/if}
 	</div>

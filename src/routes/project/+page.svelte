@@ -8,8 +8,7 @@
 
     onMount(async () => {
         const [flag, title] = decodeURIComponent(window.location.search).replace("?", "") == "" ? "default" : decodeURIComponent(window.location.search).replace("?", "").split("-");
-        console.log(flag, title)
-        project = (await getProjects(false, flag)).filter((project: Project) => {console.log(project.title); if (project.title == title) return project})[0]
+        project = (await getProjects(false, flag)).filter((project: Project) => {if (project.title == title) return project})[0]
     })
 </script>
 

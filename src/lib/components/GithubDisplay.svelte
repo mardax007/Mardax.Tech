@@ -12,7 +12,6 @@
 
 {#if data}
     <div id="github">
-        <h1>Mijn Github</h1>
         <div class="user">
             <a href={data.html_url} class="user-image">
                 <img src={data.avatar_url} alt={data.login} class="user-avatar">
