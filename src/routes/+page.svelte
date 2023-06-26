@@ -1,44 +1,31 @@
 <script lang="ts">
-    import AboutMe from "$lib/components/AboutMe.svelte";
-	import GithubDisplay from "$lib/components/GithubDisplay.svelte";
-    import Header from "$lib/components/Header.svelte";
-	import Projects from "$lib/components/Projects.svelte";
-	import { getIntroduction } from "$lib/scripts/data";
-	import { onMount } from "svelte";
-	import "../app.scss";
+    import Category from '$lib/components/category.svelte';
+    import Menu from '$lib/components/menu.svelte';
 
-	let flag: string | undefined;
-
-	onMount(() => {
-        flag = decodeURIComponent(window.location.search).replace("?", "") == "" ? "default" : decodeURIComponent(window.location.search).replace("?", "");
-    })
 </script>
 
-{#if flag != undefined}
-	<div id="wrapper">
-		<Header flag={flag} />
-		<AboutMe flag={flag} />
-		{#if flag === "school"}
-			<Projects max={1} flag={flag} />
-		{:else}
-			{#await getIntroduction(flag) then projects}
-				{#if projects.showGithub}
-					<GithubDisplay />
-				{/if}
-				<Projects max={1} flag={flag} moreProj={true} title="My Projects" />
-			{/await}
-		{/if}
-	</div>
-{/if}
+<div id="wrapper">
+    <div id="navbar">
+        <Menu />
+        <Category />
+    </div>
+</div>
 
 <style lang="scss">
-	@import '$lib/variables.scss';
-	#wrapper {
+    @import '../app.scss';
+
+    #wrapper {
+        width: 100vw;
+        height: 100vh;
+        background-color: #f6f6f6;
+    }
+
+    #navbar {
+        height: 4rem;
+
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        margin: 0 auto;
-		max-width: 1300px;
-		min-width: 375px;
-	}
+        gap: 5vw;
+    }
 </style>

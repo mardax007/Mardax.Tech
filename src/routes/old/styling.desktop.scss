@@ -1,0 +1,36 @@
+@import './page-variables.scss';
+
+#coverImage {
+    scale: 0.5;
+
+    transition: 1s ease-in-out;
+    animation: expand 2s 1s forwards;
+    border-radius: 2rem;
+
+    #codeBackground {
+        width: 100%;
+        opacity: 0.5;
+        height: 100vh;
+        object-fit: cover;
+        object-position: 2.5% 0%;
+
+    }
+
+    #earth {
+        position: absolute;
+        top: -5rem;
+        transform: translateX(-50%);
+        height: 115vh;
+        width: auto;
+        animation: moveIn 3s 1s forwards;
+        opacity: 0;
+        rotate: -15deg;
+        z-index: 1;
+    }
+
+    #earthMobile {
+        display: none;
+    }
+
+    height: auto;
+}
