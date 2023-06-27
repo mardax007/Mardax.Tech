@@ -9,6 +9,10 @@ function getHomepageInfo() {
         lowResEarthURL: "./lowresEarth.png",
         highResEarthURL: "./highresEarth.png",
         earthAlt: "Earth",
+        categories: {
+            work: {},
+            play: {}
+        }
     }
 }
 

@@ -1,21 +1,45 @@
 <script lang="ts">
-    function response(spanId: string) {
-        const span = document.getElementById(spanId);
+	import state from '$lib/scripts/state'
+	import { onMount } from 'svelte';
 
-        span!.style.transform = "scale(0.9)";
-        span!.style.transition = "transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)";
-        span!.classList.add("selected")
-        setTimeout(() => {
-            span!.style.transform = "scale(1)";
-        }, 300);
+	let options: string[] = []
+
+	onMount(() => {
+		state.subscribe((x) => {
+			const span = document.getElementById("tab-" + (x.categoryId + 1) + "-span")
+
+			const spans = document.querySelectorAll("span");
+			spans.forEach((span) => {
+				span.classList.remove("selected");
+				span.style.fontWeight = "500";
+			});
+
+			span!.style.transform = "scale(0.9)";
+			span!.style.transition = "transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)";
+
+			span!.style.fontWeight = "500";
+
+			setTimeout(() => {
+				span!.style.fontWeight = "600";
+			}, 100);
+
+			setTimeout(() => {
+				span!.style.fontWeight = "700";
+				span!.style.transform = "scale(1)";
+			}, 300);
+		})
+	})
+
+    function response(spanId: number) {
+		state.set({ categoryId: spanId - 1 });
     }
 </script>
 
 <div class="segmented-control">
-	<input type="radio" name="tab" id="tab-1" checked on:click={() => {response("tab-1-span")}} />
+	<input type="radio" name="tab" id="tab-1" on:click={() => {response(1)}} />
 	<label for="tab-1" class="segmented-control__1"> <span id="tab-1-span">Work</span></label>
 
-	<input type="radio" name="tab" id="tab-2" on:click={() => {response("tab-2-span")}} />
+	<input type="radio" name="tab" id="tab-2" on:click={() => {response(2)}} />
 	<label for="tab-2" class="segmented-control__2"> <span id="tab-2-span">Play</span></label>
 
 	<div class="segmented-control__color" />
@@ -49,13 +73,13 @@
 
 		> input:checked + label {
 			transition: all 0.5s ease;
+			font-weight: 700;
 
             span {
                 -webkit-background-clip: text;
                 background-clip: text;
                 -webkit-text-fill-color: transparent;
                 transition: all 1s ease;
-                font-weight: 700;
             }
 
             #tab-1-span {
