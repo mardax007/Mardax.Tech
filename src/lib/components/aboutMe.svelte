@@ -40,15 +40,18 @@
                 }
             }
 
-            angle = angle + (getAngleFactor(angle) * Math.random() % 360);
+            angle = (angle + (getAngleFactor(angle) * Math.random() * 5)) % 360;
             document.getElementById("title")!.style.backgroundImage = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.titleColor.replace("ANGLE", (angle) + "")
-        }, 500)
+        }, 1)
     })
 </script>
 
 <div id="aboutMe">
     <h1 id="title" style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.titleColor.replace("ANGLE", "141") ?? "black"}">{homepageInfo.title}</h1>
-    <p id="location">{homepageInfo.location}</p>
+    <div id="location">
+        <img alt="Mappin" src="./MapPin.svg" />
+        <p>{homepageInfo.location}</p>
+    </div>
     <p id="description">{homepageInfo.description}</p>
 </div>
 
@@ -79,21 +82,20 @@
         opacity: 0;
     }
 
-    #location, #description {
-        font-size: 2rem;
-        text-align: center;
-        margin-top: 2rem;
-        
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-image: linear-gradient(121deg, #969699, #1e1e22);
+    #location {
+        display: flex;
+        justify-content: center;
+
+        p {
+            font-size: 1.5rem;
+            text-align: center;
+            color: #5e5e63;
+        }
     }
 
     #description {
-        font-size: 1.5rem;
+        font-size: 1rem;
         text-align: center;
-        margin-top: 2rem;
-        color: var(--text-color);
+        color: #5e5e63;
     }
 </style>

@@ -1,14 +1,6 @@
 <script lang="ts">
 	import AboutMe from '$lib/components/aboutMe.svelte';
     import Category from '$lib/components/category.svelte';
-
-    import { homepageInfoState } from "$lib/scripts/state"
-
-    let homepageInfo: any = {}
-
-    homepageInfoState.subscribe((x) => {
-        homepageInfo = x
-    })
 </script>
 
 <div id="wrapper">

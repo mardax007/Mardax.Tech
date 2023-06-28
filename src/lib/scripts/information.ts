@@ -11,14 +11,12 @@ function getHomepageInfo() {
         highResEarthURL: "./highresEarth.png",
         earthAlt: "Earth",
         categories: {
-            work: {
-                catName: "Work",
+            school: {
                 catColor: "linear-gradient(117deg, #5d5d5f, #030303)",
                 titleColor: "linear-gradient(ANGLEdeg, #969699, #1e1e22)",
                 default: true,
             },
             play: {
-                catName: "Play",
                 catColor: "linear-gradient(117deg, #8080ff, #f85392)",
                 titleColor: "linear-gradient(ANGLEdeg, #adf1e0, #8075ff 28%, #ff7171 98%)",
             }
