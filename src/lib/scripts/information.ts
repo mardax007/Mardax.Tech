@@ -4,6 +4,7 @@ function getHomepageInfo() {
     return {
         title: "Hi, I'm Martijn",
         description: "This is my homepage. I hope you enjoy it!",
+        location: "The Netherlands",
         codeURL: "./code.svg",
         codeAlt: "Code",
         lowResEarthURL: "./lowresEarth.png",
