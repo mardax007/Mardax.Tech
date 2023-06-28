@@ -1,7 +1,12 @@
 import { writable } from "svelte/store";
+import { getHomepageInfo } from "./information";
 
-const state = writable({
-    categoryId: 0,
+const homepageInfo = getHomepageInfo();
+
+const navState = writable({
+    categoryId: Object.values(homepageInfo.categories).findIndex(category => category.default) ?? 0,
 });
 
-export default state;
+const homepageInfoState = writable(homepageInfo);
+
+export { navState, homepageInfoState };

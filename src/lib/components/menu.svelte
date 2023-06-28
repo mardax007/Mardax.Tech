@@ -11,6 +11,7 @@
 </section>
 
 <style lang="scss">
+    @import '../../app.scss';
     .ham {
         height: 4rem;
         width: 4rem;

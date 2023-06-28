@@ -1,0 +1,71 @@
+$titleTopMargin: 1rem;
+$textColor: #ffffff;
+$backgroundColor: #f6f6f6;
+$navbarBackgroundColor: #f6f6f6;
+
+$catAmount: 2;
+$catWidth: 6.8rem;
+$catHeight: 4rem;
+$catMargin: 0.4rem;
+$catColorHeight: 3.2rem;
+$catColorWidth: 6rem;
+$borderRadius: 2rem;
+$borderShadow: 0 4px 3rem 0 #1b1b1b23;
+$tabTranform: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+@keyframes expand {
+    0% {
+        scale: 0.5;
+    }
+    100% {
+        scale: 1;
+        border-radius: 0rem;
+    }
+}
+
+@keyframes moveIn {
+    0% {
+        left: 250%;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        rotate: 0deg;
+        left: 100%;
+        opacity: 1;
+    }
+}
+
+@keyframes flyIn {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    50% {
+        top: $titleTopMargin;
+        opacity: 1;
+    }
+
+    100% {
+        top: $titleTopMargin;
+        opacity: 1;
+    }
+}
+
+@keyframes moveInFromTop {
+    0% {
+        top: -4rem;
+    }
+
+    80% {
+        top: 2.5rem;
+    }
+
+    100% {
+        top: 2rem;
+    }
+}
