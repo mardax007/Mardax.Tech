@@ -384,6 +384,7 @@
 
 		@media (max-width: 730px) {
 			padding: 0;
+			max-width: 90vw;
 		}
 	}
 </style>
