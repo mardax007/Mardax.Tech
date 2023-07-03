@@ -8,12 +8,20 @@
 		homepageInfo = x
 	})
 
+	let nav: any;
+	navState.subscribe((x) => {
+		nav = x;
+	})
+
 	let options: string[] = Object.keys(homepageInfo.categories);
 
 	let loaded = false
 
+	let currentCategory = 0
+
 	onMount(() => {
 		navState.subscribe((x) => {
+			currentCategory = x.categoryId
 			const span = document.getElementById("tab-" + (x.categoryId + 1) + "-span")
 			if (loaded) {
 				const spans = document.querySelectorAll("span");
@@ -41,8 +49,22 @@
 		})
 	})
 
+	function smoothScroll() {
+		var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+		if (currentScroll > 0) {
+			window.requestAnimationFrame(smoothScroll);
+			window.scrollTo (0,currentScroll - (currentScroll/5));
+		}
+	}
+
     function response(spanId: number) {
 		navState.set({ categoryId: spanId - 1 });
+
+		if (currentCategory == spanId - 1) {
+			// scroll to top
+			smoothScroll()
+			console.log("to the top!")
+		}
     }
 </script>
 
@@ -51,7 +73,7 @@
 		{#each options as option, id}
 			<input checked={homepageInfo.categories[option].default} type="radio" name="tab" id="tab-{id+1}" on:click={() => {response(id+1)}} />
 			<label for="tab-{id+1}" class="segmented-control__{id+1}">
-				<span id="tab-{id+1}-span" style="font-weight: {homepageInfo.categories[option].default ? 700 : 500}; background-image: {homepageInfo.categories[option].catColor}; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">{option.charAt(0).toUpperCase() + option.substring(1)}</span>
+				<span id="tab-{id+1}-span" style="font-weight: {homepageInfo.categories[option].default ? 700 : 500}; background-image: {homepageInfo.categories[option].titleColor}; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">{option.charAt(0).toUpperCase() + option.substring(1)}</span>
 			</label>
 		{/each}
 		<div id="backgroundColor" />
@@ -68,7 +90,7 @@
 		grid-row: 1 / 2;
 		width: auto;
 		height: $catHeight;
-		box-shadow: $borderShadow;
+		box-shadow: $boxShadow;
 		border-radius: $borderRadius;
 		display: flex;
 		align-items: center;

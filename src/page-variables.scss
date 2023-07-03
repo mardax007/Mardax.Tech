@@ -1,6 +1,5 @@
 $titleTopMargin: 1rem;
 $textColor: #ffffff;
-$backgroundColor: #f6f6f6;
 $navbarBackgroundColor: #f6f6f6;
 
 $catAmount: 2;
@@ -10,7 +9,7 @@ $catMargin: 0.4rem;
 $catColorHeight: 3.2rem;
 $catColorWidth: 6rem;
 $borderRadius: 2rem;
-$borderShadow: 0 4px 3rem 0 #1b1b1b23;
+$boxShadow: 0 4px 3rem 0 #1b1b1b23;
 $tabTranform: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 
 @keyframes expand {
@@ -59,6 +58,7 @@ $tabTranform: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 @keyframes moveInFromTop {
     0% {
         top: -4rem;
+        opacity: 0;
     }
 
     80% {
@@ -67,5 +67,6 @@ $tabTranform: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 
     100% {
         top: 2rem;
+        opacity: 1;
     }
 }

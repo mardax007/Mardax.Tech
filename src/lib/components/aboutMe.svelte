@@ -11,7 +11,7 @@
 
     onMount(() => {
         navState.subscribe((x) => {
-            document.getElementById("aboutMe")!.animate([
+            if (x.categoryId != nav.categoryId) document.getElementById("aboutMe")!.animate([
                 { opacity: document.getElementById("aboutMe")!.style.opacity ?? 0 },
                 { opacity: 0 },
                 { opacity: 1 }
@@ -25,34 +25,16 @@
                 nav = x;
             }, 400);
         });
-
-        let angle = 0;
-
-        setInterval(() => {
-            function getAngleFactor(angle: number) {
-                const absDiff90 = Math.abs(angle - 90);
-                const absDiff270 = Math.abs(angle - 270);
-
-                if (absDiff90 < absDiff270) {
-                    return 0.1;
-                } else {
-                    return 0.5;
-                }
-            }
-
-            angle = (angle + (getAngleFactor(angle) * Math.random() * 5)) % 360;
-            document.getElementById("title")!.style.backgroundImage = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.titleColor.replace("ANGLE", (angle) + "")
-        }, 1)
     })
 </script>
 
 <div id="aboutMe">
-    <h1 id="title" style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.titleColor.replace("ANGLE", "141") ?? "black"}">{homepageInfo.title}</h1>
+    <h1 id="title" style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.titleColor ?? "black"}">{homepageInfo.title}</h1>
     <div id="location">
-        <img alt="Mappin" src="./MapPin.svg" />
-        <p>{homepageInfo.location}</p>
+        <img alt="Mappin" src={homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.mapPin} />
+        <p style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.locationColor ?? "black"}">{homepageInfo.location}</p>
     </div>
-    <p id="description">{homepageInfo.description}</p>
+    <p id="description" style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.descriptionColor ?? "black"}">{homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.description}</p>
 </div>
 
 <style lang="scss">
@@ -63,10 +45,6 @@
         text-align: center;
         letter-spacing: -1.25px;
 
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-
         position: relative;
         left: 50%;
         transform: translateX(-50%);
@@ -74,12 +52,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 10rem;
+
+        margin-top: 150px;
+        margin-bottom: 0;
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        background-size: 200%;
+        animation: titleAnimation 30s linear infinite;
     }
 
     #aboutMe {
-        height: 75vh;
         opacity: 0;
+        max-width: 750px;
+        margin: 0 auto;
+        margin-bottom: 100px;
+        padding: 0 15vw;
     }
 
     #location {
@@ -90,6 +80,22 @@
             font-size: 1.5rem;
             text-align: center;
             color: #5e5e63;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            background-size: 200%;
+            animation: titleAnimation 30s linear infinite;
+        }
+
+        img {
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200%;
+            animation: titleAnimation 30s linear infinite;
+            padding-right: 0.25rem;
         }
     }
 
@@ -97,5 +103,21 @@
         font-size: 1rem;
         text-align: center;
         color: #5e5e63;
+
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200%;
+        animation: titleAnimation 30s linear infinite;
+    }
+
+    @keyframes titleAnimation {
+        0% {
+            background-position: 0%;
+        }
+
+        100% {
+            background-position: 200%;
+        }
     }
 </style>
