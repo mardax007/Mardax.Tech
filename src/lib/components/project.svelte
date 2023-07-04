@@ -5,7 +5,7 @@
     export let project: Project;
 </script>
 
-<a href={project.disabled ? "" : project.link} id="project" class="{project.disabled ? "disable" : ""}">
+<a href={project.disabled ? "" : project.link} download="{project.download}" id="project" class="{project.disabled ? "disable" : ""}">
     <div id="info">
         <img id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={project.icon} alt="Project Icon" />
         <h2 id="name">{@html project.name}</h2>
@@ -15,7 +15,7 @@
             <p id="date">{@html project.date}</p>
         </span>
         <p id="description">{@html project.shortText}</p>
-        <Button text="View Project" />
+        <Button text={project.buttonText ?? "Ga naar project"} />
     </div>
     <div id="projectImage" style="background-image: url('{project.image}')" />
 </a>

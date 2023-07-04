@@ -13,7 +13,12 @@
 		nav = x;
 	})
 
-	let options: string[] = Object.keys(homepageInfo.categories);
+	let options: { key: string, titleDisplay: string }[] = Object.keys(homepageInfo.categories).map((key) => {
+		return {
+			key: key,
+			titleDisplay: homepageInfo.categories[key].titleDisplay ?? key
+		}
+	});
 
 	let loaded = false
 
@@ -71,9 +76,9 @@
 {#if options.length > 0}
 	<div class="segmented-control">
 		{#each options as option, id}
-			<input checked={homepageInfo.categories[option].default} type="radio" name="tab" id="tab-{id+1}" on:click={() => {response(id+1)}} />
+			<input checked={homepageInfo.categories[option.key].default} type="radio" name="tab" id="tab-{id+1}" on:click={() => {response(id+1)}} />
 			<label for="tab-{id+1}" class="segmented-control__{id+1}">
-				<span id="tab-{id+1}-span" style="font-weight: {homepageInfo.categories[option].default ? 700 : 500}; background-image: {homepageInfo.categories[option].titleColor}; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">{option.charAt(0).toUpperCase() + option.substring(1)}</span>
+				<span id="tab-{id+1}-span" style="font-weight: {homepageInfo.categories[option.key].default ? 700 : 500}; background-image: {homepageInfo.categories[option.key].titleColor}; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">{option.titleDisplay.charAt(0).toUpperCase() + option.titleDisplay.substring(1)}</span>
 			</label>
 		{/each}
 		<div id="backgroundColor" />

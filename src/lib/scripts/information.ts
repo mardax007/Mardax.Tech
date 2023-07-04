@@ -13,7 +13,9 @@ const projects: Project[] = [
         icon: "./pws.png",
         rounded: false,
         link: "./PWS.pdf",
+        download: "Profielwerkstuk.pdf",
         categories: ["school"],
+        buttonText: "Download PDF"
     },
     {
         id: "23Nutricia",
@@ -319,6 +321,7 @@ const homepageInfo: {
             descriptionColor: string,
             default?: boolean,
             mapPin: string,
+            titleDisplay?: string,
         }
     }
 } = {
@@ -341,7 +344,7 @@ const homepageInfo: {
             locationColor: "linear-gradient(90deg, #626266, #626266)",
             descriptionColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
             mapPin: "./MapPin-colored.svg",
-        }
+        },
     }
 }
 

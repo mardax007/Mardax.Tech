@@ -10,6 +10,8 @@ type Project = {
     rounded?: boolean;
     disabled?: boolean;
     link: string;
+    download?: string;
+    buttonText?: string;
     categories: string[];
     tags?: Tags;
     timeline?: TimelineItem[];
