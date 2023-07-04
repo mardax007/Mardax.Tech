@@ -1,19 +1,14 @@
 <script lang="ts">
-    export let info: {
-        name: string;
-        date: string;
-        tag: string;
-        icon: string;
-        text: string;
-        rounded?: boolean;
-    };
+	import type { Project } from "$lib/scripts/types";
+
+    export let info: Project;
 </script>
 
 <div id="intro">
     <img
         id="icon"
         style={info.rounded ? 'border-radius: 0.5rem;' : ''}
-        src={info.icon}
+        src={"../" + info.icon}
         alt="Project Icon"
     />
     <h2 id="name">{@html info.name}</h2>
@@ -23,7 +18,7 @@
         <p id="date">{@html info.date}</p>
     </span>
     <p id="callout">
-        {@html info.text}
+        {@html info.description}
     </p>
 </div>
 

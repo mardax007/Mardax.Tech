@@ -1,10 +1,7 @@
 <script lang="ts">
-    export let techStack: {
-        name: string,
-        logo: string,
-        description: string,
-        link: string
-    }[];
+	import type { TechStack } from "$lib/scripts/types";
+
+    export let techStack: TechStack[];
 </script>
 
 <div id="stack">

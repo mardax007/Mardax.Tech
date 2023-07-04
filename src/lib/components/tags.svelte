@@ -1,35 +1,39 @@
 <script lang="ts">
-    export let roleLearn: {
-        roleTitle: string,
-        role: string;
-        responsibilityTitle: string;
-        responsibilities: string[];
-        learnTitle: string;
-        learned: string;
-        beta: string;
-    };
+	import type { Tags } from "$lib/scripts/types";
+
+    export let tags: Tags | undefined;
+    export let version = 1;
 </script>
 
-<div id="role-learn">
-    <div id="role">
-        <h3>{@html roleLearn.roleTitle}</h3>
-        <p>{@html roleLearn.role}</p>
-        <h3>{@html roleLearn.responsibilityTitle}</h3>
-        <div id="responsibilities">
-            {#each roleLearn.responsibilities as responsibility}
-                <li>{@html responsibility}</li>
-            {/each}
+{#if tags}
+    <div id="role-learn">
+        <div id="role">
+            <h3>{@html tags.roleTitle}</h3>
+            <p>{@html tags.role}</p>
+            <h3>{@html tags.responsibilityTitle}</h3>
+            <div id="responsibilities">
+                {#each tags.responsibilities as responsibility}
+                    <li>{@html responsibility}</li>
+                {/each}
+            </div>
+
+            {#if version == 1}
+                <h3>Betawereld</h3>
+                <p>{@html tags.beta}</p>
+            {/if}
         </div>
-        <h3>Betawereld</h3>
-        <p>{@html roleLearn.beta}</p>
+        <div id="learn">
+            <h3>{@html tags.learnTitle}</h3>
+            <p>
+                {@html tags.learned}
+            </p>
+            {#if version == 2}
+            <h3>Betawereld</h3>
+            <p>{@html tags.beta}</p>
+        {/if}
+        </div>
     </div>
-    <div id="learn">
-        <h3>{@html roleLearn.learnTitle}</h3>
-        <p>
-            {@html roleLearn.learned}
-        </p>
-    </div>
-</div>
+{/if}
 
 <style lang="scss">
     h3 {

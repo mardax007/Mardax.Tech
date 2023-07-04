@@ -1,19 +1,11 @@
 <script lang="ts">
+	import type { Project } from "$lib/scripts/types";
 	import Button from "./button.svelte";
 
-    export let project = {
-        name: "Suggested Jobs",
-        date: "2020",
-        tag: "UX/UI Design",
-        description: `Redesigning job recommendations based on job seeker activity.`,
-        image: "./nutricia.svg",
-        icon: "https://uploads-ssl.webflow.com/5e1689facb9d5168c0dcbe0b/60ec78fc1f2590230d69a4ac_ZipRecruiter%20Small%20Logo.png",
-        link: "https://www.google.com",
-        rounded: true
-    }
+    export let project: Project;
 </script>
 
-<a href={project.disable ? "" : project.link} id="project" class="{project.disable ? "disable" : ""}">
+<a href={project.disabled ? "" : project.link} id="project" class="{project.disabled ? "disable" : ""}">
     <div id="info">
         <img id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={project.icon} alt="Project Icon" />
         <h2 id="name">{@html project.name}</h2>
@@ -22,7 +14,7 @@
             <p id="sep">•</p>
             <p id="date">{@html project.date}</p>
         </span>
-        <p id="description">{@html project.description}</p>
+        <p id="description">{@html project.shortText}</p>
         <Button text="View Project" />
     </div>
     <div id="projectImage" style="background-image: url('{project.image}')" />

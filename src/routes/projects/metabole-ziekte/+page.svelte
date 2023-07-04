@@ -1,146 +1,92 @@
 <script lang="ts">
 	import Statement from '$lib/components/statement.svelte';
-	import {
-		Timeline,
-		TimelineItem,
-		TimelineSeparator,
-		TimelineDot,
-		TimelineConnector,
-		TimelineContent,
-		TimelineOppositeContent
-	} from 'svelte-vertical-timeline';
-	import RoleLearn from '$lib/components/roleLearn.svelte';
+	import Tags from '$lib/components/tags.svelte';
 	import People from '$lib/components/people.svelte';
 	import Intro from '$lib/components/intro.svelte';
 	import ProcesTimeline from '$lib/components/proces-timeline.svelte';
+	import { getProject } from '$lib/scripts/information';
 
-	const project = {
-		name: 'Metabole ziekte',
-		date: '2023',
-		tag: 'Competitief onderzoek',
-		icon: '../research.svg',
-		text: `Danone Nutricia is gespecialiseerd in voeding voor baby's, jonge kinderen, ouderen en patiënten
-	met specifieke ziektes en aandoeningen. Ze leveren voedingsoplossingen die afgestemd zijn op de
-	behoeften van deze doelgroepen in de zorgsector sinds 2007.`,
-		rounded: false
-	};
+	// const projectInfo = {
+	// 	tags: {
+	// 		roleTitle: 'Mijn rol',
+	// 		role: 'Teamleider',
+	// 		responsibilityTitle: 'Mijn verantwoordelijkheden',
+	// 		responsibilities: [
+	// 			'Centraal aanspreekpunt',
+	// 			'Teamleden deblokkeren',
+	// 			'Taakverdeling',
+	// 			'Interne communicatie'
+	// 		],
+	// 		learnTitle: 'Wat ik heb geleerd',
+	// 		learned: `Voor dit project heb ik de rol van teamleider op me genomen. Ik heb deze taak nooit aan het begin van het project al op me genomen, maar ik merkte bij veel projecten is dat ik toch vaak bepaalde aspecten van deze rol op mij nam wanneer nodig. Ik vind het belangrijk dat iedereen weet wat er van hen verwacht wordt en ik heb geleerd hoe dit het beste gedaan kan worden.`,
+	// 		beta: "Mens en gezondheid<br>Ontwerp, Productie & Wereldhandel<br>Voeding & Natuur"
+	// 	},
+	// 	timeline: [
+	// 		{
+	// 			title: 'Opzet',
+	// 			time: 'Sprint 1',
+	// 			description:
+	// 				'Allereerst zijn wij begonnen met het maken van een PVA, hierin hebben wij de opdracht en de eisen van de opdrachtgever opgeschreven. Ook hebben wij een planning gemaakt voor de komende sprints.'
+	// 		},
+	// 		{
+	// 			title: 'Vooronderzoek',
+	// 			time: 'Sprint 2',
+	// 			description:
+	// 				'Vervolgens zijn wij begonnen met het vooronderzoek. Wij hebben concurerende producten van Nutricia geïnventariseerd en samen met onze opdrachtgever hebben wij gekeken of wij deze konden verkrijgen. Ook hebben wij onderzocht op welke manieren wij de eigenschappen van deze producten konden testen.'
+	// 		},
+	// 		{
+	// 			title: 'Onderzoek',
+	// 			time: 'Sprint 3',
+	// 			description:
+	// 				'Na dat wij de producten binnen hebben gekregen zijn wij begonnen met testen. We hebben getest op geur, kleur, smaak, structuur, viscociteit, bederfbaarheid en pH. pH hebben we gemeten met een pH meter en de geur, kleur, smaak en textuur hebben we beoordeeld met een sensorisch onderzoek. Bederfbaarheid hebben we getest door de producten in een broedoven te zetten. Helaas hadden wij geen toegang tot een viscositeitsmeter dus hebben wij ervoor gekozen om de voeding door een burret te laten lopen en vergeleken we de producten met elkaar op hoe lang het duurde om 15ml te doorlopen.'
+	// 		},
+	// 		{
+	// 			title: 'Conclusie',
+	// 			time: 'Sprint 4',
+	// 			description:
+	// 				'Uit onze resultaten hebben wij samen met onze expert een conclusie getrokken en deze vervolgens gepresenteerd aan onze opdachtgever samen met ons complete verslag.'
+	// 		}
+	// 	],
+	// 	people: [
+	// 		{
+	// 			name: 'Anne Swart',
+	// 			title: 'Expert',
+	// 			job: 'Sr Team Leader Product Development',
+	// 			img: 'https://media.licdn.com/dms/image/D4E03AQHd3we1nc9iig/profile-displayphoto-shrink_200_200/0/1685198072540?e=1694044800&v=beta&t=CdXNb7ycTqEddoyPUzIWjs6VVYN-iy_v5iNaPAwof2Y',
+	// 			linkedin: 'https://www.linkedin.com/in/annedeswart/'
+	// 		},
+	// 		{
+	// 			name: 'Hanaa El Hilali',
+	// 			title: 'Opdrachtgever',
+	// 			job: 'Product Design & Development Team leader',
+	// 			img: 'https://media.licdn.com/dms/image/C4D03AQGg8sJb20gU0A/profile-displayphoto-shrink_200_200/0/1602488833417?e=1694044800&v=beta&t=jjEM3x0pb3C4uXWlCeMhf3k6GnyOkjUoBuSLZhv5uHI',
+	// 			linkedin: 'https://www.linkedin.com/in/hanaa-el-hilali-45a20915/'
+	// 		}
+	// 	],
+	// 	problemStatement: {
+	// 		text: "Nutricia heeft een groot assortiment aan producten voor verschillende doelgroepen. Het is voor hen belangrijk om te weten wat hun competitie aanbiedt zodat ze hun producten hierop kunnen aanpassen.<br>Wij hebben onderzoek gedaan naar de competitie van hun PKU producten.",
+	// 		title: 'Probleem'
+	// 	}
+	// }
 
-	const options = [
-		{
-			title: 'Opzet',
-			time: 'Sprint 1',
-			description:
-				'Allereerst zijn wij begonnen met het maken van een PVA, hierin hebben wij de opdracht en de eisen van de opdrachtgever opgeschreven. Ook hebben wij een planning gemaakt voor de komende sprints.'
-		},
-		{
-			title: 'Vooronderzoek',
-			time: 'Sprint 2',
-			description:
-				'Vervolgens zijn wij begonnen met het vooronderzoek. Wij hebben concurerende producten van Nutricia geïnventariseerd en samen met onze opdrachtgever hebben wij gekeken of wij deze konden verkrijgen. Ook hebben wij onderzocht op welke manieren wij de eigenschappen van deze producten konden testen.'
-		},
-		{
-			title: 'Onderzoek',
-			time: 'Sprint 3',
-			description:
-				'Na dat wij de producten binnen hebben gekregen zijn wij begonnen met testen. We hebben getest op geur, kleur, smaak, structuur, viscociteit, bederfbaarheid en pH. pH hebben we gemeten met een pH meter en de geur, kleur, smaak en textuur hebben we beoordeeld met een sensorisch onderzoek. Bederfbaarheid hebben we getest door de producten in een broedoven te zetten. Helaas hadden wij geen toegang tot een viscositeitsmeter dus hebben wij ervoor gekozen om de voeding door een burret te laten lopen en vergeleken we de producten met elkaar op hoe lang het duurde om 15ml te doorlopen.'
-		},
-		{
-			title: 'Conclusie',
-			time: 'Sprint 4',
-			description:
-				'Uit onze resultaten hebben wij samen met onze expert een conclusie getrokken en deze vervolgens gepresenteerd aan onze opdachtgever samen met ons complete verslag.'
-		}
-	];
-
-	const projectInfo = {
-		info: {
-			name: 'Metabole ziekte',
-			date: '2023',
-			tag: 'Competitief onderzoek',
-			icon: '../research.svg',
-			text: `Danone Nutricia is gespecialiseerd in voeding voor baby's, jonge kinderen, ouderen en patiënten
-		met specifieke ziektes en aandoeningen. Ze leveren voedingsoplossingen die afgestemd zijn op de
-		behoeften van deze doelgroepen in de zorgsector sinds 2007.`,
-			rounded: false
-		},
-		roleLearn: {
-			roleTitle: 'Mijn rol',
-			role: 'Teamleider',
-			responsibilityTitle: 'Mijn verantwoordelijkheden',
-			responsibilities: [
-				'Centraal aanspreekpunt',
-				'Teamleden deblokkeren',
-				'Taakverdeling',
-				'Interne communicatie'
-			],
-			learnTitle: 'Wat ik heb geleerd',
-			learned: `Voor dit project heb ik de rol van teamleider op me genomen. Ik heb deze taak nooit aan het begin van het project al op me genomen, maar ik merkte bij veel projecten is dat ik toch vaak bepaalde aspecten van deze rol op mij nam wanneer nodig. Ik vind het belangrijk dat iedereen weet wat er van hen verwacht wordt en ik heb geleerd hoe dit het beste gedaan kan worden.`,
-			beta: "Mens en gezondheid<br>Ontwerp, Productie & Wereldhandel<br>Voeding & Natuur"
-		},
-		timeline: [
-			{
-				title: 'Opzet',
-				time: 'Sprint 1',
-				description:
-					'Allereerst zijn wij begonnen met het maken van een PVA, hierin hebben wij de opdracht en de eisen van de opdrachtgever opgeschreven. Ook hebben wij een planning gemaakt voor de komende sprints.'
-			},
-			{
-				title: 'Vooronderzoek',
-				time: 'Sprint 2',
-				description:
-					'Vervolgens zijn wij begonnen met het vooronderzoek. Wij hebben concurerende producten van Nutricia geïnventariseerd en samen met onze opdrachtgever hebben wij gekeken of wij deze konden verkrijgen. Ook hebben wij onderzocht op welke manieren wij de eigenschappen van deze producten konden testen.'
-			},
-			{
-				title: 'Onderzoek',
-				time: 'Sprint 3',
-				description:
-					'Na dat wij de producten binnen hebben gekregen zijn wij begonnen met testen. We hebben getest op geur, kleur, smaak, structuur, viscociteit, bederfbaarheid en pH. pH hebben we gemeten met een pH meter en de geur, kleur, smaak en textuur hebben we beoordeeld met een sensorisch onderzoek. Bederfbaarheid hebben we getest door de producten in een broedoven te zetten. Helaas hadden wij geen toegang tot een viscositeitsmeter dus hebben wij ervoor gekozen om de voeding door een burret te laten lopen en vergeleken we de producten met elkaar op hoe lang het duurde om 15ml te doorlopen.'
-			},
-			{
-				title: 'Conclusie',
-				time: 'Sprint 4',
-				description:
-					'Uit onze resultaten hebben wij samen met onze expert een conclusie getrokken en deze vervolgens gepresenteerd aan onze opdachtgever samen met ons complete verslag.'
-			}
-		],
-		people: [
-			{
-				name: 'Anne Swart',
-				title: 'Expert',
-				job: 'Sr Team Leader Product Development',
-				img: 'https://media.licdn.com/dms/image/D4E03AQHd3we1nc9iig/profile-displayphoto-shrink_200_200/0/1685198072540?e=1694044800&v=beta&t=CdXNb7ycTqEddoyPUzIWjs6VVYN-iy_v5iNaPAwof2Y',
-				linkedin: 'https://www.linkedin.com/in/annedeswart/'
-			},
-			{
-				name: 'Hanaa El Hilali',
-				title: 'Opdrachtgever',
-				job: 'Product Design & Development Team leader',
-				img: 'https://media.licdn.com/dms/image/C4D03AQGg8sJb20gU0A/profile-displayphoto-shrink_200_200/0/1602488833417?e=1694044800&v=beta&t=jjEM3x0pb3C4uXWlCeMhf3k6GnyOkjUoBuSLZhv5uHI',
-				linkedin: 'https://www.linkedin.com/in/hanaa-el-hilali-45a20915/'
-			}
-		],
-		problemStatement: {
-			text: "Nutricia heeft een groot assortiment aan producten voor verschillende doelgroepen. Het is voor hen belangrijk om te weten wat hun competitie aanbiedt zodat ze hun producten hierop kunnen aanpassen.<br>Wij hebben onderzoek gedaan naar de competitie van hun PKU producten.",
-			title: 'Probleem'
-		}
-	}
+	const projectInfo = getProject("23Nutricia")
 </script>
 
 <div id="wrapper">
 	<div id="header">
 		<img src="../PKU Lophlex.png" alt="Nutricia logo" />
 	</div>
-	<Intro info={projectInfo.info} />
+	<Intro info={projectInfo} />
 	<div id="content">
-		<RoleLearn roleLearn={projectInfo.roleLearn} />
+		<Tags tags={projectInfo.tags} />
 		<Statement
-			statementTitle={projectInfo.problemStatement.title}
-			statement={projectInfo.problemStatement.text}
+			statementTitle={projectInfo.problemStatement?.title ?? ""}
+			statement={projectInfo.problemStatement?.text ?? ""}
 		/>
 		<People people={projectInfo.people} />
 		<div id="timeline">
 			<h1 class="centerTitle">Proces</h1>
-			<ProcesTimeline timeline={projectInfo.timeline} />
+			<ProcesTimeline timeline={projectInfo.timeline ?? []} />
 		</div>
 		<div id="results">
 			<h1 class="centerTitle">Resultaten</h1>
@@ -248,16 +194,16 @@
 			</ul>
 		</div>
 		<Statement
-			statementTitle={'Conclusie'}
-			statement={"Er is weinig verschil in geur, kleur, textuur, smaak en pH, ook bij de GMP producten. Wel hebben de GMP producten andere eigenschappen dan de niet GMP producten. Beide producten blijven vloeibaar als ze bederven maar bij Nutricia's ontstaat een 2 lagen systeem.<br>De viscositeit van Nutricia's product is veel hoger vergeleken met die van Nestlé."}
+			statementTitle={projectInfo.conclusionStatement?.title ?? ""}
+			statement={projectInfo.conclusionStatement?.text ?? ""}
 		/>
 		<div id="presentation">
 			<h1 class="centerTitle">Presentatie</h1>
 			<img id="presentationMedia" src="../NutriciaPresentation.gif" alt="presentation" />
 		</div>
 		<Statement
-			statementTitle={'Discussie'}
-			statement={'In onze resulaten missen er een aantal waardes. Loplex Water en Juicy hebben geen visco waardes omdat deze de burret verstoppen. De smaak van Vitaflo Sphere hebben we niet kunnen testen omdat deze overdatum was. Dit heeft mogelijk ook invloed gehad op de waardes die we wel hebben kunnen meten. '}
+			statementTitle={projectInfo.discussionStatement?.title ?? ""}
+			statement={projectInfo.discussionStatement?.text ?? ""}
 		/>
 		<div id="media">
 			<h1 class="centerTitle">Media</h1>
