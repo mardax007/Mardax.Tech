@@ -26,15 +26,18 @@
             }, 400);
         });
     })
+
+    let info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
+    $ : info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
 </script>
 
 <div id="aboutMe">
-    <h1 id="title" style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.titleColor ?? "black"}">{homepageInfo.title}</h1>
+    <h1 id="title" style="background-image: {info?.titleColor ?? "black"}">{info?.title}</h1>
     <div id="location">
-        <img alt="Mappin" src={homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.mapPin} />
-        <p style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.locationColor ?? "black"}">{homepageInfo.location}</p>
+        <img alt="Mappin" src={info?.mapPin} />
+        <p style="background-image: {info?.locationColor ?? "black"}">{info?.location}</p>
     </div>
-    <p id="description" style="background-image: {homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.descriptionColor ?? "black"}">{homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]?.description}</p>
+    <p id="description" style="background-image: {info?.descriptionColor ?? "black"}">{info?.description}</p>
 </div>
 
 <style lang="scss">
@@ -103,6 +106,9 @@
         font-size: 1rem;
         text-align: center;
         color: #5e5e63;
+
+        max-width: 500px;
+        margin: 0 auto;
 
         -webkit-background-clip: text;
         background-clip: text;

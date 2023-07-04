@@ -3,6 +3,19 @@ import type { Project } from "./types";
 
 const projects: Project[] = [
     {
+        id: "23PWS",
+        name: "Profielwerkstuk",
+        date: "2023",
+        tag: "Onderzoek & Ontwikkeling",
+        shortText: "Voor mijn profielwerkstuk heb ik onderzoek gedaan naar neural networks en hebben we het toegepast in een zelfrijdende auto.",
+        description: "",
+        image: "",
+        icon: "./pws.png",
+        rounded: false,
+        link: "./PWS.pdf",
+        categories: ["school"],
+    },
+    {
         id: "23Nutricia",
         name: "Metabole ziekte",
         date: "2023",
@@ -295,28 +308,45 @@ const projects: Project[] = [
     },
 ];
 
-function getHomepageInfo() {
-    return {
-        title: "Hi, I'm Martijn",
-        location: "The Netherlands",
-        categories: {
-            school: {
-                description: "I am currently enrolled in 5VWO at Antoniuscollege Gouda, following the N&T profile.",
-                titleColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
-                locationColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
-                descriptionColor: "linear-gradient(90deg, #1e1e22, #1e1e22)",
-                default: true,
-                mapPin: "./MapPin.svg",
-            },
-            play: {
-                description: "I like building things, and playing around with new technologies.",
-                titleColor: "linear-gradient(90deg, #adf1e0, #8075ff 28%, #ff7171, #adf1e0 98%)",
-                locationColor: "linear-gradient(90deg, #626266, #626266)",
-                descriptionColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
-                mapPin: "./MapPin-colored.svg",
-            }
+const homepageInfo: {
+    categories: {
+        [key: string]: {
+            title: string,
+            location: string,
+            description: string,
+            titleColor: string,
+            locationColor: string,
+            descriptionColor: string,
+            default?: boolean,
+            mapPin: string,
         }
     }
+} = {
+    categories: {
+        school: {
+            title: "Hoi, ik ben Martijn",
+            location: "Boskoop, Nederland",
+            description: "Ik doe op dit moment 5VWO op het Antoniuscollege in Gouda waar ik het N&T volg op weg naar Computer Science.",
+            titleColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
+            locationColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
+            descriptionColor: "linear-gradient(90deg, #1e1e22, #1e1e22)",
+            default: true,
+            mapPin: "./MapPin.svg",
+        },
+        play: {
+            title: "Hi, I'm Mardax",
+            location: "The Netherlands",
+            description: "I like building things, and playing around with new technologies.",
+            titleColor: "linear-gradient(90deg, #adf1e0, #8075ff 28%, #ff7171, #adf1e0 98%)",
+            locationColor: "linear-gradient(90deg, #626266, #626266)",
+            descriptionColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
+            mapPin: "./MapPin-colored.svg",
+        }
+    }
+}
+
+function getHomepageInfo() {
+    return homepageInfo
 }
 
 function getProjectsInfo() {
