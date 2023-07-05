@@ -2,7 +2,7 @@
 </script>
 
 <a href="../">
-    <img id="backButton" src="../arrow.svg" alt="Back arrow" />
+    <img id="backButton" src="/arrow.svg" alt="Back arrow" />
 </a>
 
 <style lang="scss">

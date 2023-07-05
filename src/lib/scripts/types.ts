@@ -1,11 +1,14 @@
 type Project = {
     id: string;
+    order: number;
     name: string;
     date: string;
     tag: string;
     shortText: string;
     description: string;
     image: string;
+    noImagePadding?: boolean;
+    background?: string;
     icon: string;
     rounded?: boolean;
     disabled?: boolean;
@@ -19,6 +22,7 @@ type Project = {
     problemStatement?: Statement;
     conclusionStatement?: Statement;
     discussionStatement?: Statement;
+    goalStatement?: Statement;
     techStack?: TechStack[];
 };
 

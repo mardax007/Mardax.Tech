@@ -3,6 +3,8 @@
 	import Button from "./button.svelte";
 
     export let project: Project;
+
+    console.log(project.image)
 </script>
 
 <a href={project.disabled ? "" : project.link} download="{project.download}" id="project" class="{project.disabled ? "disable" : ""}">
@@ -15,9 +17,11 @@
             <p id="date">{@html project.date}</p>
         </span>
         <p id="description">{@html project.shortText}</p>
-        <Button text={project.buttonText ?? "Ga naar project"} />
+        <Button link={project.disabled ? "" : project.link} text={project.buttonText ?? "Ga naar project"} />
     </div>
-    <div id="projectImage" style="background-image: url('{project.image}')" />
+    <div id="projectImage" style="background-color: {project.background ?? "transparent"};">
+        <img src={project.image} alt="Project" style="{project.noImagePadding ? "width: 100%" : ""}" />
+    </div>
 </a>
 
 <style lang="scss">
@@ -57,12 +61,14 @@
         #projectImage {
             grid-area: projectImage;
             width: 100%;
-            object-fit: cover;
             border-radius: 0 2rem 2rem 0;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: right;
-            object-fit: scale-down;
+
+            img {
+                width: 95%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 0 2rem 2rem 0;
+            }
         }
 
         #info {

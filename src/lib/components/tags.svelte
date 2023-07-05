@@ -8,16 +8,20 @@
 {#if tags}
     <div id="role-learn">
         <div id="role">
-            <h3>{@html tags.roleTitle}</h3>
-            <p>{@html tags.role}</p>
-            <h3>{@html tags.responsibilityTitle}</h3>
-            <div id="responsibilities">
-                {#each tags.responsibilities as responsibility}
-                    <li>{@html responsibility}</li>
-                {/each}
-            </div>
+            {#if tags.roleTitle}
+                <h3>{@html tags.roleTitle}</h3>
+                <p>{@html tags.role}</p>
+            {/if}
+            {#if tags.responsibilities}
+                <h3>{@html tags.responsibilityTitle}</h3>
+                <div id="responsibilities">
+                    {#each tags.responsibilities as responsibility}
+                        <li>{@html responsibility}</li>
+                    {/each}
+                </div>
+            {/if}
 
-            {#if version == 1}
+            {#if version == 1 && tags.beta}
                 <h3>Betawereld</h3>
                 <p>{@html tags.beta}</p>
             {/if}
@@ -27,10 +31,10 @@
             <p>
                 {@html tags.learned}
             </p>
-            {#if version == 2}
-            <h3>Betawereld</h3>
-            <p>{@html tags.beta}</p>
-        {/if}
+            {#if version == 2 && tags.beta}
+                <h3>Betawereld</h3>
+                <p>{@html tags.beta}</p>
+            {/if}
         </div>
     </div>
 {/if}

@@ -111,8 +111,8 @@
 
 <div id="wrapper">
 	<div id="header">
-		<img src="../proliad.jpg" alt="Proliad header" />
-		<img id="proliadLogo" src="../proliadLogo.png" alt="Proliad logo" />
+		<img src="/proliad.jpg" alt="Proliad header" />
+		<img id="proliadLogo" src="/proliadLogo.png" alt="Proliad logo" />
 	</div>
 	<Intro info={projectInfo} />
 	<Tags tags={projectInfo.tags} />

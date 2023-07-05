@@ -84,14 +84,14 @@
 
 <div id="wrapper">
     <div id="header">
-		<img src="../rollingsticks-header.png" alt="Rollingsticks header" />
+		<img src="/rollingsticks-header.png" alt="Rollingsticks header" />
 	</div>
     <Intro info={projectInfo} />
     <Tags tags={projectInfo.tags} />
     <Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
     <People people={projectInfo.people} />
 	<h1 class="centerTitle">Design</h1>
-	<img src="../Player.jpg" alt="Player">
+	<img src="/Player.jpg" alt="Player">
 	<h1 class="centerTitle">Tech stack</h1>
     <TechStack techStack={projectInfo.techStack ?? []} />
 </div>

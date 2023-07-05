@@ -1,16 +1,18 @@
 <script lang="ts">
     export let text: string = "Button";
+    export let link: string = "";
 </script>
 
-<div id="whiteButton" class="follow">
+<a href={link} id="whiteButton" class="follow">
     <h3 id="view">{text}</h3>
-    <img src="./arrow.svg" alt="Arrow Right" />
-</div>
+    <img src="/arrow.svg" alt="Arrow Right" />
+</a>
 
 <style lang="scss">
     @import '../../app.scss';
 
     #whiteButton {
+        text-decoration: none;
         max-width: 375px;
         grid-area: whiteButton;
         display: flex;

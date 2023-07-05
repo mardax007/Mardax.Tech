@@ -27,7 +27,9 @@
 	onMount(() => {
 		navState.subscribe((x) => {
 			currentCategory = x.categoryId
-			const span = document.getElementById("tab-" + (x.categoryId + 1) + "-span")
+
+			document.getElementById("backgroundColor")!.style.transform = "translateX(" + (6.8 * currentCategory) + "rem)"
+			const span = document.getElementById("tab-" + (currentCategory + 1) + "-span")
 			if (loaded) {
 				const spans = document.querySelectorAll("span");
 				spans.forEach((span) => {
@@ -54,22 +56,8 @@
 		})
 	})
 
-	function smoothScroll() {
-		var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-		if (currentScroll > 0) {
-			window.requestAnimationFrame(smoothScroll);
-			window.scrollTo (0,currentScroll - (currentScroll/5));
-		}
-	}
-
     function response(spanId: number) {
 		navState.set({ categoryId: spanId - 1 });
-
-		if (currentCategory == spanId - 1) {
-			// scroll to top
-			smoothScroll()
-			console.log("to the top!")
-		}
     }
 </script>
 
@@ -133,12 +121,6 @@
 			border-radius: 2.2rem;
 			box-shadow: 0 4px 1rem 0 rgba(0, 0, 0, 0.12);
 			pointer-events: none;
-		}
-	}
-
-	@for $i from 1 through 10 {
-		#tab-#{$i}:checked ~ #backgroundColor {
-			transform: translateX(6.8rem * ($i - 1));
 			transition: $tabTranform;
 		}
 	}

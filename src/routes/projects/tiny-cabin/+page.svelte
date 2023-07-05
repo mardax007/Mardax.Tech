@@ -48,7 +48,7 @@
 
 <div id="wrapper">
     <div id="header">
-		<img src="../Huiz.png" alt="Huiz logo" />
+		<img src="/Huiz.png" alt="Huiz logo" />
 	</div>
     <Intro info={projectInfo} />
     <Tags version={2} tags={projectInfo.tags} />
@@ -56,7 +56,7 @@
 
     <div id="poster">
         <h3>Ontwerp</h3>
-        <img src="../Huiz-Poster.png" alt="Huiz poster" />
+        <img src="/Huiz-Poster.png" alt="Huiz poster" />
     </div>
     <Video videoURL="https://www.youtube.com/embed/ezScvCkMqSY" videoTitle="Huiz" />
 

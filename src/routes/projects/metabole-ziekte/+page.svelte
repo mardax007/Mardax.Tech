@@ -74,7 +74,7 @@
 
 <div id="wrapper">
 	<div id="header">
-		<img src="../PKU Lophlex.png" alt="Nutricia logo" />
+		<img src="/PKU Lophlex.png" alt="Nutricia logo" />
 	</div>
 	<Intro info={projectInfo} />
 	<div id="content">
@@ -199,7 +199,7 @@
 		/>
 		<div id="presentation">
 			<h1 class="centerTitle">Presentatie</h1>
-			<img id="presentationMedia" src="../NutriciaPresentation.gif" alt="presentation" />
+			<img id="presentationMedia" src="/NutriciaPresentation.gif" alt="presentation" />
 		</div>
 		<Statement
 			statementTitle={projectInfo.discussionStatement?.title ?? ""}
@@ -210,7 +210,7 @@
 			<div id="mediaList">
 				<a href="../Eindverslag KP3.docx" download>
 					<div class="media">
-						<img src="../word.svg" alt="word" />
+						<img src="/word.svg" alt="word" />
 						<p>Download Verslag</p>
 					</div>
 				</a>

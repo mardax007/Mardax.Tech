@@ -1,4 +1,4 @@
-import type { Project } from "./types";
+import type { Project } from "/types";
 
 
 const projects: Project[] = [
@@ -9,10 +9,12 @@ const projects: Project[] = [
         tag: "Onderzoek & Ontwikkeling",
         shortText: "Voor mijn profielwerkstuk heb ik onderzoek gedaan naar neural networks en hebben we het toegepast in een zelfrijdende auto.",
         description: "",
-        image: "",
-        icon: "./pws.png",
+        image: "/PWS-frontpage.png",
+        noImagePadding: true,
+        background: "#fefefe",
+        icon: "/pws.png",
         rounded: false,
-        link: "./PWS.pdf",
+        link: "/PWS.pdf",
         download: "Profielwerkstuk.pdf",
         categories: ["school"],
         buttonText: "Download PDF"
@@ -24,10 +26,10 @@ const projects: Project[] = [
         tag: "Competatief onderzoek",
         shortText: "Voor nutrcia hebben wij een competitief onderzoek gedaan naar hun producten voor mensen met metabole ziekte.",
         description: "Danone Nutricia is gespecialiseerd in voeding voor baby's, jonge kinderen, ouderen en patiënten met specifieke ziektes en aandoeningen. Ze leveren voedingsoplossingen die afgestemd zijn op de behoeften van deze doelgroepen in de zorgsector sinds 2007.",
-        image: "./nutricia.svg",
-        icon: "./research.svg",
+        image: "/nutricia.svg",
+        icon: "/research.svg",
         rounded: false,
-        link: "./projects/metabole-ziekte",
+        link: "/projects/metabole-ziekte",
         categories: ["school"],
         tags: {
             roleTitle: "Mijn rol",
@@ -105,8 +107,8 @@ const projects: Project[] = [
         tag: "UX/UI Design",
         shortText: "Wij kregen de opdracht om een milleupagina voor proliad B.V. te ontwerpen en de ontwikkelen.",
         description: "Proliad levert lichtoplossingen voor gebouwen en objecten. In samenwerking met (licht) architecten ontwikkelen en produceren zij binnen- en buitenverlichting voor musea, monumenten en bruggen.",
-        image: "./blaadje.svg",
-        icon: "./design.svg",
+        image: "/blaadje.svg",
+        icon: "/design.svg",
         link: "http://localhost:5173/projects/proliad",
         categories: ["school"],
 		tags: {
@@ -206,9 +208,9 @@ const projects: Project[] = [
         tag: "Applicatie ontwikkeling",
         shortText: "Wij kregen de opdacht van muziek fabriek rollingsticks om een online muziek les applicatie te ontwikkelen. Het doel was om een app te maken die leerlingen kunnen gebruiken om bladmuziek af te spelen die hun docent hen heeft toegewezen.",
         description: "Muziekfabriek Rollingsticks is een muziekschool in Gouda. Tijdens corona is de school erachter gekomen dat ze geen alternatief hadden voor lessen op afstand. Zij kwamen toen op het idee om een digitale muziek applicatie te maken waarmee leerlingen overal muziek konden oefenen. Ook kan de docent de leerling huiswerk opgeven ook buiten de lessen. Ook had deze applicatie de mogelijkheid om gebruikt te worden tijdens de lessen in plaats van bladmuziek.",
-        image: "./rollingsticks.png",
-        icon: "./development.svg",
-        link: "./projects/rollingsticks",
+        image: "/rollingsticks.png",
+        icon: "/development.svg",
+        link: "/projects/rollingsticks",
         categories: ["school"],
         problemStatement: {
             title: 'Opdracht',
@@ -280,9 +282,9 @@ const projects: Project[] = [
         tag: "Ontwerp",
         shortText: "Wij hebben een duurzame en modulaire tiny cabin ontworpen.",
         description: "Voor dit project kregen wij de opdracht om een tiny cabin te bouwen voor een klant. De klant wilde een tiny cabin die makkelijk te verplaatsen was en ruimte had voor fietsen of 2 gasten. Het moest ook ruimte bieden voor kleinkinderen om te spelen.",
-        image: "./Huiz.png",
-        icon: "./architecture.svg",
-        link: "./projects/tiny-cabin",
+        image: "/Huiz.png",
+        icon: "/architecture.svg",
+        link: "/projects/tiny-cabin",
         categories: ["school"],
         problemStatement: {
             title: 'Opdracht',
@@ -334,7 +336,7 @@ const homepageInfo: {
             locationColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
             descriptionColor: "linear-gradient(90deg, #1e1e22, #1e1e22)",
             default: true,
-            mapPin: "./MapPin.svg",
+            mapPin: "/MapPin.svg",
         },
         play: {
             title: "Hi, I'm Mardax",
@@ -343,7 +345,7 @@ const homepageInfo: {
             titleColor: "linear-gradient(90deg, #adf1e0, #8075ff 28%, #ff7171, #adf1e0 98%)",
             locationColor: "linear-gradient(90deg, #626266, #626266)",
             descriptionColor: "linear-gradient(90deg, #626266, #1e1e22, #626266)",
-            mapPin: "./MapPin-colored.svg",
+            mapPin: "/MapPin-colored.svg",
         },
     }
 }
