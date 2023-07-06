@@ -24,7 +24,7 @@
             setTimeout(() => {
                 nav = x;
                 info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
-            }, 350);
+            }, 400);
         });
     })
 </script>

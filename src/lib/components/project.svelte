@@ -3,8 +3,6 @@
 	import Button from "./button.svelte";
 
     export let project: Project;
-
-    console.log(project.image)
 </script>
 
 <a href={project.disabled ? "" : project.link} download="{project.download}" id="project" class="{project.disabled ? "disable" : ""}">
