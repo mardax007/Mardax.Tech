@@ -1,31 +1,36 @@
 <script lang="ts">
-	import { navState, homepageInfoState } from '$lib/scripts/state'
+	import { navState } from '$lib/scripts/state';
 	import { onMount } from 'svelte';
 
-	let homepageInfo: any;
-
-	homepageInfoState.subscribe((x) => {
-		homepageInfo = x
-	})
+	export let homepageInfo: any;
 
 	let nav: any;
 	navState.subscribe((x) => {
 		nav = x;
 	})
 
-	let options: { key: string, titleDisplay: string }[] = Object.keys(homepageInfo.categories).map((key) => {
-		return {
-			key: key,
-			titleDisplay: homepageInfo.categories[key].titleDisplay ?? key
-		}
-	});
+	let options: { key: string, titleDisplay: string }[] = Object.keys(homepageInfo.categories)
+		.map((key) => {
+			return {
+				key: key,
+				titleDisplay: homepageInfo.categories[key].titleDisplay ?? key,
+				order: homepageInfo.categories[key].order ?? 0
+			}
+		})
+		.sort((a, b) => a.order - b.order);
 
 	let loaded = false
 
 	let currentCategory = 0
 
-	onMount(() => {
+	onMount(async () => {
 		navState.subscribe((x) => {
+			x.categoryId = 0
+			if(x.categoryId == -1) {
+				const defaultCategory = Object.keys(homepageInfo.categories).find((key) => homepageInfo.categories[key].default)
+				if(defaultCategory) x.categoryId = options.findIndex((option) => option.key == defaultCategory)
+			}
+
 			currentCategory = x.categoryId
 
 			document.getElementById("backgroundColor")!.style.transform = "translateX(" + (6.8 * currentCategory) + "rem)"

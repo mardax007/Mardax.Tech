@@ -2,15 +2,16 @@
 	import AboutMe from '$lib/components/aboutMe.svelte';
     import Category from '$lib/components/category.svelte';
 	import Project from '$lib/components/project.svelte';
-    import { getProjectsInfo } from '$lib/scripts/information';
+    import { getHomepageInfo, getProjectsInfo } from '$lib/scripts/information';
 
-    import { homepageInfoState, navState } from '$lib/scripts/state'
+    import { navState } from '$lib/scripts/state'
 	import { onMount } from 'svelte';
 
 	let nav: any;
 	let homepageInfo: any;
 
-	onMount(() => {
+	onMount(async () => {
+        homepageInfo = await getHomepageInfo()
         navState.subscribe((x) => {
             if (!nav || x.categoryId != nav.categoryId) {
                 nav = x
@@ -27,27 +28,27 @@
             nav = x
         })
     })
-
-    homepageInfoState.subscribe((x) => {
-        homepageInfo = x
-    })
 </script>
 
-<div id="wrapper">
-    <div id="navbar">
-        <Category />
-    </div>
-    <div id="content">
-        <AboutMe />
-        <div id="projects">
-            {#if nav}
-                {#each getProjectsInfo().filter((project) => project.categories.includes(Object.keys(homepageInfo.categories)[nav.categoryId])) as project}
-                    <Project {project} />
-                {/each}
-            {/if}
+{#await getHomepageInfo() then homepageInfo}
+    <div id="wrapper">
+        <div id="navbar">
+            <Category homepageInfo={homepageInfo} />
+        </div>
+        <div id="content">
+            <AboutMe homepageInfo={homepageInfo} />
+            <div id="projects">
+                {#if nav}
+                    {#await getProjectsInfo() then projects}
+                        {#each projects.filter((project) => project.categories.includes(Object.keys(homepageInfo.categories)[nav.categoryId])) as project}
+                            <Project {project} />
+                        {/each}
+                    {/await}
+                {/if}
+            </div>
         </div>
     </div>
-</div>
+{/await}
 
 <style lang="scss">
     @import '../app.scss';

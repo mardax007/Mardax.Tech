@@ -1,15 +1,13 @@
 <script lang="ts">
-    import { homepageInfoState, navState } from "$lib/scripts/state";
+    import { navState } from "$lib/scripts/state";
+	import type { HomepageInfo } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
-    let homepageInfo: any = {}
+    export let homepageInfo: HomepageInfo = {}
     let nav = {}
+    let info = {}
 
-    homepageInfoState.subscribe((x) => {
-        homepageInfo = x;
-    });
-
-    onMount(() => {
+    onMount(async () => {
         navState.subscribe((x) => {
             if (x.categoryId != nav.categoryId) document.getElementById("aboutMe")!.animate([
                 { opacity: document.getElementById("aboutMe")!.style.opacity ?? 0 },
@@ -23,12 +21,10 @@
 
             setTimeout(() => {
                 nav = x;
+                info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
             }, 400);
         });
     })
-
-    let info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
-    $ : info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
 </script>
 
 <div id="aboutMe">
