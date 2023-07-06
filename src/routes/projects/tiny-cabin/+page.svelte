@@ -3,13 +3,13 @@
 	import Tags from "$lib/components/tags.svelte";
 	import Statement from "$lib/components/statement.svelte";
 	import Video from "$lib/components/video.svelte";
-	import { getProject } from "$lib/scripts/information";
+	import { getProject, getSRC } from "$lib/scripts/information";
 </script>
 
 {#await getProject("21Huiz") then projectInfo}
     <div id="wrapper">
         <div id="header">
-            <img src="/Huiz.png" alt="Huiz logo" />
+            <img loading="lazy" src={getSRC("/Huiz.png")} alt="Huiz logo" />
         </div>
         <Intro info={projectInfo} />
         <Tags version={2} tags={projectInfo.tags} />
@@ -17,7 +17,7 @@
 
         <div id="poster">
             <h3>Ontwerp</h3>
-            <img src="/Huiz-Poster.png" alt="Huiz poster" />
+            <img loading="lazy" src={getSRC("/Huiz-Poster.png")} alt="Huiz poster" />
         </div>
         <Video videoURL="https://www.youtube.com/embed/ezScvCkMqSY" videoTitle="Huiz" />
     </div>

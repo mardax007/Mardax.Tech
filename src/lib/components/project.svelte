@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getSRC } from "$lib/scripts/information";
 	import type { Project } from "$lib/scripts/types";
 	import Button from "./button.svelte";
 
@@ -7,7 +8,7 @@
 
 <a href={project.disabled ? "" : project.link} download="{project.download}" id="project" class="{project.disabled ? "disable" : ""}">
     <div id="info">
-        <img id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={project.icon} alt="Project Icon" />
+        <img loading="lazy" id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={getSRC(project.icon)} alt="Project Icon" />
         <h2 id="name">{@html project.name}</h2>
         <span id="items">
             <p id="tag">{@html project.tag}</p>
@@ -18,7 +19,7 @@
         <Button link={project.disabled ? "" : project.link} text={project.buttonText ?? "Ga naar project"} />
     </div>
     <div id="projectImage" style="background-color: {project.background ?? "transparent"};">
-        <img src={project.image} alt="Project" class="{project.noImagePadding ? "noPadding" : "padding"}" />
+        <img loading="lazy" src={getSRC(project.image)} alt="Project" class="{project.noImagePadding ? "noPadding" : "padding"}" />
     </div>
 </a>
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getSRC } from "$lib/scripts/information";
 	import type { Project } from "$lib/scripts/types";
 
     export let info: Project;
@@ -8,7 +9,7 @@
     <img
         id="icon"
         style={info.rounded ? 'border-radius: 0.5rem;' : ''}
-        src={"../" + info.icon}
+        src={getSRC(info.icon)}
         alt="Project Icon"
     />
     <h2 id="name">{@html info.name}</h2>

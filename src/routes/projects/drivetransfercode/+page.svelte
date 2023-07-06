@@ -2,18 +2,23 @@
 	import Button from "$lib/components/button.svelte";
 	import Intro from "$lib/components/intro.svelte";
 	import Statement from "$lib/components/statement.svelte";
-	import { getProject } from "$lib/scripts/information";
+	import TechStack from "$lib/components/techStack.svelte";
+	import { getProject, getSRC } from "$lib/scripts/information";
 
 </script>
 
 {#await getProject("22DTC") then projectInfo}
 	<div id="wrapper">
 		<div id="header">
-			<img src="/DTClogo.png" alt="DTC logo" />
+		<img loading="lazy" src={getSRC("/DTClogo.png")} alt="DTC logo" />
 		</div>
 		<Intro info={projectInfo} />
 		<Statement statement={projectInfo.goalStatement?.text ?? ""} statementTitle={projectInfo.goalStatement?.title ?? ""} />
+		<div id="techstack">
+			<h1 class="centerTitle">Tech stack</h1>
 
+			<TechStack techStack={projectInfo.techStack ?? []} />
+		</div>
 		<Button text="Ga naar de app" link="https://drivetransfercode.web.app/" />
 	</div>
 {/await}

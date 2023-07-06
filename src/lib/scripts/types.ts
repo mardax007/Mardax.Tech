@@ -63,15 +63,21 @@ type TechStack = {
 }
 
 type HomepageInfo = {
-    title: string,
-    location: string,
-    description: string,
-    titleColor: string,
-    locationColor: string,
-    descriptionColor: string,
-    default?: boolean,
-    mapPin: string,
-    titleDisplay?: string,
+    title: string;
+    location: string;
+    description: string;
+    titleColor: string;
+    locationColor: string;
+    descriptionColor: string;
+    default?: boolean;
+    mapPin: string;
+    titleDisplay: string;
+    id: string;
 }[]
 
-export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo }
+type navData = {
+    id: string;
+    index: number;
+}
+
+export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo, navData }

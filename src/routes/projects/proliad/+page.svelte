@@ -5,14 +5,14 @@
 	import Tags from '$lib/components/tags.svelte';
 	import Statement from '$lib/components/statement.svelte';
 	import TechStack from '$lib/components/techStack.svelte';
-	import { getProject } from '$lib/scripts/information';
+	import { getProject, getSRC } from '$lib/scripts/information';
 </script>
 
 {#await getProject("22Proliad") then projectInfo}
 	<div id="wrapper">
 		<div id="header">
-			<img src="/proliad.jpg" alt="Proliad header" />
-			<img id="proliadLogo" src="/proliadLogo.png" alt="Proliad logo" />
+			<img loading="lazy" src={getSRC("/proliad.jpg")} alt="Proliad header" />
+			<img loading="lazy" id="proliadLogo" src={getSRC("/proliadLogo.png")} alt="Proliad logo" />
 		</div>
 		<Intro info={projectInfo} />
 		<Tags tags={projectInfo.tags} />
@@ -39,18 +39,6 @@
 
 <style lang="scss">
 	@import '../../../app.scss';
-
-	.centerTitle {
-		width: fit-content;
-		margin: 1rem auto;
-		margin-top: 3rem;
-		text-align: center;
-		-webkit-background-clip: text;
-		background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-image: linear-gradient(141deg, #626266, #1e1e22);
-		font-size: 2.5rem;
-	}
 
 	#wrapper {
 		height: 100vh;

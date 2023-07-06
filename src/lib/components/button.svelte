@@ -1,11 +1,13 @@
 <script lang="ts">
+	import { getSRC } from "$lib/scripts/information";
+
     export let text: string = "Button";
     export let link: string = "";
 </script>
 
 <a href={link} id="whiteButton" class="follow">
     <h3 id="view">{text}</h3>
-    <img src="/arrow.svg" alt="Arrow Right" />
+    <img loading="lazy" src={getSRC("/arrow.svg")} alt="Arrow Right" />
 </a>
 
 <style lang="scss">

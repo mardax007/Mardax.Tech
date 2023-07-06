@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getSRC } from "$lib/scripts/information";
 	import type { TechStack } from "$lib/scripts/types";
 
     export let techStack: TechStack[];
@@ -7,7 +8,7 @@
 <div id="stack">
     {#each techStack as tech}
         <a href={tech.link} class="techstack__item">
-            <img src={tech.logo} alt={tech.name + ' logo'} />
+            <img loading="lazy" src={getSRC(tech.logo)} alt={tech.name + ' logo'} />
             <h3>{tech.name}</h3>
             <p>{tech.description}</p>
         </a>

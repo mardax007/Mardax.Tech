@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { getSRC } from "$lib/scripts/information";
     import { navState } from "$lib/scripts/state";
-	import type { HomepageInfo } from "$lib/scripts/types";
+	import type { HomepageInfo, navData } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
     export let homepageInfo: HomepageInfo = {} as HomepageInfo
-    let nav = {}
-    let info = {}
+    let nav: navData = {} as navData
+    let info: HomepageInfo = {} as HomepageInfo
 
     onMount(async () => {
         navState.subscribe((x) => {
@@ -30,7 +31,7 @@
 <div id="aboutMe">
     <h1 id="title" style="background-image: {info?.titleColor ?? "black"}">{info?.title}</h1>
     <div id="location">
-        <img alt="Mappin" src={info?.mapPin} />
+        <img loading="lazy" alt="Mappin" src={getSRC(info?.mapPin)} />
         <p style="background-image: {info?.locationColor ?? "black"}">{info?.location}</p>
     </div>
     <p id="description" style="background-image: {info?.descriptionColor ?? "black"}">{info?.description}</p>

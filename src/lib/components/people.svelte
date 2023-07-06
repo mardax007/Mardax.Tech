@@ -1,11 +1,13 @@
 <script lang="ts">
+	import { getSRC } from "$lib/scripts/information";
+
     export let people: any[] = []
 </script>
 
 <div id="people">
     {#each people as person}
         <a href={person.linkedin} class="person">
-            <img src={person.img} alt={person.name} />
+            <img loading="lazy" src={getSRC(person.img)} alt={person.name} />
             <h3>{person.name}</h3>
             <p id="title">{person.title}</p>
             <p id="job">{person.job}</p>

@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { navState } from '$lib/scripts/state';
+	import type { HomepageInfo, navData } from '$lib/scripts/types';
 	import { onMount } from 'svelte';
 
-	export let homepageInfo: any[] = [];
+	export let homepageInfo: HomepageInfo[] = [];
 
-	let nav: any;
+	let nav: navData;
 	navState.subscribe((x) => {
 		nav = x;
 	});
 
-	// get index of homepageInfo where default is true
-	let defaultIndex = homepageInfo.findIndex((x) => x.default);
+	let defaultIndex = homepageInfo.findIndex((x: HomepageInfo) => x.default);
 	defaultIndex = (defaultIndex == -1) ? 0 : defaultIndex;
 	navState.set({ index: defaultIndex, id: homepageInfo[defaultIndex].id })
 
@@ -21,33 +21,37 @@
 	onMount(async () => {
 		navState.subscribe((x) => {
 			currentCategory = x.index
-			if (homepageInfo.length > 0) {
-				document.getElementById("backgroundColor")!.style.transform = `translateX(${6.8 * currentCategory}rem)`
-				const span = document.getElementById(`tab-${currentCategory}-span`)
-				if (loaded) {
-					const spans = document.querySelectorAll("span");
-					spans.forEach((span) => {
-						span.classList.remove("selected");
-						span.style.fontWeight = "500";
-					});
+			const backgroundColor = document.getElementById("backgroundColor")
+			const span = document.getElementById(`tab-${currentCategory}-span`)
+			if (homepageInfo.length > 0 || !backgroundColor || !span) return
 
-					span!.style.transform = "scale(0.9)";
-					span!.style.transition = "transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)";
+			backgroundColor.style.transform = `translateX(${6.8 * currentCategory}rem)`
 
-					span!.style.fontWeight = "500";
-
-					setTimeout(() => {
-						span!.style.fontWeight = "600";
-					}, 100);
-
-					setTimeout(() => {
-						span!.style.fontWeight = "700";
-						span!.style.transform = "scale(1)";
-					}, 300);
-				} else {
-					loaded = true;
-				}
+			if (!loaded) {
+				loaded = true;
+				return
 			}
+
+			const spans = document.querySelectorAll("span") ?? [];
+
+			spans.forEach((span) => {
+				span.classList.remove("selected");
+				span.style.fontWeight = "500";
+			});
+
+			span.style.transform = "scale(0.9)";
+			span.style.transition = "transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)";
+
+			span.style.fontWeight = "500";
+
+			setTimeout(() => {
+				span.style.fontWeight = "600";
+			}, 100);
+
+			setTimeout(() => {
+				span.style.fontWeight = "700";
+				span.style.transform = "scale(1)";
+			}, 300);
 		})
 	})
 

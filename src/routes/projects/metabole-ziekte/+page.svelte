@@ -4,13 +4,13 @@
 	import People from '$lib/components/people.svelte';
 	import Intro from '$lib/components/intro.svelte';
 	import ProcesTimeline from '$lib/components/proces-timeline.svelte';
-	import { getProject } from '$lib/scripts/information';
+	import { getProject, getSRC } from '$lib/scripts/information';
 </script>
 
 {#await getProject("23Nutricia") then projectInfo}
 	<div id="wrapper">
 		<div id="header">
-			<img src="/PKU Lophlex.png" alt="Nutricia logo" />
+			<img loading="lazy" src={getSRC("/PKU Lophlex.png")} alt="Nutricia logo" />
 		</div>
 		<Intro info={projectInfo} />
 		<div id="content">
@@ -135,7 +135,7 @@
 			/>
 			<div id="presentation">
 				<h1 class="centerTitle">Presentatie</h1>
-				<img id="presentationMedia" src="/NutriciaPresentation.gif" alt="presentation" />
+				<img loading="lazy" id="presentationMedia" src={getSRC("/NutriciaPresentation.gif")} alt="presentation" />
 			</div>
 			<Statement
 				statementTitle={projectInfo.discussionStatement?.title ?? ""}
@@ -146,7 +146,7 @@
 				<div id="mediaList">
 					<a href="../Eindverslag KP3.docx" download>
 						<div class="media">
-							<img src="/word.svg" alt="word" />
+							<img loading="lazy" src={getSRC("/word.svg")} alt="word" />
 							<p>Download Verslag</p>
 						</div>
 					</a>
@@ -180,18 +180,6 @@
 		h3,
 		h1 {
 			color: invert($color: $textColor);
-		}
-
-		.centerTitle {
-			width: fit-content;
-			margin: 1rem auto;
-			margin-top: 3rem;
-			text-align: center;
-			-webkit-background-clip: text;
-			background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-image: linear-gradient(141deg, #626266, #1e1e22);
-			font-size: 2rem;
 		}
 
 		#presentationMedia {

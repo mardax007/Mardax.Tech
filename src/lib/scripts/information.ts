@@ -18,9 +18,10 @@ const db = getFirestore(app);
 
 let projects: Project[] = [];
 
-async function getHomepageInfo(): Promise<HomepageInfo> {
-    const temp = (await getDoc(doc(db, "data", "homepage"))).data()
-    return Object.keys(temp).map(key => temp[key]).sort((a, b) => a.order - b.order)
+async function getHomepageInfo(): Promise<HomepageInfo[]> {
+    const temp = (await getDoc(doc(db, "data", "homepage"))).data();
+    if (!temp) return [];
+    return Object.keys(temp).map(key => temp[key]).sort((a, b) => a.order - b.order) as HomepageInfo[];
 }
 
 async function getProjectsInfo(): Promise<Project[]> {
@@ -35,4 +36,14 @@ async function getProject(id: string): Promise<Project> {
     return projects.find(project => project.id === id) ?? {} as Project;
 }
 
-export { getProjectsInfo, getHomepageInfo, getProject }
+function getSRC(file = "") {
+    if (file === "") {
+        console.error("No file specified");
+        return "";
+    }
+    if (file.startsWith("http")) return file;
+    if (!file.startsWith("/")) file = "/" + file;
+    return "https://firebasestorage.googleapis.com/v0/b/portfoliomardaxtech.appspot.com/o" + file + "?alt=media";
+}
+
+export { getProjectsInfo, getHomepageInfo, getProject, getSRC }

@@ -1,8 +1,10 @@
 <script>
+	import { getSRC } from "$lib/scripts/information";
+
 </script>
 
 <a href="../">
-    <img id="backButton" src="/arrow.svg" alt="Back arrow" />
+    <img loading="lazy" id="backButton" src={getSRC("/arrow.svg")} alt="Back arrow" />
 </a>
 
 <style lang="scss">

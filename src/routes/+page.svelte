@@ -5,10 +5,11 @@
     import { getHomepageInfo, getProjectsInfo } from '$lib/scripts/information';
 
     import { navState } from '$lib/scripts/state'
+	import type { HomepageInfo, navData } from '$lib/scripts/types';
 	import { onMount } from 'svelte';
 
-	let nav: any;
-	let homepageInfo: any;
+	let nav: navData = {} as navData;
+	let homepageInfo: HomepageInfo[] = [];
 
 	onMount(async () => {
         homepageInfo = await getHomepageInfo()
