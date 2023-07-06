@@ -36,6 +36,7 @@
         text-decoration: none;
         color: invert($color: $textColor);
         max-width: min(70vw, 1000px);
+        min-width: 340px;
         margin: 0 auto;
         border-radius: 2rem;
         height: auto;
