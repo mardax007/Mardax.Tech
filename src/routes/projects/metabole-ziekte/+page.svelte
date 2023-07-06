@@ -5,219 +5,156 @@
 	import Intro from '$lib/components/intro.svelte';
 	import ProcesTimeline from '$lib/components/proces-timeline.svelte';
 	import { getProject } from '$lib/scripts/information';
-
-	// const projectInfo = {
-	// 	tags: {
-	// 		roleTitle: 'Mijn rol',
-	// 		role: 'Teamleider',
-	// 		responsibilityTitle: 'Mijn verantwoordelijkheden',
-	// 		responsibilities: [
-	// 			'Centraal aanspreekpunt',
-	// 			'Teamleden deblokkeren',
-	// 			'Taakverdeling',
-	// 			'Interne communicatie'
-	// 		],
-	// 		learnTitle: 'Wat ik heb geleerd',
-	// 		learned: `Voor dit project heb ik de rol van teamleider op me genomen. Ik heb deze taak nooit aan het begin van het project al op me genomen, maar ik merkte bij veel projecten is dat ik toch vaak bepaalde aspecten van deze rol op mij nam wanneer nodig. Ik vind het belangrijk dat iedereen weet wat er van hen verwacht wordt en ik heb geleerd hoe dit het beste gedaan kan worden.`,
-	// 		beta: "Mens en gezondheid<br>Ontwerp, Productie & Wereldhandel<br>Voeding & Natuur"
-	// 	},
-	// 	timeline: [
-	// 		{
-	// 			title: 'Opzet',
-	// 			time: 'Sprint 1',
-	// 			description:
-	// 				'Allereerst zijn wij begonnen met het maken van een PVA, hierin hebben wij de opdracht en de eisen van de opdrachtgever opgeschreven. Ook hebben wij een planning gemaakt voor de komende sprints.'
-	// 		},
-	// 		{
-	// 			title: 'Vooronderzoek',
-	// 			time: 'Sprint 2',
-	// 			description:
-	// 				'Vervolgens zijn wij begonnen met het vooronderzoek. Wij hebben concurerende producten van Nutricia geïnventariseerd en samen met onze opdrachtgever hebben wij gekeken of wij deze konden verkrijgen. Ook hebben wij onderzocht op welke manieren wij de eigenschappen van deze producten konden testen.'
-	// 		},
-	// 		{
-	// 			title: 'Onderzoek',
-	// 			time: 'Sprint 3',
-	// 			description:
-	// 				'Na dat wij de producten binnen hebben gekregen zijn wij begonnen met testen. We hebben getest op geur, kleur, smaak, structuur, viscociteit, bederfbaarheid en pH. pH hebben we gemeten met een pH meter en de geur, kleur, smaak en textuur hebben we beoordeeld met een sensorisch onderzoek. Bederfbaarheid hebben we getest door de producten in een broedoven te zetten. Helaas hadden wij geen toegang tot een viscositeitsmeter dus hebben wij ervoor gekozen om de voeding door een burret te laten lopen en vergeleken we de producten met elkaar op hoe lang het duurde om 15ml te doorlopen.'
-	// 		},
-	// 		{
-	// 			title: 'Conclusie',
-	// 			time: 'Sprint 4',
-	// 			description:
-	// 				'Uit onze resultaten hebben wij samen met onze expert een conclusie getrokken en deze vervolgens gepresenteerd aan onze opdachtgever samen met ons complete verslag.'
-	// 		}
-	// 	],
-	// 	people: [
-	// 		{
-	// 			name: 'Anne Swart',
-	// 			title: 'Expert',
-	// 			job: 'Sr Team Leader Product Development',
-	// 			img: 'https://media.licdn.com/dms/image/D4E03AQHd3we1nc9iig/profile-displayphoto-shrink_200_200/0/1685198072540?e=1694044800&v=beta&t=CdXNb7ycTqEddoyPUzIWjs6VVYN-iy_v5iNaPAwof2Y',
-	// 			linkedin: 'https://www.linkedin.com/in/annedeswart/'
-	// 		},
-	// 		{
-	// 			name: 'Hanaa El Hilali',
-	// 			title: 'Opdrachtgever',
-	// 			job: 'Product Design & Development Team leader',
-	// 			img: 'https://media.licdn.com/dms/image/C4D03AQGg8sJb20gU0A/profile-displayphoto-shrink_200_200/0/1602488833417?e=1694044800&v=beta&t=jjEM3x0pb3C4uXWlCeMhf3k6GnyOkjUoBuSLZhv5uHI',
-	// 			linkedin: 'https://www.linkedin.com/in/hanaa-el-hilali-45a20915/'
-	// 		}
-	// 	],
-	// 	problemStatement: {
-	// 		text: "Nutricia heeft een groot assortiment aan producten voor verschillende doelgroepen. Het is voor hen belangrijk om te weten wat hun competitie aanbiedt zodat ze hun producten hierop kunnen aanpassen.<br>Wij hebben onderzoek gedaan naar de competitie van hun PKU producten.",
-	// 		title: 'Probleem'
-	// 	}
-	// }
-
-	const projectInfo = getProject("23Nutricia")
 </script>
 
-<div id="wrapper">
-	<div id="header">
-		<img src="/PKU Lophlex.png" alt="Nutricia logo" />
-	</div>
-	<Intro info={projectInfo} />
-	<div id="content">
-		<Tags tags={projectInfo.tags} />
-		<Statement
-			statementTitle={projectInfo.problemStatement?.title ?? ""}
-			statement={projectInfo.problemStatement?.text ?? ""}
-		/>
-		<People people={projectInfo.people} />
-		<div id="timeline">
-			<h1 class="centerTitle">Proces</h1>
-			<ProcesTimeline timeline={projectInfo.timeline ?? []} />
+{#await getProject("23Nutricia") then projectInfo}
+	<div id="wrapper">
+		<div id="header">
+			<img src="/PKU Lophlex.png" alt="Nutricia logo" />
 		</div>
-		<div id="results">
-			<h1 class="centerTitle">Resultaten</h1>
-			<table class="table table-bordered table-hover table-condensed">
-				<thead>
-					<tr>
-						<th title="Field #1">Product</th>
-						<th title="Field #2">Lophlex Water</th>
-						<th title="Field #3">Lophlex Juicy</th>
-						<th title="Field #4">Loplex Select</th>
-						<th title="Field #5">GMPro LQ</th>
-						<th title="Field #6">Vitaflo Air</th>
-						<th title="Field #7">Vitaflo Sphere (expired)</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Colour</td>
-						<td>Orange</td>
-						<td>Brown</td>
-						<td>Beige</td>
-						<td>White</td>
-						<td>Brown</td>
-						<td>White</td>
-					</tr>
-					<tr>
-						<td>Smell</td>
-						<td>Orange</td>
-						<td>Orange</td>
-						<td>Orange</td>
-						<td>Milk vanilla</td>
-						<td>Coconut </td>
-						<td>Milk vanilla</td>
-					</tr>
-					<tr>
-						<td>Taste</td>
-						<td>Intense orange</td>
-						<td>Intense orange</td>
-						<td>Milk orange</td>
-						<td>Sweet milk</td>
-						<td>Fruity</td>
-						<td>N/A</td>
-					</tr>
-					<tr>
-						<td>Ph</td>
-						<td>4.55</td>
-						<td>4.40</td>
-						<td>4.49</td>
-						<td>6.98</td>
-						<td>4.49</td>
-						<td>7.19</td>
-					</tr>
-					<tr>
-						<td>Visco (15ml)</td>
-						<td>N/A</td>
-						<td>2:16</td>
-						<td>N/A</td>
-						<td>4:36</td>
-						<td>5:05</td>
-						<td>4:49</td>
-					</tr>
-				</tbody>
-			</table>
+		<Intro info={projectInfo} />
+		<div id="content">
+			<Tags tags={projectInfo.tags} />
+			<Statement
+				statementTitle={projectInfo.problemStatement?.title ?? ""}
+				statement={projectInfo.problemStatement?.text ?? ""}
+			/>
+			<People people={projectInfo.people} />
+			<div id="timeline">
+				<h1 class="centerTitle">Proces</h1>
+				<ProcesTimeline timeline={projectInfo.timeline ?? []} />
+			</div>
+			<div id="results">
+				<h1 class="centerTitle">Resultaten</h1>
+				<table class="table table-bordered table-hover table-condensed">
+					<thead>
+						<tr>
+							<th title="Field #1">Product</th>
+							<th title="Field #2">Lophlex Water</th>
+							<th title="Field #3">Lophlex Juicy</th>
+							<th title="Field #4">Loplex Select</th>
+							<th title="Field #5">GMPro LQ</th>
+							<th title="Field #6">Vitaflo Air</th>
+							<th title="Field #7">Vitaflo Sphere (expired)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Colour</td>
+							<td>Orange</td>
+							<td>Brown</td>
+							<td>Beige</td>
+							<td>White</td>
+							<td>Brown</td>
+							<td>White</td>
+						</tr>
+						<tr>
+							<td>Smell</td>
+							<td>Orange</td>
+							<td>Orange</td>
+							<td>Orange</td>
+							<td>Milk vanilla</td>
+							<td>Coconut </td>
+							<td>Milk vanilla</td>
+						</tr>
+						<tr>
+							<td>Taste</td>
+							<td>Intense orange</td>
+							<td>Intense orange</td>
+							<td>Milk orange</td>
+							<td>Sweet milk</td>
+							<td>Fruity</td>
+							<td>N/A</td>
+						</tr>
+						<tr>
+							<td>Ph</td>
+							<td>4.55</td>
+							<td>4.40</td>
+							<td>4.49</td>
+							<td>6.98</td>
+							<td>4.49</td>
+							<td>7.19</td>
+						</tr>
+						<tr>
+							<td>Visco (15ml)</td>
+							<td>N/A</td>
+							<td>2:16</td>
+							<td>N/A</td>
+							<td>4:36</td>
+							<td>5:05</td>
+							<td>4:49</td>
+						</tr>
+					</tbody>
+				</table>
 
-			<h3>Highlights</h3>
-			<ul>
-				<li>
-					De kleur van de producten van Nutricia en die van Vitaflo verschillen niet heel erg van
-					elkaar. De producten van beide bedrijven zijn oranje of een andere tint daarvan (bruin of
-					beige).<br />De kleur van de GMP-producten verschilt ook niet; beide producten zijn wit.
-				</li>
-				<br />
-				<li>
-					De producten van Nutricia ruiken naar sinaasappel, terwijl die van Vitaflo naar kokos
-					ruikt.<br />De geur van de GMP-producten is wel hetzelfde, dit is namelijk melk vanille.
-				</li>
-				<br />
-				<li>
-					De textuur van de producten is bij beide bedrijven hetzelfde: waterig. Ook bij de GMP is
-					de textuur van beide producten waterig.
-				</li>
-				<br />
-				<li>
-					De pH van de producten van de twee bedrijven ligt rond de 4,50 en is dus hetzelfde.<br
-					/>De pH van de GMP-producten is ook vergelijkbaar maar wel duidelijk hoger dan die van de
-					normale producten. Deze ligt namelijk ronde de 7,00.
-				</li>
-				<br />
-				<li>
-					Hoe langer het duurt voordat een product de buret uitgelopen is, hoe hoger de viscositeit.
-					Bij het product van Vitaflo duurde dit veel langer dan die van Nutricia. De viscositeit
-					van het product van Nutricia is dus veel hoger.<br />Bij de GMP-producten is de tijd
-					redelijk vergelijkbaar. De viscositeit zal bij deze producten dus ongeveer hetzelfde zijn.
-				</li>
-				<br />
-				<li>
-					Bij de producten van Nutricia ontstaan er bij allemaal (bij Lophlex Select echter niet
-					heel duidelijk) een tweelagensysteem. Bij het product van Vitaflo is dit niet het geval,
-					maar wat hierbij opvalt is dat het erg troebel is geworden. Wat wel overeenkomt, is dat
-					alle producten nog steeds redelijk vloeibaar blijven.<br />Bij de GMP-producten ontstaat
-					er bij beide geen tweelagensysteem, maar wel samenklonteringen. Het product van Nutricia
-					is echter duidelijk minder vloeibaar geworden, terwijl dat bij het product van Vitaflo
-					niet het geval is.
-				</li>
-			</ul>
-		</div>
-		<Statement
-			statementTitle={projectInfo.conclusionStatement?.title ?? ""}
-			statement={projectInfo.conclusionStatement?.text ?? ""}
-		/>
-		<div id="presentation">
-			<h1 class="centerTitle">Presentatie</h1>
-			<img id="presentationMedia" src="/NutriciaPresentation.gif" alt="presentation" />
-		</div>
-		<Statement
-			statementTitle={projectInfo.discussionStatement?.title ?? ""}
-			statement={projectInfo.discussionStatement?.text ?? ""}
-		/>
-		<div id="media">
-			<h1 class="centerTitle">Media</h1>
-			<div id="mediaList">
-				<a href="../Eindverslag KP3.docx" download>
-					<div class="media">
-						<img src="/word.svg" alt="word" />
-						<p>Download Verslag</p>
-					</div>
-				</a>
+				<h3>Highlights</h3>
+				<ul>
+					<li>
+						De kleur van de producten van Nutricia en die van Vitaflo verschillen niet heel erg van
+						elkaar. De producten van beide bedrijven zijn oranje of een andere tint daarvan (bruin of
+						beige).<br />De kleur van de GMP-producten verschilt ook niet; beide producten zijn wit.
+					</li>
+					<br />
+					<li>
+						De producten van Nutricia ruiken naar sinaasappel, terwijl die van Vitaflo naar kokos
+						ruikt.<br />De geur van de GMP-producten is wel hetzelfde, dit is namelijk melk vanille.
+					</li>
+					<br />
+					<li>
+						De textuur van de producten is bij beide bedrijven hetzelfde: waterig. Ook bij de GMP is
+						de textuur van beide producten waterig.
+					</li>
+					<br />
+					<li>
+						De pH van de producten van de twee bedrijven ligt rond de 4,50 en is dus hetzelfde.<br
+						/>De pH van de GMP-producten is ook vergelijkbaar maar wel duidelijk hoger dan die van de
+						normale producten. Deze ligt namelijk ronde de 7,00.
+					</li>
+					<br />
+					<li>
+						Hoe langer het duurt voordat een product de buret uitgelopen is, hoe hoger de viscositeit.
+						Bij het product van Vitaflo duurde dit veel langer dan die van Nutricia. De viscositeit
+						van het product van Nutricia is dus veel hoger.<br />Bij de GMP-producten is de tijd
+						redelijk vergelijkbaar. De viscositeit zal bij deze producten dus ongeveer hetzelfde zijn.
+					</li>
+					<br />
+					<li>
+						Bij de producten van Nutricia ontstaan er bij allemaal (bij Lophlex Select echter niet
+						heel duidelijk) een tweelagensysteem. Bij het product van Vitaflo is dit niet het geval,
+						maar wat hierbij opvalt is dat het erg troebel is geworden. Wat wel overeenkomt, is dat
+						alle producten nog steeds redelijk vloeibaar blijven.<br />Bij de GMP-producten ontstaat
+						er bij beide geen tweelagensysteem, maar wel samenklonteringen. Het product van Nutricia
+						is echter duidelijk minder vloeibaar geworden, terwijl dat bij het product van Vitaflo
+						niet het geval is.
+					</li>
+				</ul>
+			</div>
+			<Statement
+				statementTitle={projectInfo.conclusionStatement?.title ?? ""}
+				statement={projectInfo.conclusionStatement?.text ?? ""}
+			/>
+			<div id="presentation">
+				<h1 class="centerTitle">Presentatie</h1>
+				<img id="presentationMedia" src="/NutriciaPresentation.gif" alt="presentation" />
+			</div>
+			<Statement
+				statementTitle={projectInfo.discussionStatement?.title ?? ""}
+				statement={projectInfo.discussionStatement?.text ?? ""}
+			/>
+			<div id="media">
+				<h1 class="centerTitle">Media</h1>
+				<div id="mediaList">
+					<a href="../Eindverslag KP3.docx" download>
+						<div class="media">
+							<img src="/word.svg" alt="word" />
+							<p>Download Verslag</p>
+						</div>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+{/await}
 
 <style lang="scss">
 	@import '../../../app.scss';

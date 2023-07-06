@@ -1,7 +1,8 @@
 import { writable } from "svelte/store";
 
 const navState = writable({
-    categoryId: -1,
+    index: -1,
+    id: "",
 });
 
 export { navState };

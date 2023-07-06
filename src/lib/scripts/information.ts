@@ -1,4 +1,4 @@
-import type { Project } from "./types";
+import type { HomepageInfo, Project } from "./types";
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
@@ -19,21 +19,20 @@ const db = getFirestore(app);
 let projects: Project[] = [];
 
 async function getHomepageInfo(): Promise<HomepageInfo> {
-    return {
-        categories: (await getDoc(doc(db, "data", "homepage"))).data()
-    }
+    const temp = (await getDoc(doc(db, "data", "homepage"))).data()
+    return Object.keys(temp).map(key => temp[key]).sort((a, b) => a.order - b.order)
 }
 
 async function getProjectsInfo(): Promise<Project[]> {
-    const temp = (await getDoc(doc(db, "data", "projects"))).data();
+    const temp = (await getDoc(doc(db, "data", "projects"))).data() ?? {};
     projects = Object.keys(temp).map(key => temp[key]);
-    // sort projects by order descending
     projects.sort((a, b) => b.order - a.order);
     return projects;
 }
 
-function getProject(id: string): Project {
+async function getProject(id: string): Promise<Project> {
+    if (projects.length === 0) await getProjectsInfo()
     return projects.find(project => project.id === id) ?? {} as Project;
 }
 
-export { getProjectsInfo, getHomepageInfo, getProject };
+export { getProjectsInfo, getHomepageInfo, getProject }

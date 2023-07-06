@@ -63,19 +63,15 @@ type TechStack = {
 }
 
 type HomepageInfo = {
-    categories: {
-        [key: string]: {
-            title: string,
-            location: string,
-            description: string,
-            titleColor: string,
-            locationColor: string,
-            descriptionColor: string,
-            default?: boolean,
-            mapPin: string,
-            titleDisplay?: string,
-        }
-    }
-}
+    title: string,
+    location: string,
+    description: string,
+    titleColor: string,
+    locationColor: string,
+    descriptionColor: string,
+    default?: boolean,
+    mapPin: string,
+    titleDisplay?: string,
+}[]
 
 export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo }

@@ -1,22 +1,23 @@
 <script lang="ts">
 	import Button from "$lib/components/button.svelte";
-import Intro from "$lib/components/intro.svelte";
+	import Intro from "$lib/components/intro.svelte";
 	import Statement from "$lib/components/statement.svelte";
 	import { getProject } from "$lib/scripts/information";
 
-    const projectInfo = getProject("22DTC")
 </script>
 
-<div id="wrapper">
-    <div id="header">
-		<img src="/DTClogo.png" alt="DTC logo" />
-	</div>
-    <Intro info={projectInfo} />
-    <!-- <Tags version={2} tags={projectInfo.tags} /> -->
-    <Statement statement={projectInfo.goalStatement?.text ?? ""} statementTitle={projectInfo.goalStatement?.title ?? ""} />
+{#await getProject("22DTC") then projectInfo}
+	<div id="wrapper">
+		<div id="header">
+			<img src="/DTClogo.png" alt="DTC logo" />
+		</div>
+		<Intro info={projectInfo} />
+		<Statement statement={projectInfo.goalStatement?.text ?? ""} statementTitle={projectInfo.goalStatement?.title ?? ""} />
 
-    <Button text="Ga naar de app" link="https://drivetransfercode.web.app/" />
-</div>
+		<Button text="Ga naar de app" link="https://drivetransfercode.web.app/" />
+	</div>
+{/await}
+
 
 <style lang="scss">
     @import '../../../app.scss';

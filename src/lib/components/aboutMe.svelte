@@ -3,15 +3,13 @@
 	import type { HomepageInfo } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
-    export let homepageInfo: HomepageInfo = {
-		 categories: {}
-	 } as HomepageInfo
+    export let homepageInfo: HomepageInfo = {} as HomepageInfo
     let nav = {}
     let info = {}
 
     onMount(async () => {
         navState.subscribe((x) => {
-            if (x.categoryId != nav.categoryId) document.getElementById("aboutMe")!.animate([
+            if (x.index != nav.index) document.getElementById("aboutMe")!.animate([
                 { opacity: document.getElementById("aboutMe")!.style.opacity ?? 0 },
                 { opacity: 0 },
                 { opacity: 1 }
@@ -23,7 +21,7 @@
 
             setTimeout(() => {
                 nav = x;
-                info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
+                info = homepageInfo[x.index]
             }, 400);
         });
     })

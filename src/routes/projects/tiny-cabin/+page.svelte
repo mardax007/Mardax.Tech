@@ -4,63 +4,24 @@
 	import Statement from "$lib/components/statement.svelte";
 	import Video from "$lib/components/video.svelte";
 	import { getProject } from "$lib/scripts/information";
-
-    const projectInfox = {
-        info: {
-            name: 'Huiz',
-			tag: 'Ontwerp',
-			date: '2020',
-			text: `
-            Voor dit project kregen wij de opdracht om een tiny cabin te bouwen voor een klant.
-            De klant wilde een tiny cabin die makkelijk te verplaatsen was en ruimte had voor fietsen
-            of 2 gasten. Het moest ook ruimte bieden voor kleinkinderen om te spelen.
-            `,
-			icon: '../architecture.svg',
-			rounded: false
-        },
-        problemStatement: {
-            title: 'Opdracht',
-            text: `Bouw een duurzame, modulaire accomedatie van 2x2 meter, die kan dienen als gastkamer of omgezet kan worden tot een fietsenhok.
-            Er moeten ook opties zijn voor het vermaak van de kleinkinderen.`
-        },
-        tags: {
-			roleTitle: 'Mijn rol',
-			role: 'Designer & Planner',
-			responsibilityTitle: 'Mijn verantwoordelijkheden',
-			responsibilities: [
-					"Onderzoek modulariteit",
-                    "Stroomvoorziening",
-                    "videopresentatie",
-                    "Schetsen en 3D moddelen",
-                    "Eindmodel maken en printen",
-                    "Taakverdeling",
-				],
-			learnTitle: 'Wat ik heb geleerd',
-			learned: `
-			Mijn leerdoel voor dit project was om een goede planning te maken zodat ik wist wat er aan zat te komen. De planning voor het gehele project is door omstandigheden vaak veranderd maar mijn eigen korte termijn planning daar in tegen was zeer stabiel.
-			`,
-            beta: "Ontwerp, Productie & Wereldhandel"
-		},
-    }
-
-    const projectInfo = getProject("21Huiz")
 </script>
 
-<div id="wrapper">
-    <div id="header">
-		<img src="/Huiz.png" alt="Huiz logo" />
-	</div>
-    <Intro info={projectInfo} />
-    <Tags version={2} tags={projectInfo.tags} />
-    <Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
+{#await getProject("21Huiz") then projectInfo}
+    <div id="wrapper">
+        <div id="header">
+            <img src="/Huiz.png" alt="Huiz logo" />
+        </div>
+        <Intro info={projectInfo} />
+        <Tags version={2} tags={projectInfo.tags} />
+        <Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
 
-    <div id="poster">
-        <h3>Ontwerp</h3>
-        <img src="/Huiz-Poster.png" alt="Huiz poster" />
+        <div id="poster">
+            <h3>Ontwerp</h3>
+            <img src="/Huiz-Poster.png" alt="Huiz poster" />
+        </div>
+        <Video videoURL="https://www.youtube.com/embed/ezScvCkMqSY" videoTitle="Huiz" />
     </div>
-    <Video videoURL="https://www.youtube.com/embed/ezScvCkMqSY" videoTitle="Huiz" />
-
-</div>
+{/await}
 
 <style lang="scss">
     @import '../../../app.scss';

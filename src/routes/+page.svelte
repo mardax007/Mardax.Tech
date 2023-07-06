@@ -1,6 +1,6 @@
 <script lang="ts">
 	import AboutMe from '$lib/components/aboutMe.svelte';
-    import Category from '$lib/components/category.svelte';
+    import Nav from '$lib/components/nav.svelte';
 	import Project from '$lib/components/project.svelte';
     import { getHomepageInfo, getProjectsInfo } from '$lib/scripts/information';
 
@@ -13,9 +13,9 @@
 	onMount(async () => {
         homepageInfo = await getHomepageInfo()
         navState.subscribe((x) => {
-            if (!nav || x.categoryId != nav.categoryId) {
+            if (!nav || x.index != nav.index) {
                 nav = x
-                document.getElementById("projects")!.animate([
+                document.getElementById("projects")?.animate([
                     { opacity: 0 },
                     { opacity: 1 }
                 ], {
@@ -33,14 +33,14 @@
 {#await getHomepageInfo() then homepageInfo}
     <div id="wrapper">
         <div id="navbar">
-            <Category homepageInfo={homepageInfo} />
+            <Nav homepageInfo={homepageInfo} />
         </div>
         <div id="content">
             <AboutMe homepageInfo={homepageInfo} />
             <div id="projects">
                 {#if nav}
                     {#await getProjectsInfo() then projects}
-                        {#each projects.filter((project) => project.categories.includes(Object.keys(homepageInfo.categories)[nav.categoryId])) as project}
+                        {#each projects.filter(project => project.categories.includes(nav.id)) as project}
                             <Project {project} />
                         {/each}
                     {/await}
