@@ -19,7 +19,7 @@
                     { opacity: 0 },
                     { opacity: 1 }
                 ], {
-                    duration: 1200,
+                    duration: 1500,
                     easing: "ease-in-out",
                     fill: "forwards"
                 })

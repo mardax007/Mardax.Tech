@@ -27,6 +27,8 @@ async function getHomepageInfo(): Promise<HomepageInfo> {
 async function getProjectsInfo(): Promise<Project[]> {
     const temp = (await getDoc(doc(db, "data", "projects"))).data();
     projects = Object.keys(temp).map(key => temp[key]);
+    // sort projects by order descending
+    projects.sort((a, b) => b.order - a.order);
     return projects;
 }
 

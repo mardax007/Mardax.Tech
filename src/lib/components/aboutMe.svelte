@@ -3,7 +3,9 @@
 	import type { HomepageInfo } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
-    export let homepageInfo: HomepageInfo = {}
+    export let homepageInfo: HomepageInfo = {
+		 categories: {}
+	 } as HomepageInfo
     let nav = {}
     let info = {}
 
@@ -22,7 +24,7 @@
             setTimeout(() => {
                 nav = x;
                 info = homepageInfo.categories[Object.keys(homepageInfo.categories)[nav.categoryId]]
-            }, 400);
+            }, 350);
         });
     })
 </script>

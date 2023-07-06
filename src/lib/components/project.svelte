@@ -20,7 +20,7 @@
         <Button link={project.disabled ? "" : project.link} text={project.buttonText ?? "Ga naar project"} />
     </div>
     <div id="projectImage" style="background-color: {project.background ?? "transparent"};">
-        <img src={project.image} alt="Project" style="{project.noImagePadding ? "width: 100%" : ""}" />
+        <img src={project.image} alt="Project" class="{project.noImagePadding ? "noPadding" : "padding"}" />
     </div>
 </a>
 
@@ -68,6 +68,10 @@
                 height: 100%;
                 object-fit: contain;
                 border-radius: 0 2rem 2rem 0;
+            }
+
+            .noPadding {
+                width: 100%;
             }
         }
 
@@ -141,6 +145,12 @@
                 height: 100%;
                 object-fit: cover;
                 border-radius: 0 0 2rem 2rem;
+
+                .padding {
+                    width: 95% !important;
+                    margin-left: 2.5%;
+                    border-radius: 0;
+                }
             }
         }
 

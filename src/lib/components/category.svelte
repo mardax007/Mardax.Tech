@@ -25,10 +25,10 @@
 
 	onMount(async () => {
 		navState.subscribe((x) => {
-			x.categoryId = 0
 			if(x.categoryId == -1) {
 				const defaultCategory = Object.keys(homepageInfo.categories).find((key) => homepageInfo.categories[key].default)
 				if(defaultCategory) x.categoryId = options.findIndex((option) => option.key == defaultCategory)
+				else x.categoryId = 0
 			}
 
 			currentCategory = x.categoryId
