@@ -50,7 +50,7 @@
 			}
 		}
 
-		@media (max-width: 730px) {
+		@media (max-width: 777px) {
 			padding: 0;
 			max-width: 90vw;
 		}

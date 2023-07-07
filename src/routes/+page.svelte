@@ -5,14 +5,12 @@
     import { getHomepageInfo, getProjectsInfo } from '$lib/scripts/information';
 
     import { navState } from '$lib/scripts/state'
-	import type { HomepageInfo, navData } from '$lib/scripts/types';
+	import type { navData } from '$lib/scripts/types';
 	import { onMount } from 'svelte';
 
 	let nav: navData = {} as navData;
-	let homepageInfo: HomepageInfo[] = [];
 
 	onMount(async () => {
-        homepageInfo = await getHomepageInfo()
         navState.subscribe((x) => {
             if (!nav || x.index != nav.index) {
                 nav = x
@@ -31,18 +29,20 @@
     })
 </script>
 
-{#await getHomepageInfo() then homepageInfo}
+{#await getHomepageInfo() then homepageInfos}
     <div id="wrapper">
         <div id="navbar">
-            <Nav homepageInfo={homepageInfo} />
+            <Nav homepageInfos={homepageInfos} />
         </div>
         <div id="content">
-            <AboutMe homepageInfo={homepageInfo} />
+            <AboutMe homepageInfos={homepageInfos} />
             <div id="projects">
                 {#if nav}
                     {#await getProjectsInfo() then projects}
-                        {#each projects.filter(project => project.categories.includes(nav.id)) as project}
-                            <Project {project} />
+                        {#each projects as project}
+                            {#if project.categories.includes(nav.id)}
+                                <Project {project} />
+                            {/if}
                         {/each}
                     {/await}
                 {/if}
@@ -80,5 +80,7 @@
 
     #projects {
         opacity: 0;
+
+        animation: fadeIn 0.65s 0.5s ease-in-out forwards;
     }
 </style>

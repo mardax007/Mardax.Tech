@@ -3,16 +3,16 @@
 	import type { HomepageInfo, navData } from '$lib/scripts/types';
 	import { onMount } from 'svelte';
 
-	export let homepageInfo: HomepageInfo[] = [];
+	export let homepageInfos: HomepageInfo[] = [];
 
 	let nav: navData;
 	navState.subscribe((x) => {
 		nav = x;
 	});
 
-	let defaultIndex = homepageInfo.findIndex((x: HomepageInfo) => x.default);
+	let defaultIndex = homepageInfos.findIndex((x: HomepageInfo) => x.default);
 	defaultIndex = (defaultIndex == -1) ? 0 : defaultIndex;
-	navState.set({ index: defaultIndex, id: homepageInfo[defaultIndex].id })
+	navState.set({ index: defaultIndex, id: homepageInfos[defaultIndex].id })
 
 	let loaded = false
 
@@ -23,7 +23,7 @@
 			currentCategory = x.index
 			const backgroundColor = document.getElementById("backgroundColor")
 			const span = document.getElementById(`tab-${currentCategory}-span`)
-			if (homepageInfo.length > 0 || !backgroundColor || !span) return
+			if (homepageInfos.length < 0 || !backgroundColor || !span) return
 
 			backgroundColor.style.transform = `translateX(${6.8 * currentCategory}rem)`
 
@@ -56,19 +56,19 @@
 	})
 
     function response(spanId: number) {
-		navState.set({ index: spanId, id: homepageInfo[spanId].id });
+		navState.set({ index: spanId, id: homepageInfos[spanId].id });
     }
 </script>
 
-{#if homepageInfo.length > 0}
+{#if homepageInfos.length > 0}
 	<div class="segmented-control">
-		{#each homepageInfo as option, id}
-			<input checked={homepageInfo[id]?.default} type="radio" name="tab" id="tab-{id}" on:click={() => {response(id)}} />
+		{#each homepageInfos as option, id}
+			<input checked={homepageInfos[id]?.default} type="radio" name="tab" id="tab-{id}" on:click={() => {response(id)}} />
 			<label for="tab-{id}" class="segmented-control__{id}">
 				<span
 					id="tab-{id}-span"
-					style="font-weight: {homepageInfo[id]?.default ? 700 : 500};
-					background-image: {homepageInfo[id]?.titleColor};
+					style="font-weight: {homepageInfos[id]?.default ? 700 : 500};
+					background-image: {homepageInfos[id]?.titleColor};
 					-webkit-background-clip: text;
 					background-clip: text;
 					-webkit-text-fill-color: transparent;">

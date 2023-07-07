@@ -1,7 +1,18 @@
 import type { HomepageInfo, Project } from "./types";
 
+import { navState } from "./state";
+
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+
+let nav = {
+    id: "",
+    index: 0
+}
+
+navState.subscribe((value) => {
+    nav = value;
+})
 
 const firebaseConfig = {
     apiKey: "AIzaSyCqCP5q49myvdH9bIhRbRHanrGx3_Cqh6c",
@@ -21,7 +32,16 @@ let projects: Project[] = [];
 async function getHomepageInfo(): Promise<HomepageInfo[]> {
     const temp = (await getDoc(doc(db, "data", "homepage"))).data();
     if (!temp) return [];
-    return Object.keys(temp).map(key => temp[key]).sort((a, b) => a.order - b.order) as HomepageInfo[];
+
+    const data = Object.keys(temp).map(key => temp[key]).sort((a, b) => a.order - b.order) as HomepageInfo[]
+
+    if (nav.id === "") {
+        const defaultPage = data.find(page => page.default);
+
+        if (defaultPage) navState.set({ id: defaultPage.id, index: data.indexOf(defaultPage) });
+    }
+
+    return data
 }
 
 async function getProjectsInfo(): Promise<Project[]> {

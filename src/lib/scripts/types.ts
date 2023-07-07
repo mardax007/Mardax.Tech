@@ -73,7 +73,7 @@ type HomepageInfo = {
     mapPin: string;
     titleDisplay: string;
     id: string;
-}[]
+}
 
 type navData = {
     id: string;

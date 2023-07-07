@@ -133,10 +133,10 @@
 				statementTitle={projectInfo.conclusionStatement?.title ?? ""}
 				statement={projectInfo.conclusionStatement?.text ?? ""}
 			/>
-			<div id="presentation">
+			<a id="presentation" href={getSRC("/Eindpresentatie Nutricia.pptx")}>
 				<h1 class="centerTitle">Presentatie</h1>
 				<img loading="lazy" id="presentationMedia" src={getSRC("/NutriciaPresentation.gif")} alt="presentation" />
-			</div>
+			</a>
 			<Statement
 				statementTitle={projectInfo.discussionStatement?.title ?? ""}
 				statement={projectInfo.discussionStatement?.text ?? ""}
@@ -182,8 +182,24 @@
 			color: invert($color: $textColor);
 		}
 
-		#presentationMedia {
-			width: 100%;
+		#presentation {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+
+				transition: all 0.5s ease-in-out;
+			}
+
+			#presentationMedia {
+				transition: all 0.2s ease-in-out;
+				width: 100%;
+
+				&:hover {
+					transform: scale(1.05);
+				}
+			}
+
 		}
 
 		#mediaList {
@@ -194,6 +210,16 @@
 
 			a {
 				text-decoration: none;
+
+				img {
+					transition: all 0.2s ease-in-out;
+				}
+
+				&:hover {
+					img {
+						transform: scale(1.1);
+					}
+				}
 			}
 
 			.media {
@@ -253,7 +279,7 @@
 			}
 		}
 
-		@media (max-width: 730px) {
+		@media (max-width: 777px) {
 			padding: 0;
 			max-width: 90vw;
 		}

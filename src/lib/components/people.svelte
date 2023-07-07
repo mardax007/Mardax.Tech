@@ -32,6 +32,12 @@
             text-decoration: none;
             color: invert($color: $textColor);
 
+            transition: all 200ms ease-out;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
             img {
                 width: 5rem;
                 height: 5rem;

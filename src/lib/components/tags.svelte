@@ -80,7 +80,7 @@
             }
         }
 
-        @media (max-width: 730px) {
+        @media (max-width: 777px) {
             flex-direction: column;
 
             #role {

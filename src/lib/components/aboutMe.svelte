@@ -4,9 +4,11 @@
 	import type { HomepageInfo, navData } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
-    export let homepageInfo: HomepageInfo = {} as HomepageInfo
+    export let homepageInfos: HomepageInfo[] = [];
     let nav: navData = {} as navData
     let info: HomepageInfo = {} as HomepageInfo
+
+    info = homepageInfos[nav.index ?? 0]
 
     onMount(async () => {
         navState.subscribe((x) => {
@@ -22,7 +24,7 @@
 
             setTimeout(() => {
                 nav = x;
-                info = homepageInfo[x.index]
+                info = homepageInfos[nav.index ?? 0]
             }, 400);
         });
     })
