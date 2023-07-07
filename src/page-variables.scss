@@ -70,3 +70,12 @@ $tabTranform: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
         opacity: 1;
     }
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

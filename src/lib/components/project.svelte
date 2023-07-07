@@ -130,7 +130,6 @@
                 font-size: 1.25rem;
                 font-weight: 400;
                 margin: 0;
-                margin-top: 0.5rem;
             }
         }
 

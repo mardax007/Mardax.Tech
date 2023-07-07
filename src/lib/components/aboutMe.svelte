@@ -8,13 +8,16 @@
     let nav: navData = {} as navData
     let info: HomepageInfo = {} as HomepageInfo
 
-    info = homepageInfos[nav.index ?? 0]
+    $: info = homepageInfos[nav.index ?? 0]
 
     onMount(async () => {
         navState.subscribe((x) => {
             if (x.index != nav.index) {
-                document.getElementById("aboutMe")!.animate([
-                    { opacity: document.getElementById("aboutMe")!.style.opacity ?? 0 },
+                const aboutMe = document.getElementById("aboutMe")
+                if (!aboutMe) return
+
+                aboutMe.animate([
+                    { opacity: aboutMe.style.opacity ?? 0 },
                     { opacity: 0 },
                     { opacity: 1 }
                 ], {
@@ -23,34 +26,32 @@
                     fill: "forwards"
                 })
 
-                const keepWidth = document.getElementById("aboutMe")?.clientWidth
+                const keepHeight = aboutMe.clientHeight
+                const keepWidth = aboutMe.clientWidth
 
-                document.getElementById("aboutMe")?.animate([
-                    { width: keepWidth + "px" },
-                    { width: "0px" },
-                    { width: keepWidth + "px" },
+                aboutMe.animate([
+                    { width: keepWidth + "px", height: keepHeight + "px" },
+                    { width: "0px", height: keepHeight + "px" },
+                    { width: keepWidth + "px", height: keepHeight + "px" },
                 ], {
                     duration: 500,
                     easing: "linear",
                     fill: "forwards"
                 })
-            }
 
-            setTimeout(() => {
-                nav = x;
-                info = homepageInfos[nav.index ?? 0]
-            }, 400);
+                setTimeout(() => nav = x, 300);
+            }
         });
     })
 </script>
 
 <div id="aboutMe">
-    <h1 id="title" style="background-image: {info?.titleColor ?? "black"}">{info?.title}</h1>
+    <h1 id="title" style="background-image: {info.titleColor ?? "black"}">{info.title}</h1>
     <div id="location">
-        <img loading="lazy" alt="Mappin" src={getSRC(info?.mapPin)} />
-        <p style="background-image: {info?.locationColor ?? "black"}">{info?.location}</p>
+        <img loading="lazy" alt="Mappin" src={getSRC(info.mapPin)} />
+        <p style="background-image: {info.locationColor ?? "black"}">{info.location}</p>
     </div>
-    <p id="description" style="background-image: {info?.descriptionColor ?? "black"}">{info?.description}</p>
+    <p id="description" style="background-image: {info.descriptionColor ?? "black"}">{info.description}</p>
 </div>
 
 <style lang="scss">

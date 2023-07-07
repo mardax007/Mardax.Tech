@@ -12,8 +12,8 @@
 
 	onMount(async () => {
         navState.subscribe((x) => {
-            if (!nav || x.index != nav.index) {
-                nav = x
+            nav = x
+            if (!nav || x.index != nav.index)
                 document.getElementById("projects")?.animate([
                     { opacity: 0 },
                     { opacity: 1 }
@@ -22,9 +22,6 @@
                     easing: "ease-in-out",
                     fill: "forwards"
                 })
-            }
-
-            nav = x
         })
     })
 </script>
