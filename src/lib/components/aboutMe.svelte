@@ -12,15 +12,29 @@
 
     onMount(async () => {
         navState.subscribe((x) => {
-            if (x.index != nav.index) document.getElementById("aboutMe")!.animate([
-                { opacity: document.getElementById("aboutMe")!.style.opacity ?? 0 },
-                { opacity: 0 },
-                { opacity: 1 }
-            ], {
-                duration: 800,
-                easing: "ease-in-out",
-                fill: "forwards"
-            })
+            if (x.index != nav.index) {
+                document.getElementById("aboutMe")!.animate([
+                    { opacity: document.getElementById("aboutMe")!.style.opacity ?? 0 },
+                    { opacity: 0 },
+                    { opacity: 1 }
+                ], {
+                    duration: 800,
+                    easing: "ease-in-out",
+                    fill: "forwards"
+                })
+
+                const keepWidth = document.getElementById("aboutMe")?.clientWidth
+
+                document.getElementById("aboutMe")?.animate([
+                    { width: keepWidth + "px" },
+                    { width: "0px" },
+                    { width: keepWidth + "px" },
+                ], {
+                    duration: 500,
+                    easing: "linear",
+                    fill: "forwards"
+                })
+            }
 
             setTimeout(() => {
                 nav = x;
@@ -71,7 +85,11 @@
         max-width: 750px;
         margin: 0 auto;
         margin-bottom: 100px;
-        padding: 0 15vw;
+
+        * {
+            overflow: hidden;
+            white-space: nowrap;
+        }
     }
 
     #location {
@@ -114,6 +132,8 @@
         -webkit-text-fill-color: transparent;
         background-size: 200%;
         animation: titleAnimation 30s linear infinite;
+        white-space: normal;
+        max-height: 2.5rem;
     }
 
     @keyframes titleAnimation {
