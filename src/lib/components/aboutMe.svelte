@@ -39,6 +39,19 @@
                     fill: "forwards"
                 })
 
+                const description = document.getElementById("description")
+                if (!description) return
+
+                const descriptionHeight = description.clientHeight ?? 0
+
+                description.style.maxHeight = descriptionHeight + "px"
+                description.style.overflow = "hidden"
+
+                setTimeout(() => {
+                    description.style.maxHeight = "none"
+                    description.style.overflow = "hidden"
+                }, 500)
+
                 setTimeout(() => nav = x, 300);
             }
         });
@@ -58,7 +71,7 @@
     @import '../../app.scss';
 
     #title {
-        font-size: 4.5rem;
+        font-size: min(10vw, 4.5rem);
         text-align: center;
         letter-spacing: -1.25px;
 
@@ -98,7 +111,7 @@
         justify-content: center;
 
         p {
-            font-size: 1.5rem;
+            font-size: min(5vw, 1.5rem);
             text-align: center;
             color: #5e5e63;
 
@@ -134,7 +147,6 @@
         background-size: 200%;
         animation: titleAnimation 30s linear infinite;
         white-space: normal;
-        max-height: 2.5rem;
     }
 
     @keyframes titleAnimation {

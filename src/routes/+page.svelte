@@ -12,16 +12,20 @@
 
 	onMount(async () => {
         navState.subscribe((x) => {
-            nav = x
-            if (!nav || x.index != nav.index)
+            if (x.index != nav.index) {
                 document.getElementById("projects")?.animate([
+                    { opacity: 1 },
+                    { opacity: 0 },
                     { opacity: 0 },
                     { opacity: 1 }
                 ], {
-                    duration: 1500,
+                    duration: 700,
                     easing: "ease-in-out",
                     fill: "forwards"
                 })
+            }
+
+            setTimeout(() => nav = x, 350);
         })
     })
 </script>
