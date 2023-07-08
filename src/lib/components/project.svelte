@@ -63,8 +63,10 @@
             border-radius: 0 2rem 2rem 0;
 
             img {
-                width: 95%;
-                height: 100%;
+                width: 90%;
+                padding-left: 5%;
+                height: 80%;
+                padding-top: 10%;
                 object-fit: contain;
                 border-radius: 0 2rem 2rem 0;
             }
