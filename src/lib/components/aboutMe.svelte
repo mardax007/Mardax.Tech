@@ -35,8 +35,7 @@
                     { width: keepWidth + "px", height: keepHeight + "px" },
                 ], {
                     duration: 500,
-                    easing: "linear",
-                    fill: "forwards"
+                    easing: "linear"
                 })
 
                 const description = document.getElementById("description")
@@ -96,7 +95,7 @@
 
     #aboutMe {
         opacity: 0;
-        max-width: 750px;
+        max-width: calc($maxWidth * 0.9);
         margin: 0 auto;
         margin-bottom: 100px;
 
@@ -138,7 +137,7 @@
         text-align: center;
         color: #5e5e63;
 
-        max-width: 500px;
+        max-width: calc($maxWidth * 0.5);
         margin: 0 auto;
 
         -webkit-background-clip: text;
@@ -147,6 +146,8 @@
         background-size: 200%;
         animation: titleAnimation 30s linear infinite;
         white-space: normal;
+
+        padding: 0 1rem;
     }
 
     @keyframes titleAnimation {

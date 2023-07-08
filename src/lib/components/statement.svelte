@@ -12,7 +12,7 @@
     @import '../../app.scss';
 
     #statement {
-        max-width: 666px;
+        max-width: calc($maxWidth * 0.85);
         margin: 0 auto;
         border-radius: calc($borderRadius / 2);
         background-color: $textColor;

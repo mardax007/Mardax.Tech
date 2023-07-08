@@ -28,7 +28,7 @@
             flex-direction: column;
             align-items: center;
             margin: 1rem;
-            max-width: 15rem;
+            max-width: calc($maxWidth * 0.25);
             text-decoration: none;
             color: invert($color: $textColor);
 

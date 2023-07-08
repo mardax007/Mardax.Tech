@@ -12,6 +12,8 @@ $borderRadius: 2rem;
 $boxShadow: 0 4px 3rem 0 #1b1b1b23;
 $tabTranform: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
 
+$maxWidth: 888px;
+
 @keyframes expand {
     0% {
         scale: 0.5;

@@ -44,7 +44,6 @@
 		height: 100vh;
 		padding: 0 10vw;
 		margin: 0 auto;
-		max-width: 750px;
 
 		#header {
 			width: 100%;
@@ -63,7 +62,7 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 				width: 50%;
-				max-width: 200px;
+				max-width: calc(5vh + 15vw);
 				filter: drop-shadow(5px 10px 10px rgba(0, 0, 0, 0.5));
 				border-radius: 50%;
 
@@ -78,11 +77,7 @@
 			}
 		}
 
-		#timeline {
-			min-width: 370px;
-		}
-
-		@media (max-width: 777px) {
+		@media (max-width: $maxWidth) {
 			padding: 0;
 			max-width: 90vw;
 		}

@@ -15,7 +15,7 @@
 
     #whiteButton {
         text-decoration: none;
-        max-width: 375px;
+        max-width: calc($maxWidth * 0.3);
         grid-area: whiteButton;
         display: flex;
         align-items: center;

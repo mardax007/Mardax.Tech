@@ -59,6 +59,7 @@
         width: 100vw;
         height: 100vh;
         overflow-x: hidden;
+        max-width: none;
     }
 
     #navbar {
@@ -76,7 +77,7 @@
 
         animation: moveInFromTop 0.65s 0.5s ease-in-out forwards;
         z-index: 100;
-        max-width: 750px;
+        max-width: calc($maxWidth * 0.75);;
     }
 
     #projects {

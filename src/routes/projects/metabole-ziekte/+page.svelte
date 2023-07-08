@@ -163,7 +163,6 @@
 		height: 100vh;
 		padding: 0 10vw;
 		margin: 0 auto;
-		max-width: 750px;
 
 		#header {
 			width: 100%;
@@ -227,7 +226,7 @@
 				flex-direction: column;
 				align-items: center;
 				margin: 1rem;
-				max-width: 15rem;
+				max-width: calc($maxWidth * 0.5);
 				color: invert($color: $textColor);
 
 				img {
@@ -248,10 +247,6 @@
 					}
 				}
 			}
-		}
-
-		#timeline {
-			min-width: 370px;
 		}
 
 		.table {
@@ -279,7 +274,7 @@
 			}
 		}
 
-		@media (max-width: 777px) {
+		@media (max-width: $maxWidth) {
 			padding: 0;
 			max-width: 90vw;
 		}

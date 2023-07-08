@@ -35,8 +35,7 @@
     #project {
         text-decoration: none;
         color: invert($color: $textColor);
-        max-width: min(70vw, 1000px);
-        min-width: 340px;
+        max-width: min(70vw, $maxWidth);
         margin: 0 auto;
         border-radius: 2rem;
         height: auto;
@@ -80,14 +79,14 @@
 
             img {
                 grid-area: icon;
-                width: 2rem;
-                height: 2rem;
+                width: max(calc(10vh - 7vw), 2rem);
+                height: max(calc(10vh - 7vw), 2rem);
                 object-fit: cover;
             }
 
             #name {
                 grid-area: name;
-                font-size: 2rem;
+                font-size: min(calc(100vh - 60vw), 1.5rem);
                 font-weight: 600;
                 margin: 0;
                 margin-top: 0.5rem;
@@ -97,16 +96,15 @@
                 grid-area: items;
                 display: flex;
                 align-items: center;
+                justify-content: left;
                 margin: 0;
                 margin-top: 0.5rem;
                 margin-bottom: 0.5rem;
 
                 #tag {
-                    font-size: 1rem;
                     font-weight: 600;
                     margin: 0;
                     margin-right: 0.5rem;
-                    align-items: center;
                 }
 
                 #sep {
@@ -118,7 +116,7 @@
                 }
 
                 #date {
-                    font-size: 1rem;
+                    // font-size: 1rem;
                     font-weight: 600;
                     margin: 0;
                     align-items: center;
@@ -132,26 +130,28 @@
                 margin: 0;
             }
         }
+    }
 
-        @media (max-width: 888px) {
+    @media (max-width: $maxWidth) {
+        #project {
             grid-template-areas: "info" "projectImage";
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;
-
-            #projectImage {
-                grid-area: projectImage;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 0 0 2rem 2rem;
-
-                .padding {
-                    width: 95% !important;
-                    margin-left: 2.5%;
-                    border-radius: 0;
-                }
-            }
+            max-width: min(90vw, $maxWidth);
         }
 
+        #projectImage {
+            grid-area: projectImage;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 0 2rem 2rem;
+
+            .padding {
+                width: 95% !important;
+                margin-left: 2.5%;
+                border-radius: 0;
+            }
+        }
     }
 </style>

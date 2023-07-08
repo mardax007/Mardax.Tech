@@ -30,8 +30,6 @@
         width: 100vw;
 		padding: 0 10vw;
 		margin: 0 auto;
-		max-width: 750px;
-		min-width: 370px;
 
 		img {
 			width: 100%;
@@ -46,11 +44,11 @@
 
 			img {
 				width: 100%;
-				max-width: 500px;
+				max-width: calc($maxWidth * 0.5);
 			}
 		}
 
-		@media (max-width: 777px) {
+		@media (max-width: $maxWidth) {
 			padding: 0;
 			max-width: 90vw;
 		}

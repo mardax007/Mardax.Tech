@@ -21,7 +21,7 @@
     }
 
     #video {
-        max-width: 666px;
+        max-width: calc($maxWidth * 0.75);
         margin: 0 auto;
         border-radius: calc($borderRadius / 2);
         background-color: $textColor;
