@@ -46,6 +46,39 @@
 				span.style.transform = 'scale(1)';
 			}, 300);
 		});
+		
+		const segmentedControl = document.querySelector('.segmented-control');
+		if (!segmentedControl) return;
+
+		segmentedControl.addEventListener('mousemove', (e) => {
+			const distanceX = (e.clientX - segmentedControl.getBoundingClientRect().left - segmentedControl.clientWidth / 2);
+			const distanceY = (e.clientY - segmentedControl.getBoundingClientRect().top - segmentedControl.clientHeight / 2);
+
+
+			segmentedControl.animate(
+				[
+					{ transform: `translate(${distanceX / 20}px, ${distanceY / 10}px)` },
+				],
+				{
+					duration: 500,
+					easing: 'ease-in-out',
+					fill: 'forwards',
+				}
+			);
+		});
+
+		segmentedControl.addEventListener('mouseleave', () => {
+			segmentedControl.animate(
+				[
+					{ transform: `translate(0)` },
+				],
+				{
+					duration: 500,
+					easing: 'ease-in-out',
+					fill: 'forwards',
+				}
+			);
+		});
 	});
 </script>
 
@@ -84,6 +117,8 @@
 		border-radius: $borderRadius;
 		display: flex;
 		align-items: center;
+
+		transition: all 0.1s ease;
 
 		span {
 			-webkit-background-clip: text;

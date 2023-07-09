@@ -3,9 +3,41 @@
 
     export let text: string = "Button";
     export let link: string = "";
+
+    const whiteButton = document.getElementById('whiteButton');
+
+    whiteButton?.addEventListener('mousemove', (e) => {
+        const distanceX = (e.clientX - whiteButton.getBoundingClientRect().left - whiteButton.clientWidth / 2);
+        const distanceY = (e.clientY - whiteButton.getBoundingClientRect().top - whiteButton.clientHeight / 2);
+
+
+        whiteButton.animate(
+            [
+                { transform: `translate(${distanceX / 30}px, ${distanceY / 10}px)` },
+            ],
+            {
+                duration: 500,
+                easing: 'ease-in-out',
+                fill: 'forwards',
+            }
+        );
+    });
+
+    whiteButton?.addEventListener('mouseleave', () => {
+        whiteButton.animate(
+            [
+                { transform: `translate(0)` },
+            ],
+            {
+                duration: 500,
+                easing: 'ease-in-out',
+                fill: 'forwards',
+            }
+        );
+    });
 </script>
 
-<a href={link} id="whiteButton" class="follow">
+<a href={link} id="whiteButton">
     <h3 id="view">{text}</h3>
     <img loading="lazy" src={getSRC("/arrow.svg")} alt="Arrow Right" />
 </a>
