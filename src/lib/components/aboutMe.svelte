@@ -97,7 +97,7 @@
         opacity: 0;
         max-width: calc($maxWidth * 0.9);
         margin: 0 auto;
-        margin-bottom: 100px;
+        margin-bottom: 4rem;
 
         * {
             overflow: hidden;
