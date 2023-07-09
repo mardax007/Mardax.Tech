@@ -16,7 +16,7 @@
         margin: 0 auto;
         border-radius: calc($borderRadius / 2);
         background-color: $textColor;
-        padding: 1rem 2rem;
+        padding: 1rem 1rem 1rem 2rem;
 
         color: #323235;
 
