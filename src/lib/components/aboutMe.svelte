@@ -61,7 +61,7 @@
     <h1 id="title" style="background-image: {info.titleColor ?? "black"}">{info.title}</h1>
     <div id="location">
         <img loading="lazy" alt="Mappin" src={getSRC(info.mapPin)} />
-        <p style="background-image: {info.locationColor ?? "black"}">{info.location}</p>
+        <p style="background-image: {info.locationColor ?? "black"}; width: 1.5rem;">{info.location}</p>
     </div>
     <p id="description" style="background-image: {info.descriptionColor ?? "black"}">{info.description}</p>
 </div>
@@ -129,7 +129,6 @@
             background-size: 200%;
             animation: titleAnimation 30s linear infinite;
             padding-right: 0.25rem;
-            width: 1.5rem;
         }
     }
 
