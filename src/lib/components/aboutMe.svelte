@@ -17,7 +17,7 @@
                 if (!aboutMe) return
 
                 aboutMe.animate([
-                    { opacity: aboutMe.style.opacity ?? 0 },
+                    { opacity: aboutMe.style.opacity },
                     { opacity: 0 },
                     { opacity: 1 }
                 ], {
@@ -41,9 +41,7 @@
                 const description = document.getElementById("description")
                 if (!description) return
 
-                const descriptionHeight = description.clientHeight ?? 0
-
-                description.style.maxHeight = descriptionHeight + "px"
+                description.style.maxHeight = (description.clientHeight ?? 0) + "px"
                 description.style.overflow = "hidden"
 
                 setTimeout(() => {
@@ -61,9 +59,9 @@
     <h1 id="title" style="background-image: {info.titleColor ?? "black"}">{info.title}</h1>
     <div id="location">
         <img width="24px" height="auto" loading="lazy" alt="Mappin" src={getSRC(info.mapPin)} />
-        <p style="background-image: {info.locationColor ?? "black"};">{info.location}</p>
+        <p>{info.location}</p>
     </div>
-    <p id="description" style="background-image: {info.descriptionColor ?? "black"}">{info.description}</p>
+    <p id="description">{info.description}</p>
 </div>
 
 <style lang="scss">
@@ -71,7 +69,6 @@
 
     #title {
         font-size: min(10vw, 4.5rem);
-        text-align: center;
         letter-spacing: -1.25px;
 
         position: relative;
@@ -79,7 +76,6 @@
         transform: translateX(-50%);
 
         display: flex;
-        align-items: center;
         justify-content: center;
 
         margin-top: 150px;
@@ -94,6 +90,7 @@
     }
 
     #aboutMe {
+        will-change: transform;
         opacity: 0;
         max-width: calc($maxWidth * 0.9);
         margin: 0 auto;
@@ -111,23 +108,10 @@
 
         p {
             font-size: min(5vw, 1.5rem);
-            text-align: center;
-            color: #5e5e63;
-
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-
-            background-size: 200%;
-            animation: titleAnimation 30s linear infinite;
+            color: #3b3b3b;
         }
 
         img {
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200%;
-            animation: titleAnimation 30s linear infinite;
             padding-right: 0.25rem;
         }
     }
@@ -135,16 +119,10 @@
     #description {
         font-size: 1rem;
         text-align: center;
-        color: #5e5e63;
+        color: #3b3b3b;
 
         max-width: calc($maxWidth * 0.5);
         margin: 0 auto;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 200%;
-        animation: titleAnimation 30s linear infinite;
         white-space: normal;
 
         padding: 0 1rem;
