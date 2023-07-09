@@ -3,7 +3,7 @@ import type { HomepageInfo, Project } from "./types";
 import { navState } from "./state";
 
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
 
 let nav = {
     id: "",
