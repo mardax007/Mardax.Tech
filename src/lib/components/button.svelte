@@ -1,43 +1,48 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
+	import { onMount } from "svelte";
 
     export let text: string = "Button";
     export let link: string = "";
 
-    const whiteButton = document.querySelector('.whiteButton');
+    const id = Math.random().toString(36).substring(2, 15)
 
-    whiteButton?.addEventListener('mousemove', (e) => {
-        const distanceX = (e.clientX - whiteButton.getBoundingClientRect().left - whiteButton.clientWidth / 2);
-        const distanceY = (e.clientY - whiteButton.getBoundingClientRect().top - whiteButton.clientHeight / 2);
+    onMount(() => {
+        const whiteButton = document.getElementById(id);
+
+        whiteButton?.addEventListener('mousemove', (e) => {
+            const distanceX = (e.clientX - whiteButton.getBoundingClientRect().left - whiteButton.clientWidth / 2);
+            const distanceY = (e.clientY - whiteButton.getBoundingClientRect().top - whiteButton.clientHeight / 2);
 
 
-        whiteButton.animate(
-            [
-                { transform: `translate(${distanceX / 30}px, ${distanceY / 10}px)` },
-            ],
-            {
-                duration: 500,
-                easing: 'ease-in-out',
-                fill: 'forwards',
-            }
-        );
-    });
+            whiteButton.animate(
+                [
+                    { transform: `translate(${distanceX / 30}px, ${distanceY / 10}px)` },
+                ],
+                {
+                    duration: 500,
+                    easing: 'ease-in-out',
+                    fill: 'forwards',
+                }
+            );
+        });
 
-    whiteButton?.addEventListener('mouseleave', () => {
-        whiteButton.animate(
-            [
-                { transform: `translate(0)` },
-            ],
-            {
-                duration: 500,
-                easing: 'ease-in-out',
-                fill: 'forwards',
-            }
-        );
-    });
+        whiteButton?.addEventListener('mouseleave', () => {
+            whiteButton.animate(
+                [
+                    { transform: `translate(0)` },
+                ],
+                {
+                    duration: 500,
+                    easing: 'ease-in-out',
+                    fill: 'forwards',
+                }
+            );
+        });
+    })
 </script>
 
-<a href={link} class="whiteButton">
+<a href={link} id={id} class="whiteButton">
     <h3 id="view">{text}</h3>
     <img loading="lazy" src={getSRC("/arrow.svg")} alt="Arrow Right" />
 </a>
