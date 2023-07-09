@@ -20,10 +20,9 @@
 
         color: #323235;
 
-        margin-top: 4rem;
+        margin-top: 2rem;
 
         h2 {
-            font-size: 1.5rem;
             margin: 0;
             line-height: 160%;
         }
@@ -31,8 +30,7 @@
         p {
             font-size: 1.2rem;
             margin: 0;
-            font-weight: 400;
-            line-height: 150%;
+            line-height: 140%;
         }
     }
 </style>
