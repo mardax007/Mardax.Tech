@@ -86,4 +86,45 @@
 
         animation: fadeIn 0.65s 0.5s ease-in-out forwards;
     }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes moveInFromTop {
+        0% {
+            top: -4rem;
+            opacity: 0;
+        }
+
+        80% {
+            top: 2.5rem;
+        }
+
+        100% {
+            top: 2rem;
+            opacity: 1;
+        }
+    }
+
+    @keyframes moveIn {
+        0% {
+            left: 250%;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            rotate: 0deg;
+            left: 100%;
+            opacity: 1;
+        }
+    }
 </style>

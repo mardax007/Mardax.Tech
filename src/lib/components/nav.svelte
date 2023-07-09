@@ -112,7 +112,7 @@
 		grid-column: 3 / 4;
 		grid-row: 1 / 2;
 		width: auto;
-		height: $catHeight;
+		height: 4rem;
 		box-shadow: $boxShadow;
 		border-radius: $borderRadius;
 		display: flex;
@@ -140,7 +140,7 @@
 		}
 
 		span {
-			width: $catWidth;
+			width: 6.8rem;
 			font-size: 1.125rem;
 			display: flex;
 			justify-content: center;
@@ -153,13 +153,13 @@
 
 		#backgroundColor {
 			position: absolute;
-			height: $catColorHeight;
-			width: $catColorWidth;
-			margin-left: $catMargin;
+			height: 3.2rem;
+			width: 6rem;
+			margin-left: 0.4rem;
 			border-radius: 2.2rem;
 			box-shadow: 0 4px 1rem 0 rgba(0, 0, 0, 0.12);
 			pointer-events: none;
-			transition: $tabTranform;
+			transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);;
 		}
 	}
 </style>
