@@ -46,6 +46,7 @@
     @import '../../app.scss';
 
     .whiteButton {
+        will-change: transform;
         text-decoration: none;
         max-width: calc($maxWidth * 0.3);
         grid-area: whiteButton;

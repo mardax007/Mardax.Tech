@@ -75,6 +75,7 @@
         top: -4rem;
         left: 50%;
         transform: translateX(-50%);
+        will-change: transform;
 
         animation: moveInFromTop 0.65s 0.5s ease-in-out forwards;
         z-index: 100;
@@ -85,6 +86,7 @@
         opacity: 0;
 
         animation: fadeIn 0.65s 0.5s ease-in-out forwards;
+        will-change: transform;
     }
 
     @keyframes fadeIn {

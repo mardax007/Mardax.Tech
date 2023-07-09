@@ -107,6 +107,7 @@
 	@import '../../app.scss';
 
 	.segmented-control {
+		will-change: transform;
 		background-color: $navbarBackgroundColor;
 		user-select: none;
 		grid-column: 3 / 4;

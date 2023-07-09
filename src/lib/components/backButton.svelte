@@ -47,6 +47,7 @@
     a {
         text-decoration: none;
         margin: 0;
+        will-change: transform;
     }
 
     img {

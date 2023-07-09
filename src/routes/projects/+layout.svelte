@@ -24,6 +24,8 @@
 
         position: fixed;
 
+        will-change: transform;
+
         animation: moveInFromTop 0.65s 0.25s ease-in-out forwards;
         z-index: 100;
     }
