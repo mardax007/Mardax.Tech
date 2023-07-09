@@ -129,6 +129,7 @@
             background-size: 200%;
             animation: titleAnimation 30s linear infinite;
             padding-right: 0.25rem;
+            width: 1.5rem;
         }
     }
 
