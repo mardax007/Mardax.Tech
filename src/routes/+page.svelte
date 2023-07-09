@@ -30,7 +30,11 @@
     })
 </script>
 
-{#await getHomepageInfo() then homepageInfos}
+{#await getHomepageInfo()}
+    <div id="loading">
+        <img src="gear.svg" alt="Loading..." />
+    </div>
+{:then homepageInfos}
     <div id="wrapper">
         <div id="navbar">
             <Nav homepageInfos={homepageInfos} />
@@ -54,6 +58,13 @@
 
 <style lang="scss">
     @import '../app.scss';
+
+    #loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 
     #wrapper {
         max-width: ($maxWidth * 0.75);
