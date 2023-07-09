@@ -6,7 +6,7 @@
     export let project: Project;
 </script>
 
-<a href={project.disabled ? "" : project.link} download="{project.download}" id="project" class="{project.disabled ? "disable" : ""}">
+<a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.disabled ? "disable" : ""}">
     <div id="info">
         <img loading="lazy" id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={getSRC(project.icon)} alt="Project Icon" />
         <h2 id="name">{@html project.name}</h2>
@@ -32,7 +32,7 @@
         opacity: 0.5;
     }
 
-    #project {
+    .project {
         text-decoration: none;
         color: invert($color: $textColor);
         max-width: min(70vw, $maxWidth);
@@ -135,7 +135,7 @@
     }
 
     @media (max-width: $maxWidth) {
-        #project {
+        .project {
             grid-template-areas: "info" "projectImage";
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;

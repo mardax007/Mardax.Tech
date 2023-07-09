@@ -4,7 +4,7 @@
     export let text: string = "Button";
     export let link: string = "";
 
-    const whiteButton = document.getElementById('whiteButton');
+    const whiteButton = document.querySelector('.whiteButton');
 
     whiteButton?.addEventListener('mousemove', (e) => {
         const distanceX = (e.clientX - whiteButton.getBoundingClientRect().left - whiteButton.clientWidth / 2);
@@ -37,7 +37,7 @@
     });
 </script>
 
-<a href={link} id="whiteButton">
+<a href={link} class="whiteButton">
     <h3 id="view">{text}</h3>
     <img loading="lazy" src={getSRC("/arrow.svg")} alt="Arrow Right" />
 </a>
@@ -45,7 +45,7 @@
 <style lang="scss">
     @import '../../app.scss';
 
-    #whiteButton {
+    .whiteButton {
         text-decoration: none;
         max-width: calc($maxWidth * 0.3);
         grid-area: whiteButton;
