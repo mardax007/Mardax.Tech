@@ -60,8 +60,8 @@
 <div id="aboutMe">
     <h1 id="title" style="background-image: {info.titleColor ?? "black"}">{info.title}</h1>
     <div id="location">
-        <img loading="lazy" alt="Mappin" src={getSRC(info.mapPin)} />
-        <p style="background-image: {info.locationColor ?? "black"}; width: 1.5rem;">{info.location}</p>
+        <img width="24px" loading="lazy" alt="Mappin" src={getSRC(info.mapPin)} />
+        <p style="background-image: {info.locationColor ?? "black"};">{info.location}</p>
     </div>
     <p id="description" style="background-image: {info.descriptionColor ?? "black"}">{info.description}</p>
 </div>
