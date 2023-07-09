@@ -160,6 +160,7 @@
 	@import '../../../app.scss';
 
 	#wrapper {
+		max-width: ($maxWidth * 0.75);
 		height: 100vh;
 		padding: 0 10vw;
 		margin: 0 auto;
@@ -174,6 +175,22 @@
 				height: 10rem;
 				margin-top: 2vh;
 			}
+		}
+
+		#timeline {
+			min-width: 370px;
+		}
+
+		.centerTitle {
+			width: fit-content;
+			margin: 1rem auto;
+			margin-top: 3rem;
+			text-align: center;
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-image: linear-gradient(141deg, #626266, #1e1e22);
+			font-size: 2rem;
 		}
 
 		h3,

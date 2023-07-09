@@ -24,7 +24,7 @@
 </div>
 
 <style lang="scss">
-    @import '../../page-variables.scss';
+    @import '../../app.scss';
 
     #intro {
         margin-top: 1rem;

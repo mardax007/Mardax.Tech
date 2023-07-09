@@ -56,6 +56,7 @@
     @import '../app.scss';
 
     #wrapper {
+        max-width: ($maxWidth * 0.75);
         width: 100vw;
         height: 100vh;
         overflow-x: hidden;

@@ -42,7 +42,7 @@
 </a>
 
 <style lang="scss">
-    @import '../../page-variables.scss';
+    @import '../../app.scss';
 
     a {
         text-decoration: none;

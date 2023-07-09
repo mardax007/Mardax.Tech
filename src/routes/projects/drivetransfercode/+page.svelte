@@ -28,6 +28,7 @@
     @import '../../../app.scss';
 
     #wrapper {
+		max-width: ($maxWidth * 0.75);
         width: 100vw;
 		padding: 0 10vw;
 		margin: 0 auto;
@@ -44,6 +45,18 @@
                 margin-top: 2rem;
                 margin-bottom: -1rem;
 			}
+		}
+
+		.centerTitle {
+			width: fit-content;
+			margin: 1rem auto;
+			margin-top: 3rem;
+			text-align: center;
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-image: linear-gradient(141deg, #626266, #1e1e22);
+			font-size: 2rem;
 		}
 
 		@media (max-width: $maxWidth) {
