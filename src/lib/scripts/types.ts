@@ -11,6 +11,7 @@ type Project = {
     background?: string;
     icon: string;
     rounded?: boolean;
+    isvertical?: boolean;
     disabled?: boolean;
     link: string;
     download?: string;

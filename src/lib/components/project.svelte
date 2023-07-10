@@ -6,7 +6,7 @@
     export let project: Project;
 </script>
 
-<a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.disabled ? "disable" : ""}">
+<a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""}">
     <div id="info">
         <img loading="lazy" id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={getSRC(project.icon)} alt="Project Icon" />
         <h2 id="name">{@html project.name}</h2>
@@ -133,6 +133,27 @@
         }
     }
 
+    .vertical {
+        grid-template-areas: "info" "projectImage";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+
+        #projectImage {
+            grid-area: projectImage;
+            object-fit: cover;
+
+            img {
+                padding: 0% !important;
+                border-radius: 0 !important;
+            }
+
+            .padding {
+                width: 100% !important;
+                border-radius: 0;
+            }
+        }
+    }
+
     @media (max-width: $maxWidth) {
         .project {
             grid-template-areas: "info" "projectImage";
@@ -149,7 +170,9 @@
             border-radius: 0 0 2rem 2rem !important;
 
             img {
+                padding-top: 0 !important;
                 padding-left: 0% !important;
+                border-radius: 0 !important;
             }
 
             .padding {
