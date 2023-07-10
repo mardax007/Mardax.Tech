@@ -118,7 +118,6 @@
                 }
 
                 #date {
-                    // font-size: 1rem;
                     font-weight: 600;
                     margin: 0;
                     align-items: center;
@@ -147,7 +146,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 0 0 2rem 2rem;
+            border-radius: 0 0 2rem 2rem !important;
+
+            img {
+                padding-left: 0% !important;
+            }
 
             .padding {
                 width: 95% !important;

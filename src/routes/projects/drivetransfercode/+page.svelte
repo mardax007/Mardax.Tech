@@ -4,10 +4,26 @@
 	import Statement from "$lib/components/statement.svelte";
 	import TechStack from "$lib/components/techStack.svelte";
 	import { getProject, getSRC } from "$lib/scripts/information";
+		import type { Project } from "$lib/scripts/types";
+import { onMount } from "svelte";
+
+	onMount(async () => {
+		const params = new URLSearchParams(window.location.search);
+
+		if (params.get("lang") == "en") {
+			projectInfo = await getProject("22DTC-en")
+		} else {
+			projectInfo = await getProject("22DTC")
+		}
+
+
+	});
+
+	let projectInfo: Project
 
 </script>
 
-{#await getProject("22DTC") then projectInfo}
+{#if projectInfo}
 	<div id="wrapper">
 		<div id="header">
 		<img loading="lazy" src={getSRC("/DTClogo.png")} alt="DTC logo" />
@@ -21,7 +37,7 @@
 		</div>
 		<Button text="Ga naar de app" link="https://drivetransfercode.web.app/" />
 	</div>
-{/await}
+{/if}
 
 
 <style lang="scss">
