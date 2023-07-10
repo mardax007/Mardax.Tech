@@ -35,6 +35,8 @@ function getFirebaseApp () {
 }
 
 async function getHomepageInfo(): Promise<HomepageInfo[]> {
+    if (sessionStorage.getItem("homepage")) return JSON.parse(sessionStorage.getItem("homepage"));
+
     const temp = (await getDoc(doc(db, "data", "homepage"))).data();
     if (!temp) return [];
 
@@ -46,13 +48,20 @@ async function getHomepageInfo(): Promise<HomepageInfo[]> {
         if (defaultPage) navState.set({ id: defaultPage.id, index: data.indexOf(defaultPage) });
     }
 
+    sessionStorage.setItem("homepage", JSON.stringify(data));
+
     return data
 }
 
 async function getProjectsInfo(): Promise<Project[]> {
+    if (sessionStorage.getItem("projects")) return JSON.parse(sessionStorage.getItem("projects"));
+
     const temp = (await getDoc(doc(db, "data", "projects"))).data() ?? {};
     projects = Object.keys(temp).map(key => temp[key]);
     projects.sort((a, b) => b.order - a.order);
+
+    sessionStorage.setItem("projects", JSON.stringify(projects));
+
     return projects;
 }
 
