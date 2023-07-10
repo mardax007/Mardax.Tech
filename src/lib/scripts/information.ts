@@ -4,6 +4,7 @@ import { navState } from "./state";
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
+import { getAnalytics  } from "firebase/analytics";
 
 let nav = {
     id: "",
@@ -28,6 +29,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 let projects: Project[] = [];
+
+function getFirebaseApp () {
+    return app;
+}
 
 async function getHomepageInfo(): Promise<HomepageInfo[]> {
     const temp = (await getDoc(doc(db, "data", "homepage"))).data();
@@ -66,4 +71,4 @@ function getSRC(file = "") {
     return "https://firebasestorage.googleapis.com/v0/b/portfoliomardaxtech.appspot.com/o" + file + "?alt=media";
 }
 
-export { getProjectsInfo, getHomepageInfo, getProject, getSRC }
+export { getProjectsInfo, getHomepageInfo, getProject, getSRC, getFirebaseApp }

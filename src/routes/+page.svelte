@@ -2,7 +2,7 @@
 	import AboutMe from '$lib/components/aboutMe.svelte';
     import Nav from '$lib/components/nav.svelte';
 	import Project from '$lib/components/project.svelte';
-    import { getHomepageInfo, getProjectsInfo } from '$lib/scripts/information';
+    import { getFirebaseApp, getHomepageInfo, getProjectsInfo } from '$lib/scripts/information';
 
     import { navState } from '$lib/scripts/state'
 	import type { navData } from '$lib/scripts/types';
@@ -27,6 +27,9 @@
 
             setTimeout(() => nav = x, 350);
         })
+
+        const getAnalytics = (await import('firebase/analytics')).getAnalytics;
+        getAnalytics(getFirebaseApp());
     })
 </script>
 
