@@ -192,7 +192,7 @@
 			}
 
 			#backgroundColor.dark {
-				box-shadow: 0 1px 1rem 0 rgba(255, 255, 255, 0.12);
+				box-shadow: 0 2px 3rem 0 rgba(255, 255, 255, 0.12);
 			}
 		}
 	}

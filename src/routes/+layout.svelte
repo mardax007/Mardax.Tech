@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Footer from "$lib/components/footer.svelte";
 	import { getFirebaseApp } from "$lib/scripts/information";
 	import { styleState } from "$lib/scripts/state";
 	import type { styleData } from "$lib/scripts/types";
@@ -21,16 +22,17 @@
         addEventListener("keydown", (e) => {
             if (e.key == "d") {
                 if (darkModeTimeout < Date.now()) {
-                    darkModeTimeout = Date.now() + 100;
+                    darkModeTimeout = Date.now() + 1000;
                     // fade to dark or light mode
                     document.body.animate(
                         [
                             { opacity: 1 },
                             { opacity: 0 },
+                            { opacity: 0 },
                             { opacity: 1 },
                         ],
                         {
-                            duration: 1500,
+                            duration: 1000,
                             easing: 'ease-in-out',
                             fill: 'forwards',
                         }
@@ -40,7 +42,7 @@
                             x.darkMode = !x.darkMode;
                             return x;
                         });
-                    }, 750);
+                    }, 500);
                 }
             }
         })

@@ -44,6 +44,7 @@
     .dark {
         background-color: #2d2d2d !important;
         color: #fff !important;
+        box-shadow: $lightBoxShadowDark !important;
 
         #projectImage {
             background-color: #f8f8f8 !important;
@@ -54,7 +55,7 @@
         }
 
         &:not(.disable):hover {
-            box-shadow: $boxShadowDark !important;
+            box-shadow: $lightBoxShadowDark !important;
         }
     }
 
@@ -66,9 +67,9 @@
         border-radius: 2rem;
         height: auto;
         will-change: transform;
-        box-shadow: $lightBoxShadowDark;
+        box-shadow: 5px 20px 1rem 10px #e4e4e4;
 
-        margin-bottom: 50px;
+        margin-bottom: 4rem;
 
         background-color: #eceff1;
 
@@ -170,15 +171,16 @@
             grid-area: projectImage;
             object-fit: cover;
             border-radius: 0 0 2rem 2rem !important;
-            padding-top: 1rem;
+            padding-top: 2.5%;
 
             img {
                 padding: 0% !important;
                 border-radius: 0 !important;
+                width: 95% !important;
             }
 
             .padding {
-                width: 100% !important;
+                width: 95% !important;
                 border-radius: 0;
             }
         }
@@ -198,6 +200,9 @@
             height: 100%;
             object-fit: cover;
             border-radius: 0 0 2rem 2rem !important;
+            padding-top: 5%;
+
+            max-height: 50vw;
 
             img {
                 padding-top: 0 !important;

@@ -70,7 +70,6 @@
 
     #footer {
         width: 100%;
-        margin-top: 4rem;
         height: 12rem;
         background-color: #f1f1f1;
 
