@@ -1,11 +1,20 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
-	import type { Project } from "$lib/scripts/types";
+	import { styleState } from "$lib/scripts/state";
+	import type { Project, styleData } from "$lib/scripts/types";
 
     export let info: Project;
+
+    let style: styleData = {
+		darkMode: false,
+	} as styleData;
+
+	styleState.subscribe((x) => {
+		style = x;
+	})
 </script>
 
-<div id="intro">
+<div id="intro" class={style.darkMode ? "dark" : "light"}>
     <img
         id="icon"
         style={info.rounded ? 'border-radius: 0.5rem;' : ''}
@@ -25,6 +34,20 @@
 
 <style lang="scss">
     @import '../../app.scss';
+
+    .dark {
+        * {
+            color: $textColor !important;
+        }
+
+        img {
+            filter: invert(1);
+        }
+
+        #name {
+            filter: invert(1) brightness(2);
+        }
+    }
 
     #intro {
         margin-top: 1rem;

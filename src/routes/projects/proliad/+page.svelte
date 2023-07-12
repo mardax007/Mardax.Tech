@@ -6,39 +6,54 @@
 	import Statement from '$lib/components/statement.svelte';
 	import TechStack from '$lib/components/techStack.svelte';
 	import { getProject, getSRC } from '$lib/scripts/information';
+	import type { styleData } from '$lib/scripts/types';
+	import { styleState } from '$lib/scripts/state';
+
+	let style: styleData = {
+		darkMode: false,
+	};
+
+	styleState.subscribe((x) => {
+		style = x;
+	})
 </script>
 
-{#await getProject("22Proliad") then projectInfo}
-	<div id="wrapper">
-		<div id="header">
-			<img loading="lazy" src={getSRC("/proliad.jpg")} alt="Proliad header" />
-			<img loading="lazy" id="proliadLogo" src={getSRC("/proliadLogo.png")} alt="Proliad logo" />
-		</div>
-		<Intro info={projectInfo} />
-		<Tags tags={projectInfo.tags} />
-		<Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
-		<People people={projectInfo.people} />
+<div class={style.darkMode ? "dark" : "light"}>
+	{#await getProject("22Proliad") then projectInfo}
+		<div id="wrapper">
+			<div id="header">
+				<img loading="lazy" src={getSRC("/proliad.jpg")} alt="Proliad header" />
+				<img loading="lazy" id="proliadLogo" src={getSRC("/proliadLogo.png")} alt="Proliad logo" />
+			</div>
+			<Intro info={projectInfo} />
+			<Tags tags={projectInfo.tags} />
+			<Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
+			<People people={projectInfo.people} />
 
-		<div id="timeline">
-			<h1 class="centerTitle">Proces</h1>
-			<ProcesTimeline timeline={projectInfo.timeline ?? []} />
-		</div>
+			<div id="timeline">
+				<ProcesTimeline timeline={projectInfo.timeline ?? []} />
+			</div>
 
-		<div id="techstack">
-			<h1 class="centerTitle">Tech stack</h1>
+			<div id="techstack">
+				<TechStack techStack={projectInfo.techStack ?? []} />
+			</div>
 
-			<TechStack techStack={projectInfo.techStack ?? []} />
+			<div id="website">
+				<h1 class="centerTitle">Webpagina</h1>
+				<iframe src="https://proliad.netlify.app/" title="Proliad designed webpage" width="100%" height="500px" />
+			</div>
 		</div>
-
-		<div id="website">
-			<h1 class="centerTitle">Webpagina</h1>
-			<iframe src="https://proliad.netlify.app/" title="Proliad designed webpage" width="100%" height="500px" />
-		</div>
-	</div>
-{/await}
+	{/await}
+</div>
 
 <style lang="scss">
 	@import '../../../app.scss';
+	
+	.dark {
+		* {
+			color: $textColor !important;
+		}
+	}
 
 	#wrapper {
 		max-width: ($maxWidth * 0.75);
@@ -79,10 +94,7 @@
 			margin: 1rem auto;
 			margin-top: 3rem;
 			text-align: center;
-			-webkit-background-clip: text;
-			background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-image: linear-gradient(141deg, #626266, #1e1e22);
+			color: invert($color: $textColor);
 			font-size: 2rem;
 		}
 

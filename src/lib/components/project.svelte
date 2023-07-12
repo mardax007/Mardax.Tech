@@ -1,12 +1,21 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
-	import type { Project } from "$lib/scripts/types";
+	import { styleState } from "$lib/scripts/state";
+	import type { Project, styleData } from "$lib/scripts/types";
 	import Button from "./button.svelte";
 
     export let project: Project;
+
+    let style: styleData = {
+		darkMode: false,
+	} as styleData;
+
+	styleState.subscribe((x) => {
+		style = x;
+	})
 </script>
 
-<a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""}">
+<a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""} {style.darkMode ? "dark" : ""}">
     <div id="info">
         <img loading="lazy" id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={getSRC(project.icon)} alt="Project Icon" />
         <h2 id="name">{@html project.name}</h2>
@@ -32,6 +41,23 @@
         opacity: 0.5;
     }
 
+    .dark {
+        background-color: #2d2d2d !important;
+        color: #fff !important;
+
+        #projectImage {
+            background-color: #f8f8f8 !important;
+        }
+
+        #icon {
+            filter: invert(1);
+        }
+
+        &:not(.disable):hover {
+            box-shadow: $boxShadowDark !important;
+        }
+    }
+
     .project {
         text-decoration: none;
         color: invert($color: $textColor);
@@ -39,6 +65,8 @@
         margin: 0 auto;
         border-radius: 2rem;
         height: auto;
+        will-change: transform;
+        box-shadow: $lightBoxShadowDark;
 
         margin-bottom: 50px;
 
@@ -141,6 +169,8 @@
         #projectImage {
             grid-area: projectImage;
             object-fit: cover;
+            border-radius: 0 0 2rem 2rem !important;
+            padding-top: 1rem;
 
             img {
                 padding: 0% !important;

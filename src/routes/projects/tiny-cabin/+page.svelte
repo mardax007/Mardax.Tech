@@ -4,27 +4,45 @@
 	import Statement from "$lib/components/statement.svelte";
 	import Video from "$lib/components/video.svelte";
 	import { getProject, getSRC } from "$lib/scripts/information";
+    import type { styleData } from "$lib/scripts/types";
+    import { styleState } from "$lib/scripts/state";
+
+    let style: styleData = {
+        darkMode: false,
+    };
+
+    styleState.subscribe((x) => {
+        style = x;
+    })
 </script>
 
-{#await getProject("21Huiz") then projectInfo}
-    <div id="wrapper">
-        <div id="header">
-            <img loading="lazy" src={getSRC("/Huiz.png")} alt="Huiz logo" />
-        </div>
-        <Intro info={projectInfo} />
-        <Tags version={2} tags={projectInfo.tags} />
-        <Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
+<div class={style.darkMode ? "dark" : "light"}>
+    {#await getProject("21Huiz") then projectInfo}
+        <div id="wrapper">
+            <div id="header">
+                <img loading="lazy" src={getSRC("/Huiz.png")} alt="Huiz logo" />
+            </div>
+            <Intro info={projectInfo} />
+            <Tags version={2} tags={projectInfo.tags} />
+            <Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
 
-        <div id="poster">
-            <h3>Ontwerp</h3>
-            <img loading="lazy" src={getSRC("/Huiz-Poster.png")} alt="Huiz poster" />
+            <div id="poster">
+                <h3>Ontwerp</h3>
+                <img loading="lazy" src={getSRC("/Huiz-Poster.png")} alt="Huiz poster" />
+            </div>
+            <Video videoURL="https://www.youtube.com/embed/ezScvCkMqSY" videoTitle="Huiz" />
         </div>
-        <Video videoURL="https://www.youtube.com/embed/ezScvCkMqSY" videoTitle="Huiz" />
-    </div>
-{/await}
+    {/await}
+</div>
 
 <style lang="scss">
     @import '../../../app.scss';
+
+    .dark {
+        h3 {
+            color: $textColor !important;
+        }
+    }
 
     #wrapper {
         max-width: ($maxWidth * 0.75);
@@ -53,7 +71,7 @@
                 line-height: 160%;
                 text-align: center;
                 margin-top: 2rem;
-                color: #323235;
+                color: invert($color: $textColor)
             }
 
             img {

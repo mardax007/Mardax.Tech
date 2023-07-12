@@ -1,10 +1,18 @@
 <script lang="ts">
 	import { onMount } from "svelte";
+    import type { styleData } from "$lib/scripts/types";
+    import { styleState } from "$lib/scripts/state";
+
+    let style: styleData = {
+		darkMode: false,
+	} as styleData;
+
+	styleState.subscribe((x) => {
+		style = x;
+	})
 
     onMount(() => {
-        const socials = document.getElementsByClassName("social")
-
-        console.log(socials)
+        const socials = document.getElementsByClassName("social");
 
         for (let i = 0; i < socials.length; i++) {
             const social = socials[i];
@@ -42,7 +50,7 @@
     });
 </script>
 
-<div id="footer">
+<div id="footer" style="filter: invert({style.darkMode ? 1 : 0});">
     <div id="socials">
         <a class="social" href="https://github.com/mardax007">
             <img alt="Github logo" src="./github.svg" />

@@ -1,6 +1,16 @@
-<script>
+<script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
+	import { styleState } from "$lib/scripts/state";
+	import type { styleData } from "$lib/scripts/types";
 	import { onMount } from "svelte";
+
+    let style: styleData = {
+		darkMode: false,
+	} as styleData;
+
+	styleState.subscribe((x) => {
+		style = x;
+	})
 
     onMount(() => {
         const backButton = document.getElementById('backButton');
@@ -37,12 +47,22 @@
     })
 </script>
 
-<a href="../" id="backButton">
+<a href="../" id="backButton" class={style.darkMode ? "dark" : "light"}>
     <img loading="lazy" src={getSRC("/arrow.svg")} alt="Back arrow" />
 </a>
 
 <style lang="scss">
     @import '../../app.scss';
+
+    .dark {
+        img {
+            background-color: $darkContrast !important;
+        }
+    }
+
+    .light {
+        filter: invert(0);
+    }
 
     a {
         text-decoration: none;

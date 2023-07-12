@@ -1,10 +1,20 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
+	import { styleState } from "$lib/scripts/state";
+	import type { styleData } from "$lib/scripts/types";
 
     export let people: any[] = []
+
+    let style: styleData = {
+		darkMode: false,
+	} as styleData;
+
+	styleState.subscribe((x) => {
+		style = x;
+	})
 </script>
 
-<div id="people">
+<div id="people" class={style.darkMode ? "dark" : "light"}>
     {#each people as person}
         <a href={person.linkedin} class="person">
             <img loading="lazy" src={getSRC(person.img)} alt={person.name} />
@@ -17,6 +27,13 @@
 
 <style lang="scss">
     @import '../../app.scss';
+
+    .dark {
+        * {
+            color: $textColor !important;
+        }
+    }
+
     #people {
         display: flex;
         flex-wrap: wrap;

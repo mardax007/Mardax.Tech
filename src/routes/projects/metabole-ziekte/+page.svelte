@@ -5,8 +5,19 @@
 	import Intro from '$lib/components/intro.svelte';
 	import ProcesTimeline from '$lib/components/proces-timeline.svelte';
 	import { getProject, getSRC } from '$lib/scripts/information';
+	import type { styleData } from '$lib/scripts/types';
+	import { styleState } from '$lib/scripts/state';
+
+	let style: styleData = {
+        darkMode: false,
+    };
+
+    styleState.subscribe((x) => {
+        style = x;
+    })
 </script>
 
+<div class={style.darkMode ? "dark" : "light"}>
 {#await getProject("23Nutricia") then projectInfo}
 	<div id="wrapper">
 		<div id="header">
@@ -21,8 +32,7 @@
 			/>
 			<People people={projectInfo.people} />
 			<div id="timeline">
-				<h1 class="centerTitle">Proces</h1>
-				<ProcesTimeline timeline={projectInfo.timeline ?? []} />
+				<ProcesTimeline title="Proces" timeline={projectInfo.timeline ?? []} />
 			</div>
 			<div id="results">
 				<h1 class="centerTitle">Resultaten</h1>
@@ -155,9 +165,36 @@
 		</div>
 	</div>
 {/await}
+</div>
 
 <style lang="scss">
 	@import '../../../app.scss';
+	
+	.dark {
+		h1, h3 {
+			color: $textColor !important;
+		}
+
+		.table {
+			tr:nth-child(even) {
+				background-color: #444 !important;;
+			}
+
+			tr:nth-child(odd) {
+				color: #fff !important;
+			}
+		}
+
+		#results {
+			color: #fff !important;;
+		}
+
+		#mediaList {
+			.media {
+				color: $textColor !important;
+			}
+		}
+	}
 
 	#wrapper {
 		max-width: ($maxWidth * 0.75);
@@ -181,21 +218,17 @@
 			min-width: 370px;
 		}
 
+		h3,
+		h1 {
+			color: invert($color: $textColor);
+		}
+
 		.centerTitle {
 			width: fit-content;
 			margin: 1rem auto;
 			margin-top: 3rem;
 			text-align: center;
-			-webkit-background-clip: text;
-			background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-image: linear-gradient(141deg, #626266, #1e1e22);
 			font-size: 2rem;
-		}
-
-		h3,
-		h1 {
-			color: invert($color: $textColor);
 		}
 
 		#presentation {

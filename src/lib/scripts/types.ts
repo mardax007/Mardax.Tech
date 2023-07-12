@@ -70,6 +70,20 @@ type HomepageInfo = {
     titleColor: string;
     locationColor: string;
     descriptionColor: string;
+    colors: {
+        dark: {
+            titleColor: string;
+            locationColor: string;
+            descriptionColor: string;
+            pinColors: string[];
+        }
+        light: {
+            titleColor: string;
+            locationColor: string;
+            descriptionColor: string;
+            pinColors: string[];
+        }
+    }
     default?: boolean;
     mapPin: string;
     titleDisplay: string;
@@ -81,4 +95,8 @@ type navData = {
     index: number;
 }
 
-export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo, navData }
+type styleData = {
+    darkMode: boolean;
+}
+
+export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo, navData, styleData }

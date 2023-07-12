@@ -4,8 +4,9 @@
 	import Statement from "$lib/components/statement.svelte";
 	import TechStack from "$lib/components/techStack.svelte";
 	import { getProject, getSRC } from "$lib/scripts/information";
-		import type { Project } from "$lib/scripts/types";
-import { onMount } from "svelte";
+	import type { Project, styleData } from "$lib/scripts/types";
+	import { styleState } from "$lib/scripts/state";
+	import { onMount } from "svelte";
 
 	onMount(async () => {
 		const params = new URLSearchParams(window.location.search);
@@ -15,30 +16,32 @@ import { onMount } from "svelte";
 		} else {
 			projectInfo = await getProject("22DTC")
 		}
-
-
 	});
 
-	let projectInfo: Project
+	let style: styleData = {
+		darkMode: false,
+	};
 
+	styleState.subscribe((x) => {
+		style = x;
+	})
+
+	let projectInfo: Project
 </script>
 
 {#if projectInfo}
 	<div id="wrapper">
 		<div id="header">
-		<img loading="lazy" src={getSRC("/DTClogo.png")} alt="DTC logo" />
+		<img loading="lazy" src={getSRC(style.darkMode ? "/DTClogoDark.png" : "/DTClogo.png")} alt="DTC logo" />
 		</div>
 		<Intro info={projectInfo} />
 		<Statement statement={projectInfo.goalStatement?.text ?? ""} statementTitle={projectInfo.goalStatement?.title ?? ""} />
 		<div id="techstack">
-			<h1 class="centerTitle">Tech stack</h1>
-
 			<TechStack techStack={projectInfo.techStack ?? []} />
 		</div>
 		<Button text="Ga naar de app" link="https://drivetransfercode.web.app/" />
 	</div>
 {/if}
-
 
 <style lang="scss">
     @import '../../../app.scss';
@@ -61,18 +64,6 @@ import { onMount } from "svelte";
                 margin-top: 2rem;
                 margin-bottom: -1rem;
 			}
-		}
-
-		.centerTitle {
-			width: fit-content;
-			margin: 1rem auto;
-			margin-top: 3rem;
-			text-align: center;
-			-webkit-background-clip: text;
-			background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-image: linear-gradient(141deg, #626266, #1e1e22);
-			font-size: 2rem;
 		}
 
 		@media (max-width: $maxWidth) {
