@@ -117,7 +117,7 @@
 
             #name {
                 grid-area: name;
-                font-size: min(calc(100vh - 60vw), 1.5rem);
+                font-size: 1.5rem;
                 font-weight: 600;
                 margin: 0;
                 margin-top: 0.5rem;
