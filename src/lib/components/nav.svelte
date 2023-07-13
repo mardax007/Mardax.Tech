@@ -2,6 +2,7 @@
 	import { navState, styleState } from '$lib/scripts/state';
 	import type { HomepageInfo, navData, styleData } from '$lib/scripts/types';
 	import { onMount } from 'svelte';
+	import DarkmodeSwitch from './darkmodeSwitch.svelte';
 
 	export let homepageInfos: HomepageInfo[] = [];
 
@@ -91,26 +92,32 @@
 </script>
 
 <div id="navbar" class={style.darkMode ? "dark" : ""}>
-	{#if homepageInfos.length > 0}
-		<div class="segmented-control">
-			{#each homepageInfos as option, id}
-				<input
-					checked={homepageInfos[id].default}
-					type="radio"
-					name="tab"
-					id="tab-{id}"
-					on:click={() => navState.set({ index: id, id: homepageInfos[id].id })}
-				/>
-				<label for="tab-{id}" class="segmented-control__{id}">
-					<span
-						id="tab-{id}-span"
-						style="background-image: {homepageInfos[id].colors[style.darkMode ? 'dark' : 'light'].titleColor};"
-					>{option.titleDisplay}</span>
-				</label>
-			{/each}
-			<div id="backgroundColor" class={style.darkMode ? "dark" : ""} />
-		</div>
-	{/if}
+	<div id="leftItem"></div>
+	<div id="center">
+		{#if homepageInfos.length > 0}
+			<div class="segmented-control">
+				{#each homepageInfos as option, id}
+					<input
+						checked={homepageInfos[id].default}
+						type="radio"
+						name="tab"
+						id="tab-{id}"
+						on:click={() => navState.set({ index: id, id: homepageInfos[id].id })}
+					/>
+					<label for="tab-{id}" class="segmented-control__{id}">
+						<span
+							id="tab-{id}-span"
+							style="background-image: {homepageInfos[id].colors[style.darkMode ? 'dark' : 'light'].titleColor};"
+						>{option.titleDisplay}</span>
+					</label>
+				{/each}
+				<div id="backgroundColor" class={style.darkMode ? "dark" : ""} />
+			</div>
+		{/if}
+	</div>
+	<div id="rightItem">
+		<DarkmodeSwitch />
+	</div>
 </div>
 
 <style lang="scss">
@@ -118,82 +125,83 @@
 
 	#navbar {
 		height: 4rem;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 5vw;
-
 		position: fixed;
 		top: -4rem;
-		left: 50%;
-		transform: translateX(-50%);
 		will-change: transform, opacity;
-
 		animation: moveInFromTop 0.65s 0.5s ease-in-out forwards;
 		z-index: 100;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		
+		// center the navbar
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+		min-width: 330px;
 		max-width: calc($maxWidth * 0.75);
+	}
 
-		.segmented-control {
-			will-change: transform;
-			background-color: $navbarBackgroundColor;
-			user-select: none;
-			grid-column: 3 / 4;
-			grid-row: 1 / 2;
-			width: auto;
-			height: 4rem;
-			box-shadow: $boxShadow;
-			border-radius: $borderRadius;
+	.segmented-control {
+		will-change: transform;
+		background-color: $navbarBackgroundColor;
+		user-select: none;
+		grid-column: 3 / 4;
+		grid-row: 1 / 2;
+		width: auto;
+		height: 4rem;
+		box-shadow: $boxShadow;
+		border-radius: $borderRadius;
+		display: flex;
+		align-items: center;
+
+		transition: all 0.1s ease;
+
+		span {
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+
+		input {
+			display: none;
+		}
+
+		> input:checked + label {
+			transition: all 0.5s ease;
+
+			span {
+				font-weight: 700;
+				transition: all 1s ease;
+			}
+		}
+
+		span {
+			width: 6.8rem;
+			font-size: 1.125rem;
 			display: flex;
+			justify-content: center;
 			align-items: center;
+			cursor: pointer;
+			color: #5e5e63;
+			transition: all 0.5s ease;
+			font-weight: 500;
+		}
 
-			transition: all 0.1s ease;
+		#backgroundColor {
+			position: absolute;
+			height: 3.2rem;
+			width: 6rem;
+			margin-left: 0.4rem;
+			border-radius: 2.2rem;
+			box-shadow: 0 4px 1rem 0 rgba(0, 0, 0, 0.12);
+			pointer-events: none;
+			transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);;
+		}
 
-			span {
-				-webkit-background-clip: text;
-				background-clip: text;
-				-webkit-text-fill-color: transparent;
-			}
-
-			input {
-				display: none;
-			}
-
-			> input:checked + label {
-				transition: all 0.5s ease;
-
-				span {
-					font-weight: 700;
-					transition: all 1s ease;
-				}
-			}
-
-			span {
-				width: 6.8rem;
-				font-size: 1.125rem;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				cursor: pointer;
-				color: #5e5e63;
-				transition: all 0.5s ease;
-				font-weight: 500;
-			}
-
-			#backgroundColor {
-				position: absolute;
-				height: 3.2rem;
-				width: 6rem;
-				margin-left: 0.4rem;
-				border-radius: 2.2rem;
-				box-shadow: 0 4px 1rem 0 rgba(0, 0, 0, 0.12);
-				pointer-events: none;
-				transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);;
-			}
-
-			#backgroundColor.dark {
-				box-shadow: 0 0 2rem 4px rgba(255, 255, 255, 0.12);
-			}
+		#backgroundColor.dark {
+			box-shadow: 0 0 2rem 4px rgba(255, 255, 255, 0.12);
 		}
 	}
 

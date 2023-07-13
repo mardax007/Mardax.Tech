@@ -18,6 +18,8 @@
         const getAnalytics = (await import('firebase/analytics')).getAnalytics;
         getAnalytics(getFirebaseApp());
 
+        const style = JSON.parse(localStorage.getItem("style") || "{darkMode: false}") as styleData;
+
         addEventListener("keydown", (e) => {
             if (e.key == "d") {
                 if (darkModeTimeout < Date.now()) {
@@ -46,6 +48,9 @@
                     })
 
                     setTimeout(() => {
+                        localStorage.setItem("style", JSON.stringify({
+                            darkMode: !style.darkMode
+                        }));
                         styleState.update((x) => {
                             x.darkMode = !x.darkMode;
                             return x;
@@ -58,6 +63,3 @@
 </script>
 
 <slot></slot>
-
-<style lang="scss">
-</style>
