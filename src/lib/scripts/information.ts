@@ -53,8 +53,8 @@ async function getHomepageInfo(): Promise<HomepageInfo[]> {
     return data
 }
 
-async function getProjectsInfo(): Promise<Project[]> {
-    if (sessionStorage.getItem("projects")) return JSON.parse(sessionStorage.getItem("projects"));
+async function getProjectsInfo(noCache = false): Promise<Project[]> {
+    if (sessionStorage.getItem("projects") && !noCache) return JSON.parse(sessionStorage.getItem("projects") ?? JSON.stringify(getProjectsInfo(true)));
 
     const temp = (await getDoc(doc(db, "data", "projects"))).data() ?? {};
     projects = Object.keys(temp).map(key => temp[key]);
@@ -66,7 +66,7 @@ async function getProjectsInfo(): Promise<Project[]> {
 }
 
 async function getProject(id: string): Promise<Project> {
-    if (projects.length === 0) await getProjectsInfo()
+    if (projects.length === 0) projects = await getProjectsInfo()
     return projects.find(project => project.id === id) ?? {} as Project;
 }
 
