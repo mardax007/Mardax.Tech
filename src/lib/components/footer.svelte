@@ -50,7 +50,7 @@
     });
 </script>
 
-<div id="footer" style="filter: invert({style.darkMode ? 1 : 0});">
+<div id="footer" class={style.darkMode ? "dark" : "light"}>
     <div id="socials">
         <a class="social" href="https://github.com/mardax007">
             <img alt="Github logo" src="./github.svg" />
@@ -68,10 +68,21 @@
 <style lang="scss">
 	@import '../../app.scss';
 
+    .dark {
+        background-color: #1a1a1a !important;
+        color: #ffffff;
+
+        img {
+            filter: invert(1);
+        }
+    }
+
     #footer {
         width: 100%;
         height: 12rem;
         background-color: #f1f1f1;
+
+        transition: background-color 0.65s ease-in-out;
 
         display: flex;
         flex-direction: column;
