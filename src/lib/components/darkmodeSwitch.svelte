@@ -10,15 +10,48 @@
 		style = x;
 	});
 
-	$: styleState.update((x) => {
-		x.darkMode = style.darkMode;
-		return x;
-	});
+	function toggleDarkMode() {
+		const overlay = document.createElement("div");
+		overlay.style.position = "fixed";
+		overlay.style.top = "0";
+		overlay.style.left = "0";
+		overlay.style.width = "100vw";
+		overlay.style.height = "100vh";
+		overlay.style.backgroundColor = !style.darkMode ? "#090909" : "#f6f6f6";
+		overlay.style.zIndex = "1000";
+		overlay.style.opacity = "0";
+		overlay.style.transition = "opacity 0.5s ease-in-out";
+		document.body.appendChild(overlay);
+
+		overlay.animate([
+			{ opacity: 0 },
+			{ opacity: 1 },
+			{ opacity: 0 }
+		], {
+			duration: 1500,
+			easing: "linear",
+			fill: "forwards"
+		})
+
+		setTimeout(() => {
+			localStorage.setItem("style", JSON.stringify({
+				darkMode: !style.darkMode
+			}));
+			styleState.update((x) => {
+				x.darkMode = !x.darkMode;
+				return x;
+			});
+		}, 750);
+
+		setTimeout(() => {
+			overlay.remove();
+		}, 1500);
+	};
 </script>
 
 <div id="darkmode">
 	<label>
-		<input type="checkbox" bind:checked={style.darkMode} />
+		<input type="checkbox" on:click={toggleDarkMode} checked={style.darkMode} />
 		<div class="planet" />
 		<div class="elements">
 			<svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
@@ -66,6 +99,7 @@
 		justify-content: center;
 		align-items: center;
 		transition: background-color 400ms ease;
+		z-index: 100;
 	}
 
 	label {
