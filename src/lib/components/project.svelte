@@ -45,7 +45,7 @@
     .dark {
         background-color: #2d2d2d !important;
         color: #fff !important;
-        box-shadow: $lightBoxShadowDark !important;
+        box-shadow: 5px 5px 1rem 10px #e4e4e410 !important;
 
         #projectImage {
             background-color: #f8f8f8 !important;
@@ -56,7 +56,7 @@
         }
 
         &:not(.disable):hover {
-            box-shadow: $lightBoxShadowDark !important;
+            box-shadow: 5px 10px 1rem 10px #e4e4e410 !important;
         }
     }
 
@@ -68,7 +68,7 @@
         border-radius: 2rem;
         height: auto;
         will-change: transform;
-        box-shadow: 5px 20px 1rem 10px #e4e4e4;
+        box-shadow: 5px 10px 1rem 5px #e4e4e4;
 
         margin-bottom: 4rem;
 

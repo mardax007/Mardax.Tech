@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Footer from "$lib/components/footer.svelte";
 	import { getFirebaseApp } from "$lib/scripts/information";
 	import { styleState } from "$lib/scripts/state";
 	import type { styleData } from "$lib/scripts/types";
@@ -23,26 +22,35 @@
             if (e.key == "d") {
                 if (darkModeTimeout < Date.now()) {
                     darkModeTimeout = Date.now() + 1000;
-                    // fade to dark or light mode
-                    document.body.animate(
-                        [
-                            { opacity: 1 },
-                            { opacity: 0 },
-                            { opacity: 0 },
-                            { opacity: 1 },
-                        ],
-                        {
-                            duration: 1000,
-                            easing: 'ease-in-out',
-                            fill: 'forwards',
-                        }
-                    );
+
+                    const overlay = document.createElement("div");
+                    overlay.style.position = "fixed";
+                    overlay.style.top = "0";
+                    overlay.style.left = "0";
+                    overlay.style.width = "100vw";
+                    overlay.style.height = "100vh";
+                    overlay.style.backgroundColor = !style.darkMode ? "#090909" : "#f6f6f6";
+                    overlay.style.zIndex = "1000";
+                    overlay.style.opacity = "0";
+                    overlay.style.transition = "opacity 0.5s ease-in-out";
+                    document.body.appendChild(overlay);
+
+                    overlay.animate([
+                        { opacity: 0 },
+                        { opacity: 1 },
+                        { opacity: 0 }
+                    ], {
+                        duration: 1500,
+                        easing: "ease-in-out",
+                        fill: "forwards"
+                    })
+
                     setTimeout(() => {
                         styleState.update((x) => {
                             x.darkMode = !x.darkMode;
                             return x;
                         });
-                    }, 500);
+                    }, 750);
                 }
             }
         })

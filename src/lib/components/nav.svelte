@@ -192,7 +192,7 @@
 			}
 
 			#backgroundColor.dark {
-				box-shadow: 0 2px 3rem 0 rgba(255, 255, 255, 0.12);
+				box-shadow: 0 0 2rem 4px rgba(255, 255, 255, 0.12);
 			}
 		}
 	}
@@ -200,7 +200,7 @@
 	.dark {
 		.segmented-control {
 			background-color: $navbarBackgroundColorDark !important;
-			box-shadow: $boxShadowDark !important;
+			box-shadow: 0 4px 1rem 0px #e4e4e440 !important;
 			box-shadow: none;
 		}
 	}

@@ -163,6 +163,7 @@
         white-space: normal;
 
         padding: 0 1rem;
+        min-height: 2.5rem;
     }
 
     @keyframes titleAnimation {
