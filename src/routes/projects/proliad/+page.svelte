@@ -100,7 +100,12 @@
 
 		#website {
 			padding-bottom: 2rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
 			iframe {
+				min-width: 550px;
 				border: none;
 				border-radius: calc($borderRadius / 2);
 			}
