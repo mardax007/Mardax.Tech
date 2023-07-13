@@ -5,6 +5,7 @@
 	import Button from "./button.svelte";
 
     export let project: Project;
+    export let index: number;
 
     let style: styleData = {
 		darkMode: false,
@@ -17,7 +18,7 @@
 
 <a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""} {style.darkMode ? "dark" : ""}">
     <div id="info">
-        <img loading="lazy" id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={getSRC(project.icon)} alt="Project Icon" />
+        <img loading={index < 3 ? "eager" : "lazy"} id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={getSRC(project.icon)} alt="Project Icon" />
         <h2 id="name">{@html project.name}</h2>
         <span id="items">
             <p id="tag">{@html project.tag}</p>
@@ -28,7 +29,7 @@
         <Button link={project.disabled ? "" : project.link} text={project.buttonText ?? "Ga naar project"} />
     </div>
     <div id="projectImage" style="background-color: {project.background ?? "transparent"};">
-        <img loading="lazy" src={getSRC(project.image)} alt="Project" class="{project.noImagePadding ? "noPadding" : "padding"}" />
+        <img loading={index < 3 ? "eager" : "lazy"} src={getSRC(project.image)} alt="Project" class="{project.noImagePadding ? "noPadding" : "padding"}" />
     </div>
 </a>
 

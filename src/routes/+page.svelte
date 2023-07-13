@@ -51,9 +51,9 @@
             <div style="will-change: opacity;" id="projects">
                 {#if nav}
                     {#await getProjectsInfo() then projects}
-                        {#each projects as project}
+                        {#each projects as project, i}
                             {#if project.categories.includes(nav.id)}
-                                <Project {project} />
+                                <Project {project} index={i} />
                             {/if}
                         {/each}
                     {/await}
@@ -66,6 +66,10 @@
 
 <style lang="scss">
     @import '../app.scss';
+
+    #content {
+        min-height: calc(100vh - 12rem);
+    }
 
     #background {
         transition: background-color 0.65s ease-in-out;
