@@ -72,7 +72,7 @@
     }
 
     #background {
-        transition: background-color 0.65s ease-in-out;
+        transition: background-color 250ms ease-in-out;
     }
 
     #loading {

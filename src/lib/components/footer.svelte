@@ -88,7 +88,7 @@
         height: 12rem;
         background-color: #f1f1f1;
 
-        transition: background-color 0.65s ease-in-out;
+        transition: background-color 250ms ease-in-out;
 
         display: flex;
         flex-direction: column;

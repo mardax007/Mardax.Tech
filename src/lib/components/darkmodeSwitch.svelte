@@ -28,7 +28,7 @@
 			{ opacity: 1 },
 			{ opacity: 0 }
 		], {
-			duration: 1500,
+			duration: 500,
 			easing: "linear",
 			fill: "forwards"
 		})
@@ -41,11 +41,11 @@
 				x.darkMode = !x.darkMode;
 				return x;
 			});
-		}, 750);
+		}, 250);
 
 		setTimeout(() => {
 			overlay.remove();
-		}, 1500);
+		}, 500);
 	};
 </script>
 
@@ -98,7 +98,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		transition: background-color 400ms ease;
+		transition: background-color 250ms ease;
 		z-index: 100;
 	}
 
