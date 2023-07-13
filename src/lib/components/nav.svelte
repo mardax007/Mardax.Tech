@@ -134,8 +134,9 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		
-		// center the navbar
+
+		transition: all 0.5s ease;
+
 		left: 50%;
 		transform: translateX(-50%);
 		width: 90%;

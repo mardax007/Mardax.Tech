@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { styleState } from '$lib/scripts/state';
 	import type { styleData } from '$lib/scripts/types';
+	import { onMount } from 'svelte';
 
 	let style: styleData = {
 		darkMode: false
@@ -47,6 +48,10 @@
 			overlay.remove();
 		}, 500);
 	};
+
+	onMount(() => {
+		styleState.update((x) => JSON.parse(localStorage.getItem("style") ?? "{darkmode: false}"));
+	})
 </script>
 
 <div id="darkmode">
