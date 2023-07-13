@@ -75,6 +75,12 @@
         img {
             filter: invert(1);
         }
+
+        #socials a {
+            &:hover {
+                background-color: #2d2d2d !important;
+            }
+        }
     }
 
     #footer {
@@ -103,6 +109,7 @@
                 margin: 0 1rem;
                 padding: .5rem;
                 border-radius: calc($borderRadius / 2);
+                transition: background-color 0.15s ease-in-out;
 
                 &:hover {
                     transform: scale(1.1);
@@ -111,7 +118,6 @@
             }
 
             img {
-                // center the image
                 display: flex;
                 cursor: pointer;
                 width: 3rem;
