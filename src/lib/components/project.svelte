@@ -108,12 +108,6 @@
             }
         }
 
-        .noPadding {
-            img {
-                width: 100%;
-            }
-        }
-
         #info {
             padding: 1rem 2rem;
 
@@ -199,6 +193,12 @@
                 width: 95% !important;
                 border-radius: 0;
             }
+        }
+    }
+
+    .noPadding {
+        img {
+            width: 100% !important;
         }
     }
 
