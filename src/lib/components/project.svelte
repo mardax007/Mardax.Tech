@@ -59,10 +59,15 @@
 </a>
 
 <style lang="scss">
+
     .disable {
         cursor: not-allowed;
         filter: grayscale(100%);
         opacity: 0.5;
+    }
+
+    .dark {
+        filter: invert(1);
     }
 
     .project {
@@ -73,8 +78,7 @@
         border-radius: 2rem;
         height: auto;
         will-change: transform;
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        box-shadow: var(--big-box-shadow);
+        box-shadow: var(--box-shadow);
 
         margin-bottom: 4rem;
 
@@ -85,10 +89,10 @@
         grid-template-rows: 1fr;
         grid-template-areas: "info projectImage";
 
+        transition: all 200ms ease-out;
 
         &:not(.disable):hover {
             transform: scale(1.025);
-            box-shadow: var(--box-shadow);
         }
 
         #projectImage {
@@ -98,28 +102,26 @@
 
             img {
                 width: 90%;
-                height: 100%;
+                padding-left: 5%;
+                height: 80%;
+                padding-top: 10%;
                 object-fit: contain;
                 border-radius: 0 2rem 2rem 0;
             }
 
-            .coverImage {
-                object-fit: cover;
+            .noPadding {
+                width: 100%;
             }
         }
 
         #info {
-            padding: 1rem 2rem;
+            padding: 2rem;
 
             img {
                 grid-area: icon;
                 width: max(calc(10vh - 7vw), 2rem);
                 height: max(calc(10vh - 7vw), 2rem);
                 object-fit: cover;
-            }
-
-            .dark {
-                filter: invert(1);
             }
 
             #name {
@@ -178,27 +180,18 @@
             grid-area: projectImage;
             object-fit: cover;
             border-radius: 0 0 2rem 2rem !important;
-            padding: 2.5% 0;
+            padding-top: 2.5%;
 
             img {
                 padding: 0% !important;
                 border-radius: 0 !important;
                 width: 95% !important;
-                margin-left: 2.5%;
             }
-        }
 
-        .padding {
-            img {
+            .padding {
                 width: 95% !important;
                 border-radius: 0;
             }
-        }
-    }
-
-    .noPadding {
-        img {
-            width: 100% !important;
         }
     }
 
@@ -211,27 +204,16 @@
         }
 
         #projectImage {
-            grid-area: projectImage;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
             border-radius: 0 0 2rem 2rem !important;
-
             max-height: 50vw;
 
             img {
-                padding-top: 0 !important;
-                padding-left: 0% !important;
-                border-radius: 0 !important;
-            }
-        }
-
-        .padding {
-            padding: 5% 0;
-            img {
+                padding: 0 !important;
+                height: 100% !important;
+                // center
                 width: 95% !important;
-                margin-left: 2.5%;
-                border-radius: 0;
+                margin-left: 2.5% !important;
+                border-radius: 0 !important;
             }
         }
     }
