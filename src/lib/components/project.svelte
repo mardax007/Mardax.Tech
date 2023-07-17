@@ -1,24 +1,43 @@
 <script lang="ts">
+    import { onMount } from "svelte";
 	import { getSRC } from "$lib/scripts/information";
-	import { styleState } from "$lib/scripts/state";
-	import type { Project, styleData } from "$lib/scripts/types";
+	import type { Project } from "$lib/scripts/types";
 	import Button from "./button.svelte";
 
     export let project: Project;
     export let index: number;
 
-    let style: styleData = {
-		darkMode: false,
-	} as styleData;
+    const style = {
+        darkMode: false
+    }
 
-	styleState.subscribe((x) => {
-		style = x;
-	})
+    onMount(() => {
+        addEventListener("styleUpdated", () => {
+			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
+		})
+
+        addEventListener("resize", () => {
+            width = window.innerWidth;
+        });
+
+        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    });
+
+    let width = window.innerWidth;
+
+    console.log(project.name, project.fadeInfo)
 </script>
 
-<a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""} {style.darkMode ? "dark" : ""}">
-    <div id="info">
-        <img loading={index < 3 ? "eager" : "lazy"} id="icon" style="{project.rounded ? "border-radius: 0.5rem;" : ""}" src={getSRC(project.icon)} alt="Project Icon" />
+<a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""}">
+    <div id="info" style={project.fadeInfo ? `background: linear-gradient(${project.isvertical || width < 888 ? "180deg" : "90deg"}, transparent 95%, ${project.background ?? "var(--secondary-color)"} 100%, ${project.background ?? "var(--secondary-color)"} 110%);` : ""}>
+        <img
+            class="{style.darkMode ? 'dark' : ''}"
+            loading={index < 3 ? "eager" : "lazy"}
+            id="icon"
+            style="{project.rounded ? "border-radius: 0.5rem;" : ""}"
+            src={getSRC(project.icon)}
+            alt="Project Icon"
+        />
         <h2 id="name">{@html project.name}</h2>
         <span id="items">
             <p id="tag">{@html project.tag}</p>
@@ -28,51 +47,36 @@
         <p id="description">{@html project.shortText}</p>
         <Button link={project.disabled ? "" : project.link} text={project.buttonText ?? "Ga naar project"} />
     </div>
-    <div id="projectImage" style="background-color: {project.background ?? "transparent"};">
-        <img loading={index < 3 ? "eager" : "lazy"} src={getSRC(project.image)} alt="Project" class="{project.noImagePadding ? "noPadding" : "padding"}" />
+    <div id="projectImage"
+        style="background-color: {project.background ?? "var(--secondary-color)"};">
+        <img
+            loading={index < 3 ? "eager" : "lazy"}
+            src={getSRC(project.image)} alt="Project"
+            class="{project.noImagePadding ? "noPadding" : "padding"} {project.coverImage ? 'coverImage' : ''}"
+        />
     </div>
 </a>
 
 <style lang="scss">
-    @import '../../app.scss';
-
     .disable {
         cursor: not-allowed;
         filter: grayscale(100%);
         opacity: 0.5;
     }
 
-    .dark {
-        background-color: #2d2d2d !important;
-        color: #fff !important;
-        box-shadow: 5px 5px 1rem 10px #e4e4e410 !important;
-
-        #projectImage {
-            background-color: #f8f8f8 !important;
-        }
-
-        #icon {
-            filter: invert(1);
-        }
-
-        &:not(.disable):hover {
-            box-shadow: 5px 10px 1rem 10px #e4e4e410 !important;
-        }
-    }
-
     .project {
         text-decoration: none;
-        color: invert($color: $textColor);
+        color: var(--text-color);
         max-width: min(70vw, $maxWidth);
         margin: 0 auto;
         border-radius: 2rem;
         height: auto;
         will-change: transform;
-        box-shadow: 5px 10px 1rem 5px #e4e4e4;
+        box-shadow: var(--big-box-shadow);
 
         margin-bottom: 4rem;
 
-        background-color: #eceff1;
+        background-color: var(--secondary-color);
 
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -83,8 +87,8 @@
 
         &:not(.disable):hover {
             transform: scale(1.025);
-            background-color: #f6f6f6;
-            box-shadow: $boxShadow;
+            // background-color: var(--background-color);
+            box-shadow: var(--box-shadow);
         }
 
         #projectImage {
@@ -94,11 +98,13 @@
 
             img {
                 width: 90%;
-                padding-left: 5%;
-                height: 80%;
-                padding-top: 10%;
+                height: 100%;
                 object-fit: contain;
                 border-radius: 0 2rem 2rem 0;
+            }
+
+            .coverImage {
+                object-fit: cover;
             }
 
             .noPadding {
@@ -107,13 +113,17 @@
         }
 
         #info {
-            padding: 2rem;
+            padding: 1rem 2rem;
 
             img {
                 grid-area: icon;
                 width: max(calc(10vh - 7vw), 2rem);
                 height: max(calc(10vh - 7vw), 2rem);
                 object-fit: cover;
+            }
+
+            .dark {
+                filter: invert(1);
             }
 
             #name {
@@ -172,12 +182,13 @@
             grid-area: projectImage;
             object-fit: cover;
             border-radius: 0 0 2rem 2rem !important;
-            padding-top: 2.5%;
+            padding: 2% 0;
 
             img {
                 padding: 0% !important;
                 border-radius: 0 !important;
                 width: 95% !important;
+                margin-left: 2.5%;
             }
 
             .padding {
@@ -201,7 +212,6 @@
             height: 100%;
             object-fit: cover;
             border-radius: 0 0 2rem 2rem !important;
-            padding-top: 5%;
 
             max-height: 50vw;
 

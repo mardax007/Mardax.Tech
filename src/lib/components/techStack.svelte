@@ -1,21 +1,12 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
-	import { styleState } from "$lib/scripts/state";
-	import type { TechStack, styleData } from "$lib/scripts/types";
+	import type { TechStack } from "$lib/scripts/types";
 
     export let techStack: TechStack[];
-
-    let style: styleData = {
-		darkMode: false,
-	} as styleData;
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
 </script>
 
-<h1 class={style.darkMode ? "darkTitle" : "lightTitle"}>Tech stack</h1>
-<div id="stack" class={style.darkMode ? "dark" : "light"}>
+<h1>Tech stack</h1>
+<div id="stack">
     {#each techStack as tech}
         <a href={tech.link} class="techstack__item">
             <img loading="lazy" src={getSRC(tech.logo)} alt={tech.name + ' logo'} />
@@ -26,25 +17,13 @@
 </div>
 
 <style lang="scss">
-    @import '../../app.scss';
-
-    .dark {
-        * {
-            color: $textColor !important;
-        }
-    }
-
-    .darkTitle {
-        color: $textColor !important;
-    }
-
     h1 {
         width: fit-content;
         margin: 1rem auto;
         margin-top: 3rem;
         text-align: center;
         font-size: 2rem;
-        color: invert($color: $textColor);
+        color: var(--text-color);
     }
 
     #stack {
@@ -70,7 +49,7 @@
             }
 
             h3, p {
-                color: invert($color: $textColor);
+                color: var(--text-color);
             }
 
             h3 {

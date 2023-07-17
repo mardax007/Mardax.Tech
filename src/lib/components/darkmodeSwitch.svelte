@@ -1,62 +1,65 @@
 <script lang="ts">
-	import { styleState } from '$lib/scripts/state';
-	import type { styleData } from '$lib/scripts/types';
 	import { onMount } from 'svelte';
 
-	let style: styleData = {
+	const style = {
 		darkMode: false
-	} as styleData;
-
-	styleState.subscribe((x) => {
-		style = x;
-	});
-
-	function toggleDarkMode() {
-		const overlay = document.createElement("div");
-		overlay.style.position = "fixed";
-		overlay.style.top = "0";
-		overlay.style.left = "0";
-		overlay.style.width = "100vw";
-		overlay.style.height = "100vh";
-		overlay.style.backgroundColor = !style.darkMode ? "#090909" : "#f6f6f6";
-		overlay.style.zIndex = "1000";
-		overlay.style.opacity = "0";
-		overlay.style.transition = "opacity 0.5s ease-in-out";
-		document.body.appendChild(overlay);
-
-		overlay.animate([
-			{ opacity: 0 },
-			{ opacity: 1 },
-			{ opacity: 0 }
-		], {
-			duration: 500,
-			easing: "linear",
-			fill: "forwards"
-		})
-
-		setTimeout(() => {
-			localStorage.setItem("style", JSON.stringify({
-				darkMode: !style.darkMode
-			}));
-			styleState.update((x) => {
-				x.darkMode = !x.darkMode;
-				return x;
-			});
-		}, 250);
-
-		setTimeout(() => {
-			overlay.remove();
-		}, 500);
 	};
 
 	onMount(() => {
-		styleState.update((x) => JSON.parse(localStorage.getItem("style") ?? "{darkmode: false}"));
+		const darkmodeToggle = document.getElementById('darkmode');
+
+		darkmodeToggle?.addEventListener('mousemove', (e) => {
+			const distanceX = (e.clientX - darkmodeToggle.getBoundingClientRect().left - darkmodeToggle.clientWidth / 2);
+			const distanceY = (e.clientY - darkmodeToggle.getBoundingClientRect().top - darkmodeToggle.clientHeight / 2);
+
+
+			darkmodeToggle.animate(
+				[
+					{ transform: `translate(${distanceX / 20}px, ${distanceY / 10}px)` },
+				],
+				{
+					duration: 500,
+					easing: 'ease-in-out',
+					fill: 'forwards',
+				}
+			);
+		});
+
+		darkmodeToggle?.addEventListener('mouseleave', () => {
+			darkmodeToggle.animate(
+				[
+					{ transform: `translate(0)` },
+				],
+				{
+					duration: 500,
+					easing: 'ease-in-out',
+					fill: 'forwards',
+				}
+			);
+		});
+
+		const defaultStyle = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+		if (defaultStyle != style.darkMode) {
+			toggleDarkMode();
+		}
+
+		style.darkMode = defaultStyle;
 	})
+
+	function toggleDarkMode() {
+		document.documentElement.setAttribute(
+			'data-theme',
+			!style.darkMode ? 'dark' : 'light'
+		);
+
+		dispatchEvent(new CustomEvent("styleUpdated"));
+	};
 </script>
 
 <div id="darkmode">
 	<label>
-		<input type="checkbox" on:click={toggleDarkMode} checked={style.darkMode} />
+		<input type="checkbox" on:click={toggleDarkMode} bind:checked={style.darkMode} />
 		<div class="planet" />
 		<div class="elements">
 			<svg version="1.1" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
@@ -99,7 +102,6 @@
 	#darkmode {
 		box-sizing: border-box;
 		-webkit-font-smoothing: antialiased;
-		min-height: 100vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;

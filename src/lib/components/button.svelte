@@ -1,16 +1,6 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
 	import { onMount } from "svelte";
-    import type { styleData } from "$lib/scripts/types";
-    import { styleState } from "$lib/scripts/state";
-
-    let style: styleData = {
-        darkMode: false,
-    } as styleData;
-
-    styleState.subscribe((x) => {
-        style = x;
-    })
 
     export let text: string = "Button";
     export let link: string = "";
@@ -52,20 +42,12 @@
     })
 </script>
 
-<a href={link} id={id} class="whiteButton {style.darkMode ? "dark" : "light"}">
+<a href={link} id={id} class="whiteButton">
     <h3 id="view">{text}</h3>
     <img loading="lazy" src={getSRC("/arrow.svg")} alt="Arrow Right" />
 </a>
 
 <style lang="scss">
-    @import '../../app.scss';
-
-    .dark h3 {
-        background-image: linear-gradient(107deg, #626266, #1e1e22);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
 
     .whiteButton {
         will-change: transform;
@@ -89,8 +71,8 @@
         transition: all 100ms ease-out;
 
         &:hover {
-            background-color: #f6f6f6;
-            border: 2px solid #eceff1;
+            filter: brightness(0.75);
+            border: 2px solid var(--border-color);
 
             img {
                 transform: translateX(-0.5rem);

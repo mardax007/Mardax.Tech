@@ -1,16 +1,6 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
-	import { styleState } from "$lib/scripts/state";
-	import type { styleData } from "$lib/scripts/types";
 	import { onMount } from "svelte";
-
-    let style: styleData = {
-		darkMode: false,
-	} as styleData;
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
 
     onMount(() => {
         const backButton = document.getElementById('backButton');
@@ -44,30 +34,31 @@
                 }
             );
         });
+
+        addEventListener("styleUpdated", () => {
+			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
+		})
+        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     })
+
+    const style = {
+        darkMode: false,
+    };
 </script>
 
-<a href="../" id="backButton" class={style.darkMode ? "dark" : "light"}>
+<a href="../" id="backButton" class="{style.darkMode ? "dark" : ""}">
     <img loading="lazy" src={getSRC("/arrow.svg")} alt="Back arrow" />
 </a>
 
 <style lang="scss">
-    @import '../../app.scss';
-
-    .dark {
-        img {
-            background-color: $darkContrast !important;
-        }
-    }
-
-    .light {
-        filter: invert(0);
-    }
-
     a {
         text-decoration: none;
         margin: 0;
         will-change: transform;
+    }
+
+    .dark {
+        filter: invert(1);
     }
 
     img {

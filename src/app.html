@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
-	<meta name="theme-color" content="#333333">
-	<title>Mardax.Tech</title>
-	<link rel="icon" type="image/png" href="/laptop.svg" />
-	<link rel="apple-touch-icon" href="/laptop.svg" />
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="preconnect" href="https://firestore.googleapis.com">
-	<meta name="description" content="Portfolio of Martijn Vriesman aka Mardax">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<meta name="theme-color" content="#333333">
+		<title>Mardax.Tech</title>
+		<link rel="icon" type="image/png" href="/laptop.svg" />
+		<link rel="apple-touch-icon" href="/laptop.svg" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link rel="preconnect" href="https://firestore.googleapis.com">
+		<meta name="description" content="Portfolio of Martijn Vriesman aka Mardax">
 
-	%sveltekit.head%
-</head>
+		%sveltekit.head%
+	</head>
 
-<body data-sveltekit-preload-data="hover">
-	<div style="display: contents">%sveltekit.body%</div>
-</body>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 
-<style>
-	body {
-		margin: 0;
-		padding: 0;
-		/* background-color: #f6f6f6; */
-		overflow-x: hidden;
-	}
-</style>
+	<style lang="scss">
+		@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+		body {
+			margin: 0;
+			padding: 0;
+			overflow-x: hidden;
+			font-family: 'Roboto', sans-serif;
+		}
+
+		:root {
+			--text-color: #050505;
+			--background-color: #fafafa;
+			--primary-color: #353535;
+			--secondary-color: #e6e6e6;
+			--accent-color: #1900ff;
+			--border-color: #eceff1;
+			--box-shadow: 0 4px 2.5rem 0 #1b1b1b23;
+			--big-box-shadow: 5px 5px 1rem 10px #e4e4e430;
+
+			background-color: var(--background-color);
+			color: var(--text-color);
+		}
+
+		:root[data-theme="dark"] {
+			--text-color: #fafafa;
+			--background-color: #050505;
+			--primary-color: #353535;
+			--secondary-color: #1a1a1a;
+			--accent-color: #7566ff;
+			--border-color: #1b1b1b;
+			--box-shadow: 0 4px 2.5rem 0 #eceff123;
+			--big-box-shadow: 5px 5px 1rem 10px #e4e4e410;
+		}
+
+	</style>
 
 </html>

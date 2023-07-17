@@ -5,8 +5,4 @@ const navState = writable({
     id: "",
 });
 
-const styleState = writable({
-    darkMode: false,
-});
-
-export { navState, styleState };
+export { navState };

@@ -5,19 +5,9 @@
 	import Statement from "$lib/components/statement.svelte";
 	import TechStack from "$lib/components/techStack.svelte";
 	import { getProject, getSRC } from "$lib/scripts/information";
-	import type { styleData } from "$lib/scripts/types";
-	import { styleState } from "$lib/scripts/state";
-
-	let style: styleData = {
-		darkMode: false,
-	};
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
 </script>
 
-<div class={style.darkMode ? "dark" : "light"}>
+<div>
 	{#await getProject("22Rollingsticks") then projectInfo}
 		<div id="wrapper">
 			<div id="header">
@@ -35,14 +25,6 @@
 </div>
 
 <style lang="scss">
-    @import '../../../app.scss';
-
-	.dark {
-		* {
-			color: $textColor !important;
-		}
-	}
-
     #wrapper {
 		max-width: ($maxWidth * 0.75);
         width: 100vw;
@@ -72,7 +54,7 @@
 			margin: 1rem auto;
 			margin-top: 3rem;
 			text-align: center;
-			color: invert($color: $textColor);
+			color: var(--text-color);
 			font-size: 2rem;
 		}
 

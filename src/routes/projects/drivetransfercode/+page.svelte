@@ -4,8 +4,7 @@
 	import Statement from "$lib/components/statement.svelte";
 	import TechStack from "$lib/components/techStack.svelte";
 	import { getProject, getSRC } from "$lib/scripts/information";
-	import type { Project, styleData } from "$lib/scripts/types";
-	import { styleState } from "$lib/scripts/state";
+	import type { Project } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
 	onMount(async () => {
@@ -16,15 +15,13 @@
 		} else {
 			projectInfo = await getProject("22DTC")
 		}
+
+		style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 	});
 
-	let style: styleData = {
-		darkMode: false,
-	};
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
+	const style = {
+		darkMode: false
+	}
 
 	let projectInfo: Project
 </script>
@@ -44,8 +41,6 @@
 {/if}
 
 <style lang="scss">
-    @import '../../../app.scss';
-
     #wrapper {
 		max-width: ($maxWidth * 0.75);
         width: 100vw;

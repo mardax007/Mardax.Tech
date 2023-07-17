@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { getSRC } from "$lib/scripts/information";
-    import { navState, styleState } from "$lib/scripts/state";
-	import type { HomepageInfo, navData, styleData } from "$lib/scripts/types";
+    import { navState } from "$lib/scripts/state";
+	import type { HomepageInfo, navData } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
     export let homepageInfos: HomepageInfo[] = [];
@@ -10,13 +9,9 @@
 
     $: info = homepageInfos[nav.index ?? 0]
 
-    let style: styleData = {
-		darkMode: false,
-	} as styleData;
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
+    const style = {
+        darkMode: false
+    }
 
     onMount(async () => {
         navState.subscribe((x) => {
@@ -62,11 +57,17 @@
                 setTimeout(() => nav = x, 300);
             }
         });
+
+        addEventListener("styleUpdated", () => {
+			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
+		})
+
+        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     })
 </script>
 
 <div id="aboutMe">
-    <h1 id="title" style="background-image: {info.colors[style.darkMode ? 'dark' : 'light'].titleColor ?? "black"}">{info.title}</h1>
+    <h1 id="title">{info.title}</h1>
     <div id="location">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 12.75C13.6569 12.75 15 11.4069 15 9.75C15 8.09315 13.6569 6.75 12 6.75C10.3431 6.75 9 8.09315 9 9.75C9 11.4069 10.3431 12.75 12 12.75Z" stroke="url(#paint0_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,102 +80,59 @@
             </linearGradient>
             </defs>
         </svg>
-        <p style="background-image: {info.colors[style.darkMode ? 'dark' : 'light'].locationColor ?? "black"};">{info.location}</p>
+        <p>{info.location}</p>
     </div>
-    <p id="description" style="background-image: {info.colors[style.darkMode ? 'dark' : 'light'].descriptionColor ?? "black"}">{info.description}</p>
+    <p id="description">{info.description}</p>
 </div>
 
 <style lang="scss">
-    @import '../../app.scss';
-
-    #title {
-        font-size: min(10vw, 4.5rem);
-        text-align: center;
-        letter-spacing: -1.25px;
-
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        margin-top: 150px;
-        margin-bottom: 0;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-
-        background-size: 200%;
-        animation: titleAnimation 30s linear infinite;
-    }
-
     #aboutMe {
         opacity: 0;
         max-width: calc($maxWidth * 0.9);
         margin: 0 auto;
         margin-bottom: 4rem;
-        will-change: opacity;
+        will-change: auto;
 
         * {
             overflow: hidden;
             white-space: nowrap;
         }
-    }
 
-    #location {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        p {
-            font-size: min(5vw, 1.5rem);
+        #title {
+            font-size: min(10vw, 4.5rem);
             text-align: center;
-            color: #5e5e63;
+            letter-spacing: -1.25px;
 
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-
-            background-size: 200%;
-            animation: titleAnimation 30s linear infinite;
+            margin-top: 150px;
+            margin-bottom: 0;
         }
 
-        svg {
-            padding-right: 0.25rem;
-        }
-    }
+        #location {
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-    #description {
-        font-size: 1rem;
-        text-align: center;
-        color: #5e5e63;
+            p {
+                font-size: min(5vw, 1.2rem);
+                text-align: center;
+            }
 
-        max-width: calc($maxWidth * 0.65);
-        margin: 0 auto;
-
-        font-weight: 500;
-
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 200%;
-        animation: titleAnimation 30s linear infinite;
-        white-space: normal;
-
-        padding: 0 1rem;
-        min-height: 2.5rem;
-    }
-
-    @keyframes titleAnimation {
-        0% {
-            background-position: 0%;
+            svg {
+                padding-right: 0.25rem;
+            }
         }
 
-        100% {
-            background-position: 200%;
+        #description {
+            font-size: 1rem;
+            text-align: center;
+
+            max-width: calc($maxWidth * 0.65);
+            margin: 0 auto;
+
+            white-space: normal;
+
+            min-height: 2.5rem;
+            padding: 0 1rem;
         }
     }
 </style>

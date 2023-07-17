@@ -54,13 +54,13 @@ async function getHomepageInfo(): Promise<HomepageInfo[]> {
 }
 
 async function getProjectsInfo(noCache = false): Promise<Project[]> {
-    if (sessionStorage.getItem("projects") && !noCache) return JSON.parse(sessionStorage.getItem("projects") ?? JSON.stringify(getProjectsInfo(true)));
+    // if (sessionStorage.getItem("projects") && !noCache) return JSON.parse(sessionStorage.getItem("projects") ?? JSON.stringify(getProjectsInfo(true)));
 
     const temp = (await getDoc(doc(db, "data", "projects"))).data() ?? {};
     projects = Object.keys(temp).map(key => temp[key]);
     projects.sort((a, b) => b.order - a.order);
 
-    sessionStorage.setItem("projects", JSON.stringify(projects));
+    // sessionStorage.setItem("projects", JSON.stringify(projects));
 
     return projects;
 }

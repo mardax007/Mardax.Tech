@@ -4,19 +4,9 @@
 	import Statement from "$lib/components/statement.svelte";
 	import Video from "$lib/components/video.svelte";
 	import { getProject, getSRC } from "$lib/scripts/information";
-    import type { styleData } from "$lib/scripts/types";
-    import { styleState } from "$lib/scripts/state";
-
-    let style: styleData = {
-        darkMode: false,
-    };
-
-    styleState.subscribe((x) => {
-        style = x;
-    })
 </script>
 
-<div class={style.darkMode ? "dark" : "light"}>
+<div>
     {#await getProject("21Huiz") then projectInfo}
         <div id="wrapper">
             <div id="header">
@@ -36,14 +26,6 @@
 </div>
 
 <style lang="scss">
-    @import '../../../app.scss';
-
-    .dark {
-        h3 {
-            color: $textColor !important;
-        }
-    }
-
     #wrapper {
         max-width: ($maxWidth * 0.75);
         width: 100vw;
@@ -71,7 +53,6 @@
                 line-height: 160%;
                 text-align: center;
                 margin-top: 2rem;
-                color: invert($color: $textColor)
             }
 
             img {

@@ -5,21 +5,23 @@
 	import Intro from '$lib/components/intro.svelte';
 	import ProcesTimeline from '$lib/components/proces-timeline.svelte';
 	import { getProject, getSRC } from '$lib/scripts/information';
-	import type { styleData } from '$lib/scripts/types';
-	import { styleState } from '$lib/scripts/state';
+	import { onMount } from 'svelte';
 
-	let style: styleData = {
+	const style = {
         darkMode: false,
     };
 
-    styleState.subscribe((x) => {
-        style = x;
+    onMount(() => {
+        addEventListener("styleUpdated", () => {
+			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
+		})
+        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     })
 </script>
 
-<div class={style.darkMode ? "dark" : "light"}>
+<div>
 {#await getProject("23Nutricia") then projectInfo}
-	<div id="wrapper">
+	<div id="wrapper" class="{style.darkMode ? "dark" : ""}">
 		<div id="header">
 			<img loading="lazy" src={getSRC("/PKU Lophlex.png")} alt="Nutricia logo" />
 		</div>
@@ -168,7 +170,7 @@
 </div>
 
 <style lang="scss">
-	@import '../../../app.scss';
+	
 	
 	.dark {
 		h1, h3 {
@@ -220,7 +222,7 @@
 
 		h3,
 		h1 {
-			color: invert($color: $textColor);
+			color: var(--text-color);
 		}
 
 		.centerTitle {
@@ -277,7 +279,7 @@
 				align-items: center;
 				margin: 1rem;
 				max-width: calc($maxWidth * 0.5);
-				color: invert($color: $textColor);
+				color: var(--text-color);
 
 				img {
 					width: 5rem;
@@ -320,7 +322,7 @@
 
 			th {
 				background-color: #4472c4;
-				color: $textColor;
+				color: var(--text-color);
 			}
 		}
 

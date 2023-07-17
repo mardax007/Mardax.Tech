@@ -1,21 +1,12 @@
 <script lang="ts">
-	import { styleState } from "$lib/scripts/state";
-	import type { Tags, styleData } from "$lib/scripts/types";
+	import type { Tags } from "$lib/scripts/types";
 
     export let tags: Tags | undefined;
     export let version = 1;
-
-    let style: styleData = {
-		darkMode: false,
-	} as styleData;
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
 </script>
 
 {#if tags}
-    <div id="role-learn" class={style.darkMode ? "dark" : "light"}>
+    <div id="role-learn">
         <div id="role">
             {#if tags.roleTitle}
                 <h3>{@html tags.roleTitle}</h3>
@@ -49,13 +40,6 @@
 {/if}
 
 <style lang="scss">
-    @import '../../app.scss';
-
-    .dark {
-        * {
-            color: $textColor !important;
-        }
-    }
     h3 {
         font-size: 1.2rem;
         font-weight: 500;

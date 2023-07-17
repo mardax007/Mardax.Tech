@@ -1,132 +1,143 @@
 <script lang="ts">
-	import { navState, styleState } from '$lib/scripts/state';
-	import type { HomepageInfo, navData, styleData } from '$lib/scripts/types';
+	import { navState } from '$lib/scripts/state';
+	import type { HomepageInfo, navData } from '$lib/scripts/types';
 	import { onMount } from 'svelte';
 	import DarkmodeSwitch from './darkmodeSwitch.svelte';
+	import BackButton from './backButton.svelte';
 
-	export let homepageInfos: HomepageInfo[] = [];
+	export let homepageInfos: HomepageInfo[];
+	export let backButton: boolean = false;
 
-	let nav: navData;
-	navState.subscribe((x) => {
-		nav = x;
-	});
-
-	let style: styleData = {
-		darkMode: false,
-	} as styleData;
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
-
-	let defaultIndex = homepageInfos.findIndex((x: HomepageInfo) => x.default);
-	defaultIndex = defaultIndex == -1 ? 0 : defaultIndex;
-	navState.set({ index: defaultIndex, id: homepageInfos[defaultIndex].id });
+	const style = {
+		darkMode: false
+	}
 
 	let currentCategory = 0;
+	let nav: navData;
+
+	if (homepageInfos) {
+		navState.subscribe((x) => {
+			nav = x;
+		});
+
+		let defaultIndex = homepageInfos.findIndex((x: HomepageInfo) => x.default);
+		defaultIndex = defaultIndex == -1 ? 0 : defaultIndex;
+		navState.set({ index: defaultIndex, id: homepageInfos[defaultIndex].id });
+	}
 
 	onMount(async () => {
-		navState.subscribe((x) => {
-			currentCategory = x.index;
-			const backgroundColor = document.getElementById('backgroundColor');
-			const span = document.getElementById(`tab-${currentCategory}-span`);
-			if (homepageInfos.length < 0 || !backgroundColor || !span) return;
+		style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		if (homepageInfos) {
+			navState.subscribe((x) => {
+				currentCategory = x.index;
+				const backgroundColor = document.getElementById('backgroundColor');
+				const span = document.getElementById(`tab-${currentCategory}-span`);
+				if (homepageInfos.length < 0 || !backgroundColor || !span) return;
 
-			backgroundColor.style.transform = `translateX(${6.8 * currentCategory}rem)`;
+				backgroundColor.style.transform = `translateX(${6.8 * currentCategory}rem)`;
 
-			const spans = document.querySelectorAll('span');
+				const spans = document.querySelectorAll('span');
 
-			spans.forEach((span) => {
-				span.classList.remove('selected');
+				spans.forEach((span) => {
+					span.classList.remove('selected');
+					span.style.fontWeight = '500';
+				});
+
+				span.style.transform = 'scale(0.9)';
+				span.style.transition = 'transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)';
+
 				span.style.fontWeight = '500';
+
+				setTimeout(() => {
+					span.style.fontWeight = '600';
+				}, 100);
+
+				setTimeout(() => {
+					span.style.fontWeight = '700';
+					span.style.transform = 'scale(1)';
+				}, 300);
 			});
 
-			span.style.transform = 'scale(0.9)';
-			span.style.transition = 'transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1)';
+			const segmentedControl = document.querySelector('.segmented-control');
+			if (!segmentedControl) return;
 
-			span.style.fontWeight = '500';
-
-			setTimeout(() => {
-				span.style.fontWeight = '600';
-			}, 100);
-
-			setTimeout(() => {
-				span.style.fontWeight = '700';
-				span.style.transform = 'scale(1)';
-			}, 300);
-		});
-
-		const segmentedControl = document.querySelector('.segmented-control');
-		if (!segmentedControl) return;
-
-		segmentedControl.addEventListener('mousemove', (e) => {
-			const distanceX = (e.clientX - segmentedControl.getBoundingClientRect().left - segmentedControl.clientWidth / 2);
-			const distanceY = (e.clientY - segmentedControl.getBoundingClientRect().top - segmentedControl.clientHeight / 2);
+			segmentedControl.addEventListener('mousemove', (e) => {
+				const distanceX = (e.clientX - segmentedControl.getBoundingClientRect().left - segmentedControl.clientWidth / 2);
+				const distanceY = (e.clientY - segmentedControl.getBoundingClientRect().top - segmentedControl.clientHeight / 2);
 
 
-			segmentedControl.animate(
-				[
-					{ transform: `translate(${distanceX / 20}px, ${distanceY / 10}px)` },
-				],
-				{
-					duration: 500,
-					easing: 'ease-in-out',
-					fill: 'forwards',
-				}
-			);
-		});
+				segmentedControl.animate(
+					[
+						{ transform: `translate(${distanceX / 20}px, ${distanceY / 10}px)` },
+					],
+					{
+						duration: 500,
+						easing: 'ease-in-out',
+						fill: 'forwards',
+					}
+				);
+			});
 
-		segmentedControl.addEventListener('mouseleave', () => {
-			segmentedControl.animate(
-				[
-					{ transform: `translate(0)` },
-				],
-				{
-					duration: 500,
-					easing: 'ease-in-out',
-					fill: 'forwards',
-				}
-			);
+			segmentedControl.addEventListener('mouseleave', () => {
+				segmentedControl.animate(
+					[
+						{ transform: `translate(0)` },
+					],
+					{
+						duration: 500,
+						easing: 'ease-in-out',
+						fill: 'forwards',
+					}
+				);
+			});
+		}
+
+		addEventListener("styleUpdated", () => {
+			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
 		});
 	});
 </script>
 
-<div id="navbar" class={style.darkMode ? "dark" : ""}>
-	<div id="leftItem"></div>
-	<div id="center">
-		{#if homepageInfos.length > 0}
-			<div class="segmented-control">
-				{#each homepageInfos as option, id}
-					<input
-						checked={homepageInfos[id].default}
-						type="radio"
-						name="tab"
-						id="tab-{id}"
-						on:click={() => navState.set({ index: id, id: homepageInfos[id].id })}
-					/>
-					<label for="tab-{id}" class="segmented-control__{id}">
-						<span
-							id="tab-{id}-span"
-							style="background-image: {homepageInfos[id].colors[style.darkMode ? 'dark' : 'light'].titleColor};"
-						>{option.titleDisplay}</span>
-					</label>
-				{/each}
-				<div id="backgroundColor" class={style.darkMode ? "dark" : ""} />
-			</div>
+<div id="navbar">
+	<div id="leftItem">
+		{#if backButton}
+			<BackButton />
 		{/if}
 	</div>
+	{#if homepageInfos}
+		<div id="center">
+			{#if homepageInfos.length > 0}
+				<div class="segmented-control">
+					{#each homepageInfos as option, id}
+						<input
+							checked={homepageInfos[id].default}
+							type="radio"
+							name="tab"
+							id="tab-{id}"
+							on:click={() => navState.set({ index: id, id: homepageInfos[id].id })}
+						/>
+						<label for="tab-{id}" class="segmented-control__{id} {style.darkMode ? "dark" : "light"}">
+							<span
+								id="tab-{id}-span"
+								style="background-image: {homepageInfos[id].colors[style.darkMode ? 'dark' : 'light'].titleColor};"
+							>{option.titleDisplay}</span>
+						</label>
+					{/each}
+					<div id="backgroundColor" class={style.darkMode ? "dark" : ""} />
+				</div>
+			{/if}
+		</div>
+	{/if}
 	<div id="rightItem">
 		<DarkmodeSwitch />
 	</div>
 </div>
 
 <style lang="scss">
-	@import '../../app.scss';
-
 	#navbar {
 		height: 4rem;
 		position: fixed;
-		top: -4rem;
+		top: -8rem;
 		will-change: transform, opacity;
 		animation: moveInFromTop 0.65s 0.5s ease-in-out forwards;
 		z-index: 100;
@@ -141,18 +152,18 @@
 		transform: translateX(-50%);
 		width: 90%;
 		min-width: 330px;
-		max-width: calc($maxWidth * 0.75);
+		max-width: calc($maxWidth * 0.9);
 	}
 
 	.segmented-control {
 		will-change: transform;
-		background-color: $navbarBackgroundColor;
+		background-color: var(--border-color);
 		user-select: none;
 		grid-column: 3 / 4;
 		grid-row: 1 / 2;
 		width: auto;
 		height: 4rem;
-		box-shadow: $boxShadow;
+		box-shadow: var(--box-shadow);
 		border-radius: $borderRadius;
 		display: flex;
 		align-items: center;
@@ -185,7 +196,6 @@
 			justify-content: center;
 			align-items: center;
 			cursor: pointer;
-			color: #5e5e63;
 			transition: all 0.5s ease;
 			font-weight: 500;
 		}
@@ -203,14 +213,6 @@
 
 		#backgroundColor.dark {
 			box-shadow: 0 0 2rem 4px rgba(255, 255, 255, 0.12);
-		}
-	}
-
-	.dark {
-		.segmented-control {
-			background-color: $navbarBackgroundColorDark !important;
-			box-shadow: 0 4px 1rem 0px #e4e4e440 !important;
-			box-shadow: none;
 		}
 	}
 

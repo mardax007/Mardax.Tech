@@ -67,25 +67,15 @@ type HomepageInfo = {
     title: string;
     location: string;
     description: string;
-    titleColor: string;
-    locationColor: string;
-    descriptionColor: string;
     colors: {
         dark: {
-            titleColor: string;
-            locationColor: string;
-            descriptionColor: string;
             pinColors: string[];
         }
         light: {
-            titleColor: string;
-            locationColor: string;
-            descriptionColor: string;
             pinColors: string[];
         }
     }
     default?: boolean;
-    mapPin: string;
     titleDisplay: string;
     id: string;
 }

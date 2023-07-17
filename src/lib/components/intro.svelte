@@ -1,21 +1,25 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
-	import { styleState } from "$lib/scripts/state";
-	import type { Project, styleData } from "$lib/scripts/types";
+	import type { Project } from "$lib/scripts/types";
+    import { onMount } from "svelte";
 
     export let info: Project;
 
-    let style: styleData = {
-		darkMode: false,
-	} as styleData;
+    const style = {
+        darkMode: false,
+    };
 
-	styleState.subscribe((x) => {
-		style = x;
-	})
+    onMount(() => {
+        addEventListener("styleUpdated", () => {
+			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
+		})
+        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    })
 </script>
 
-<div id="intro" class={style.darkMode ? "dark" : "light"}>
+<div id="intro">
     <img
+        class={style.darkMode ? 'dark' : ''}
         id="icon"
         style={info.rounded ? 'border-radius: 0.5rem;' : ''}
         src={getSRC(info.icon)}
@@ -33,27 +37,11 @@
 </div>
 
 <style lang="scss">
-    @import '../../app.scss';
-
-    .dark {
-        * {
-            color: $textColor !important;
-        }
-
-        img {
-            filter: invert(1);
-        }
-
-        #name {
-            filter: invert(1) brightness(2);
-        }
-    }
-
     #intro {
         margin-top: 1rem;
 
         p {
-            color: invert($color: $textColor);
+            color: var(--text-color);
             line-height: 150%;
         }
 
@@ -68,6 +56,12 @@
             width: 2rem;
             height: 2rem;
             object-fit: cover;
+        }
+
+        .dark {
+            #icon {
+                filter: invert(1);
+            }
         }
 
         #items {
@@ -89,11 +83,11 @@
             grid-area: name;
             font-size: 2rem;
             margin: 0.5rem 0;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+            // -webkit-background-clip: text;
+            // background-clip: text;
+            // -webkit-text-fill-color: transparent;
             width: fit-content;
-            background-image: linear-gradient(141deg, #626266, #1e1e22);
+            // background-image: linear-gradient(141deg, #626266, #1e1e22);
         }
     }
 </style>

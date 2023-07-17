@@ -1,15 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
     import type { styleData } from "$lib/scripts/types";
-    import { styleState } from "$lib/scripts/state";
-
-    let style: styleData = {
-		darkMode: false,
-	} as styleData;
-
-	styleState.subscribe((x) => {
-		style = x;
-	})
 
     onMount(() => {
         const socials = document.getElementsByClassName("social");
@@ -47,11 +38,21 @@
                 );
             });
         };
+
+        addEventListener("styleUpdated", () => {
+			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
+		})
+
+        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     });
+
+    const style = {
+        darkMode: false,
+    };
 </script>
 
-<div id="footer" class={style.darkMode ? "dark" : "light"}>
-    <div id="socials">
+<div id="footer">
+    <div id="socials" class={style.darkMode ? "dark" : ""}>
         <a class="social" href="https://github.com/mardax007">
             <img alt="Github logo" src="./github.svg" />
         </a>
@@ -66,27 +67,10 @@
 </div>
 
 <style lang="scss">
-	@import '../../app.scss';
-
-    .dark {
-        background-color: #1a1a1a !important;
-        color: #ffffff;
-
-        img {
-            filter: invert(1);
-        }
-
-        #socials a {
-            &:hover {
-                background-color: #2d2d2d !important;
-            }
-        }
-    }
-
     #footer {
         width: 100%;
         height: 12rem;
-        background-color: #f1f1f1;
+        background: linear-gradient(180deg, var(--background-color), var(--secondary-color));
 
         transition: background-color 250ms ease-in-out;
 
@@ -97,6 +81,10 @@
 
         p {
             text-align: center;
+        }
+
+        .dark {
+            filter: invert(1);
         }
 
         #socials {
