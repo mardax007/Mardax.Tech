@@ -4,7 +4,6 @@ import { navState } from "./state";
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, doc, getDoc } from "firebase/firestore/lite";
-import { getAnalytics  } from "firebase/analytics";
 
 let nav = {
     id: "",
