@@ -44,8 +44,22 @@
 			toggleDarkMode();
 		}
 
+		setTime();
+
 		style.darkMode = defaultStyle;
 	})
+
+	function setTime() {
+		const elements = document.querySelectorAll('.elements svg circle');
+
+		if (!elements) return 0;
+
+		const date = new Date();
+		const hour = Math.round(date.getHours() + date.getMinutes() / 60) % 12;
+		const currentElement = Math.floor(hour / (12 / elements.length)) % (elements.length);
+
+		elements[currentElement].style.fill = 'var(--accent-color)';
+	}
 
 	function toggleDarkMode() {
 		document.documentElement.setAttribute(
