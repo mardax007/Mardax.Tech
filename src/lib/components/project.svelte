@@ -195,6 +195,10 @@
         }
     }
 
+    .padding {
+        padding-bottom: 5%;
+    }
+
     @media (max-width: $maxWidth) {
         .project {
             grid-template-areas: "info" "projectImage";
@@ -210,7 +214,6 @@
             img {
                 padding: 0 !important;
                 height: 100% !important;
-                // center
                 width: 95% !important;
                 margin-left: 2.5% !important;
                 border-radius: 0 !important;
