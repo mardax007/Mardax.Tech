@@ -29,7 +29,7 @@
 </script>
 
 <a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""}">
-    <div id="info" style={project.fadeInfo ? `background: linear-gradient(${project.isvertical || width < 888 ? "180deg" : "90deg"}, transparent 95%, ${project.background ?? "var(--secondary-color)"} 100%, ${project.background ?? "var(--secondary-color)"} 110%);` : ""}>
+    <div id="info" style={(project.fadeInfo && style.darkMode == project.backgroundOnlyOnDarkmode) ? `background: linear-gradient(${project.isvertical || width < 888 ? "180deg" : "90deg"}, transparent 95%, ${project.background ?? "var(--secondary-color)"} 100%, ${project.background ?? "var(--secondary-color)"} 110%);` : ""}>
         <img
             class="{style.darkMode ? 'dark' : ''}"
             loading={index < 3 ? "eager" : "lazy"}
@@ -48,11 +48,12 @@
         <Button link={project.disabled ? "" : project.link} text={project.buttonText ?? "Ga naar project"} />
     </div>
     <div id="projectImage"
-        style="background-color: {project.background ?? "var(--secondary-color)"};">
+        class={project.noImagePadding ? "noPadding" : "padding"}
+        style="background-color: {(project.backgroundOnlyOnDarkmode && !style.darkMode) ? "transparent" : project.background ?? "var(--secondary-color)"};">
         <img
             loading={index < 3 ? "eager" : "lazy"}
             src={getSRC(project.image)} alt="Project"
-            class="{project.noImagePadding ? "noPadding" : "padding"} {project.coverImage ? 'coverImage' : ''}"
+            class="{project.coverImage ? 'coverImage' : ''}"
         />
     </div>
 </a>
@@ -87,7 +88,6 @@
 
         &:not(.disable):hover {
             transform: scale(1.025);
-            // background-color: var(--background-color);
             box-shadow: var(--box-shadow);
         }
 
@@ -106,8 +106,10 @@
             .coverImage {
                 object-fit: cover;
             }
+        }
 
-            .noPadding {
+        .noPadding {
+            img {
                 width: 100%;
             }
         }
@@ -182,7 +184,7 @@
             grid-area: projectImage;
             object-fit: cover;
             border-radius: 0 0 2rem 2rem !important;
-            padding: 2% 0;
+            padding: 2.5% 0;
 
             img {
                 padding: 0% !important;
@@ -190,8 +192,10 @@
                 width: 95% !important;
                 margin-left: 2.5%;
             }
+        }
 
-            .padding {
+        .padding {
+            img {
                 width: 95% !important;
                 border-radius: 0;
             }
@@ -220,8 +224,11 @@
                 padding-left: 0% !important;
                 border-radius: 0 !important;
             }
+        }
 
-            .padding {
+        .padding {
+            padding: 5% 0;
+            img {
                 width: 95% !important;
                 margin-left: 2.5%;
                 border-radius: 0;

@@ -11,3 +11,7 @@ $boxShadowDark: 0 4px 2.5rem 0px #e4e4e430;
 $lightBoxShadowDark: 0 4px 1rem 0px #e4e4e440;
 
 $maxWidth: 888px;
+
+* {
+    transition: background-color 300ms ease !important;
+}

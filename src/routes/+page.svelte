@@ -61,10 +61,6 @@
         min-height: calc(100vh - 12rem);
     }
 
-    #background {
-        transition: background-color 250ms ease-in-out;
-    }
-
     #loading {
         position: absolute;
         top: 50%;
