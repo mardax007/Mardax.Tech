@@ -26,7 +26,7 @@
 	}
 
 	onMount(async () => {
-		style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		style.darkMode = localStorage.getItem("darkMode") ? localStorage.getItem("darkMode") == "true" : window.matchMedia('(prefers-color-scheme: dark)').matches;;
 		if (homepageInfos) {
 			navState.subscribe((x) => {
 				currentCategory = x.index;
@@ -212,6 +212,11 @@
 		#backgroundColor.dark {
 			box-shadow: 0 0 2rem 4px rgba(255, 255, 255, 0.12);
 		}
+	}
+
+	#leftItem {
+		width: 4rem;
+		height: 4rem;
 	}
 
 	@keyframes moveInFromTop {

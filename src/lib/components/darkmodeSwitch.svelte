@@ -38,7 +38,7 @@
 			);
 		});
 
-		const defaultStyle = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const defaultStyle = localStorage.getItem("darkMode") ? localStorage.getItem("darkMode") == "true" : window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 		if (defaultStyle != style.darkMode) {
 			toggleDarkMode();
@@ -47,6 +47,8 @@
 		setTime();
 
 		style.darkMode = defaultStyle;
+
+		localStorage.setItem('darkMode', defaultStyle.toString());
 	})
 
 	function setTime() {
@@ -66,6 +68,8 @@
 			'data-theme',
 			!style.darkMode ? 'dark' : 'light'
 		);
+
+		localStorage.setItem('darkMode', (!style.darkMode).toString());
 
 		dispatchEvent(new CustomEvent("styleUpdated"));
 	};

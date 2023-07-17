@@ -62,7 +62,7 @@
 			style.darkMode = document.documentElement.getAttribute("data-theme") == "dark";
 		})
 
-        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        style.darkMode = localStorage.getItem("darkMode") ? localStorage.getItem("darkMode") == "true" : window.matchMedia('(prefers-color-scheme: dark)').matches;;
     })
 </script>
 

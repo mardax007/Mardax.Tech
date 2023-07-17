@@ -20,7 +20,7 @@
             width = window.innerWidth;
         });
 
-        style.darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        style.darkMode = localStorage.getItem("darkMode") ? localStorage.getItem("darkMode") == "true" : window.matchMedia('(prefers-color-scheme: dark)').matches;;
     });
 
     let width = window.innerWidth;
