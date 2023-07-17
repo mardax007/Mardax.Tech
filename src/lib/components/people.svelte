@@ -31,8 +31,6 @@
             text-decoration: none;
             color: var(--text-color);
 
-            transition: all 200ms ease-out;
-
             &:hover {
                 transform: scale(1.05);
             }

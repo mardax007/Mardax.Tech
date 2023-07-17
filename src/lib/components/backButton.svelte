@@ -74,7 +74,6 @@
 
         cursor: pointer;
 
-        transition: all 200ms ease-out;
 
         &:hover {
             transform: scale(0.9);

@@ -84,7 +84,6 @@
         grid-template-rows: 1fr;
         grid-template-areas: "info projectImage";
 
-        transition: all 200ms ease-out;
 
         &:not(.disable):hover {
             transform: scale(1.025);
