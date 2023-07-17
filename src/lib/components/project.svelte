@@ -171,6 +171,14 @@
         }
     }
 
+    .coverImage {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 0 2rem 2rem 0;
+        padding: 0 !important;
+    }
+
     .vertical {
         grid-template-areas: "info" "projectImage";
         grid-template-columns: 1fr;
@@ -186,6 +194,7 @@
                 padding: 0% !important;
                 border-radius: 0 !important;
                 width: 95% !important;
+                margin-left: 2.5% !important;
             }
 
             .padding {
@@ -193,10 +202,6 @@
                 border-radius: 0;
             }
         }
-    }
-
-    .padding {
-        padding-bottom: 5%;
     }
 
     @media (max-width: $maxWidth) {
