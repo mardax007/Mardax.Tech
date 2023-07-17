@@ -85,8 +85,4 @@ type navData = {
     index: number;
 }
 
-type styleData = {
-    darkMode: boolean;
-}
-
-export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo, navData, styleData }
+export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo, navData }
