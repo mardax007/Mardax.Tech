@@ -43,6 +43,13 @@
             align-items: center;
             margin: 1rem 0;
 
+            will-change: transform;
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
             img {
                 width: 100px;
                 height: 100px;

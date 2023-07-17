@@ -30,6 +30,8 @@
             max-width: calc($maxWidth * 0.25);
             text-decoration: none;
             color: var(--text-color);
+            will-change: transform;
+            transition: transform 0.2s ease-in-out;
 
             &:hover {
                 transform: scale(1.05);

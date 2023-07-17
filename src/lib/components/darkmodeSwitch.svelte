@@ -124,10 +124,15 @@
 	}
 
 	label {
+		transition: transform 250ms ease;
 		cursor: pointer;
 		padding: 1rem;
 		position: relative;
 		-webkit-tap-highlight-color: transparent;
+
+		&:hover {
+			transform: scale(0.9);
+		}
 	}
 
 	input[type='checkbox'] {

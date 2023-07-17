@@ -68,7 +68,7 @@
         padding: 0.5rem 0.5rem;
         border: 2px solid #eceff1;
 
-        transition: all 100ms ease-out;
+        transition: all 0.2s ease-in-out;
 
         &:hover {
             filter: brightness(0.75);
@@ -94,8 +94,8 @@
             height: 1.5rem;
             object-fit: cover;
             margin-right: 1rem;
-            transition: all 300ms ease-out;
             rotate: 180deg;
+            transition: all 0.2s ease-in-out;
         }
     }
 </style>

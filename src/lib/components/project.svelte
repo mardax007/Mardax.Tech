@@ -73,6 +73,7 @@
         border-radius: 2rem;
         height: auto;
         will-change: transform;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         box-shadow: var(--big-box-shadow);
 
         margin-bottom: 4rem;

@@ -72,8 +72,6 @@
         height: 12rem;
         background: linear-gradient(180deg, var(--background-color), var(--secondary-color));
 
-        transition: background-color 250ms ease-in-out;
-
         display: flex;
         flex-direction: column;
         justify-content: center;
