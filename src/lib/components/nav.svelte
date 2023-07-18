@@ -5,7 +5,7 @@
 	import DarkmodeSwitch from './darkmodeSwitch.svelte';
 	import BackButton from './backButton.svelte';
 
-	export let homepageInfos: HomepageInfo[];
+	export let homepageInfos: HomepageInfo[] = [];
 	export let backButton: boolean = false;
 
 	const style = {
