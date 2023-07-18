@@ -11,7 +11,7 @@
 	{#await getProject("22Rollingsticks") then projectInfo}
 		<div id="wrapper">
 			<div id="header">
-				<img loading="lazy" src={getSRC("/rollingsticks-header.png")} alt="Rollingsticks header" />
+				<img loading="lazy" src={getSRC("/rollingsticks-header.webp")} alt="Rollingsticks header" />
 			</div>
 			<Intro info={projectInfo} />
 			<Tags tags={projectInfo.tags} />

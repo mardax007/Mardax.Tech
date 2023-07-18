@@ -2,6 +2,7 @@
     import { navState } from "$lib/scripts/state";
 	import type { HomepageInfo, navData } from "$lib/scripts/types";
 	import { onMount } from "svelte";
+	import Project from "./project.svelte";
 
     export let homepageInfos: HomepageInfo[] = [];
     let nav: navData = {} as navData
@@ -67,7 +68,9 @@
 </script>
 
 <div id="aboutMe">
-    <h1 id="title">{info.title}</h1>
+    <h1 id="title"
+        style={info.colors[style.darkMode ? 'dark' : 'light'].titleColor ?? ""}
+    >{info.title}</h1>
     <div id="location">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 12.75C13.6569 12.75 15 11.4069 15 9.75C15 8.09315 13.6569 6.75 12 6.75C10.3431 6.75 9 8.09315 9 9.75C9 11.4069 10.3431 12.75 12 12.75Z" stroke="url(#paint0_linear)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -105,6 +108,11 @@
 
             margin-top: 150px;
             margin-bottom: 0;
+
+            -webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+            background-color: var(--text-color);
         }
 
         #location {

@@ -24,8 +24,6 @@
     });
 
     let width = window.innerWidth;
-
-    console.log(project.name, project.fadeInfo)
 </script>
 
 <a href={project.disabled ? "" : project.link} download="{project.download}" class="project {project.isvertical ? "vertical" : ""} {project.disabled ? "disable" : ""}">

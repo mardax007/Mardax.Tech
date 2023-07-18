@@ -29,7 +29,7 @@
 {#if projectInfo}
 	<div id="wrapper">
 		<div id="header">
-		<img loading="lazy" src={getSRC(style.darkMode ? "/DTClogoDark.png" : "/DTClogo.png")} alt="DTC logo" />
+		<img loading="lazy" src={getSRC(style.darkMode ? "/DTClogoDark.webp" : "/DTClogo.webp")} alt="DTC logo" />
 		</div>
 		<Intro info={projectInfo} />
 		<Statement statement={projectInfo.goalStatement?.text ?? ""} statementTitle={projectInfo.goalStatement?.title ?? ""} />

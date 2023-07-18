@@ -119,7 +119,7 @@
 						<label for="tab-{id}" class="segmented-control__{id} {style.darkMode ? "dark" : "light"}">
 							<span
 								id="tab-{id}-span"
-								style="background-image: {homepageInfos[id].colors[style.darkMode ? 'dark' : 'light'].titleColor};"
+								style="{homepageInfos[id].colors[style.darkMode ? 'dark' : 'light'].titleColor ?? "background-image: var(--text-color)"}"
 							>{option.titleDisplay}</span>
 						</label>
 					{/each}

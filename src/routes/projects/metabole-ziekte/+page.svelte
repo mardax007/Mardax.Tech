@@ -23,7 +23,7 @@
 {#await getProject("23Nutricia") then projectInfo}
 	<div id="wrapper" class="{style.darkMode ? "dark" : ""}">
 		<div id="header">
-			<img loading="lazy" src={getSRC("/PKU Lophlex.png")} alt="Nutricia logo" />
+			<img loading="lazy" src={getSRC("/PKU Lophlex.webp")} alt="Nutricia logo" />
 		</div>
 		<Intro info={projectInfo} />
 		<div id="content">
@@ -173,9 +173,6 @@
 	
 	
 	.dark {
-		h1, h3 {
-			color: $textColor !important;
-		}
 
 		.table {
 			tr:nth-child(even) {
@@ -189,12 +186,6 @@
 
 		#results {
 			color: #fff !important;;
-		}
-
-		#mediaList {
-			.media {
-				color: $textColor !important;
-			}
 		}
 	}
 

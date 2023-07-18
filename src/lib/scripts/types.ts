@@ -69,9 +69,11 @@ type HomepageInfo = {
     description: string;
     colors: {
         dark: {
+            titleColor?: string;
             pinColors: string[];
         }
         light: {
+            titleColor?: string;
             pinColors: string[];
         }
     }

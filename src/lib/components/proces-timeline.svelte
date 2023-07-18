@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Timeline, TimelineItem, TimelineOppositeContent, TimelineSeparator, TimelineDot, TimelineConnector, TimelineContent } from "svelte-vertical-timeline";
-    import type { TimelineItem as TimelineItemType, styleData } from "$lib/scripts/types"
+    import type { TimelineItem as TimelineItemType } from "$lib/scripts/types"
 
     export let timeline: TimelineItemType[];
     export let title: string = "Proces";

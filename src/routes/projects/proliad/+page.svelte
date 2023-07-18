@@ -12,7 +12,7 @@
 	<div id="wrapper">
 		<div id="header">
 			<img loading="lazy" src={getSRC("/proliad.jpg")} alt="Proliad header" />
-			<img loading="lazy" id="proliadLogo" src={getSRC("/proliadLogo.png")} alt="Proliad logo" />
+			<img loading="lazy" id="proliadLogo" src={getSRC("/proliadLogo.webp")} alt="Proliad logo" />
 		</div>
 		<Intro info={projectInfo} />
 		<Tags tags={projectInfo.tags} />
