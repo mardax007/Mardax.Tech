@@ -27,7 +27,7 @@
 
 <style lang="scss">
     #wrapper {
-        max-width: ($maxWidth * 0.75);
+        max-width: calc($maxWidth * 0.75);
         width: 100vw;
 		padding: 0 10vw;
 		margin: 0 auto;
@@ -59,7 +59,7 @@
                 width: 100%;
                 border-radius: $borderRadius;
                 margin: 0.5rem 0;
-                box-shadow: $boxShadow;
+                box-shadow: var(--big-box-shadow);
             }
         }
 

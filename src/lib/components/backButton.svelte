@@ -70,7 +70,7 @@
         border-radius: 50%;
         background-color: #fff;
 
-        box-shadow: $boxShadow;
+        box-shadow: var(--big-box-shadow);
 
         cursor: pointer;
 

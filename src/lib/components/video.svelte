@@ -28,7 +28,7 @@
             width: 100%;
             min-height: 400px;
             border-radius: calc($borderRadius / 2);
-            box-shadow: $boxShadow;
+            box-shadow: var(--big-box-shadow);
         }
     }
 </style>
