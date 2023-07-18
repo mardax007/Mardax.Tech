@@ -190,7 +190,6 @@
 
             img {
                 padding: 0% !important;
-                border-radius: 2rem !important;
                 width: 95% !important;
                 margin-left: 2.5% !important;
             }
@@ -219,12 +218,18 @@
                 height: 100% !important;
                 width: 95% !important;
                 margin-left: 2.5% !important;
-                border-radius: 0 0 2rem 2rem !important;
             }
 
             .coverImage {
                 width: 100% !important;
                 margin: 0 !important;
+                border-radius: 0 0 2rem 2rem !important;
+            }
+        }
+
+        .padding {
+            img {
+                border-radius: 0 !important;
             }
         }
     }
