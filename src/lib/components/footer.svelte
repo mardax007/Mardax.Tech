@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-    import type { styleData } from "$lib/scripts/types";
+	import { getSRC } from "$lib/scripts/information";
 
     onMount(() => {
         const socials = document.getElementsByClassName("social");
@@ -54,13 +54,13 @@
 <div id="footer">
     <div id="socials" class={style.darkMode ? "dark" : ""}>
         <a class="social" href="https://github.com/mardax007">
-            <img alt="Github logo" src="./github.svg" />
+            <img alt="Github logo" src={getSRC("/github.svg")} />
         </a>
         <a class="social" href="https://www.linkedin.com/in/vriesman/">
-            <img alt="LinkedIn logo" src="./linkedIn.svg" />
+            <img alt="LinkedIn logo" src={getSRC("/linkedIn.svg")} />
         </a>
         <a class="social" href="mailto:mardax007@gmail.com">
-            <img src="./mail.svg" alt="email" />
+            <img src={getSRC("/mail.svg")} alt="email" />
         </a>
     </div>
     <p>Copyright © 2023 Martijn Vriesman. All rights reserved.</p>
