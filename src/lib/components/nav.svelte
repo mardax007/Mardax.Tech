@@ -15,7 +15,7 @@
 	let currentCategory = 0;
 	let nav: navData;
 
-	if (homepageInfos) {
+	if (homepageInfos.length > 0) {
 		navState.subscribe((x) => {
 			nav = x;
 		});
