@@ -173,7 +173,7 @@
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
-        border-radius: 0 2rem 2rem 0;
+        border-radius: 2rem;
         padding: 0 !important;
     }
 
@@ -190,7 +190,7 @@
 
             img {
                 padding: 0% !important;
-                border-radius: 0 !important;
+                border-radius: 2rem !important;
                 width: 95% !important;
                 margin-left: 2.5% !important;
             }
@@ -219,7 +219,12 @@
                 height: 100% !important;
                 width: 95% !important;
                 margin-left: 2.5% !important;
-                border-radius: 0 !important;
+                border-radius: 0 0 2rem 2rem !important;
+            }
+
+            .coverImage {
+                width: 100% !important;
+                margin: 0 !important;
             }
         }
     }
