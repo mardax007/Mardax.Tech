@@ -4,7 +4,7 @@
 	import Statement from "$lib/components/statement.svelte";
 	import TechStack from "$lib/components/techStack.svelte";
 	import { getProject, getSRC } from "$lib/scripts/information";
-	import type { Project } from "$lib/scripts/types";
+	import type { ProjectData } from "$lib/scripts/types";
 	import { onMount } from "svelte";
 
 	onMount(async () => {
@@ -23,7 +23,7 @@
 		darkMode: false
 	}
 
-	let projectInfo: Project
+	let projectInfo: ProjectData
 </script>
 
 {#if projectInfo}

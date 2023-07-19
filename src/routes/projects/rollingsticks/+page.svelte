@@ -18,7 +18,7 @@
 			<Statement statement={projectInfo.problemStatement?.text ?? ""} statementTitle={projectInfo.problemStatement?.title ?? ""} />
 			<People people={projectInfo.people} />
 			<h1 class="centerTitle">Design</h1>
-			<img loading="lazy" src={getSRC("/Player.jpg")} alt="Player">
+			<img loading="lazy" src={getSRC("/Player.webp")} alt="Player">
 			<TechStack techStack={projectInfo.techStack ?? []} />
 		</div>
 	{/await}

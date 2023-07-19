@@ -11,7 +11,7 @@
 {#await getProject("22Proliad") then projectInfo}
 	<div id="wrapper">
 		<div id="header">
-			<img loading="lazy" src={getSRC("/proliad.jpg")} alt="Proliad header" />
+			<img loading="lazy" src={getSRC("/proliad.webp")} alt="Proliad header" />
 			<img loading="lazy" id="proliadLogo" src={getSRC("/proliadLogo.webp")} alt="Proliad logo" />
 		</div>
 		<Intro info={projectInfo} />

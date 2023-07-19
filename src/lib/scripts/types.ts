@@ -1,4 +1,4 @@
-type Project = {
+type ProjectData = {
     id: string;
     order: number;
     name: string;
@@ -80,6 +80,7 @@ type HomepageInfo = {
     default?: boolean;
     titleDisplay: string;
     id: string;
+    order: number;
 }
 
 type navData = {
@@ -87,4 +88,33 @@ type navData = {
     index: number;
 }
 
-export type { Project, Tags, TimelineItem, People, TechStack, HomepageInfo, navData }
+type collectionData = {
+    createTime?: string;
+    name?: string;
+    updateTime?: string;
+    fields: fields
+};
+
+type documentData = {
+        stringValue?: string;
+        integerValue?: string;
+        doubleValue?: string;
+        booleanValue?: boolean;
+        timestampValue?: string;
+        arrayValue?: array;
+        mapValue?: collectionData;
+}
+
+type fields = {
+    [key: string]: documentData
+}
+
+type map = {
+    [key: string]: unknown
+}
+
+type array = {
+    values: documentData[];
+}
+
+export type { map, array, fields, collectionData, documentData, ProjectData, Tags, TimelineItem, People, TechStack, HomepageInfo, navData }

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { getSRC } from "$lib/scripts/information";
-	import type { Project } from "$lib/scripts/types";
+	import type { ProjectData } from "$lib/scripts/types";
     import { onMount } from "svelte";
 
-    export let info: Project;
+    export let info: ProjectData;
 
     const style = {
         darkMode: false,

@@ -1,10 +1,10 @@
 <script lang="ts">
     import { onMount } from "svelte";
 	import { getSRC } from "$lib/scripts/information";
-	import type { Project } from "$lib/scripts/types";
+	import type { ProjectData } from "$lib/scripts/types";
 	import Button from "./button.svelte";
 
-    export let project: Project;
+    export let project: ProjectData;
     export let index: number;
 
     const style = {

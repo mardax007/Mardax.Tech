@@ -1,7 +1,8 @@
-import type { HomepageInfo, Project } from "./types";
+import type { HomepageInfo, ProjectData, collectionData, map, array } from "./types";
 
 import { navState } from "./state";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let nav = {
     id: "",
     index: 0
@@ -11,35 +12,44 @@ navState.subscribe((value) => {
     nav = value;
 })
 
-let projects: Project[] = [];
+let projects: ProjectData[] = [];
+let homepageInfos: HomepageInfo[] = [];
 
-async function getHomepageInfo() {
-    const response = await fetch("https://firestore.googleapis.com/v1/projects/portfoliomardaxtech/databases/(default)/documents/data/homepage?alt=json");
-    const data = await response.json();
+async function getData(): Promise<[HomepageInfo[], ProjectData[]]> {
+    let language = navigator.language.split("-")[0];
+    console.log(language);
 
-    const temp = parseDocumentData(data);
-    const homepage = Object.keys(temp).map(key => temp[key]).sort((a, b) => a.order - b.order) as HomepageInfo[]
+    const supportedLanguages = ["en", "nl", "be"];
 
+    switch (language) {
+        case "be":
+            language = "nl";
+            break;
+        default:
+            if (!supportedLanguages.includes(language)) {
+                language = "en";
+            }
+            break;
+    }
 
-    const defaultPage = homepage.find(page => page.default);
+    const response = await fetch("https://firestore.googleapis.com/v1/projects/portfoliomardaxtech/databases/(default)/documents/default?alt=json");
+    const data = (await response.json()).documents;
 
-    if (defaultPage) navState.set({ id: defaultPage.id, index: homepage.indexOf(defaultPage) });
+    if (!data) {
+        throw new Error("No data found");
+    }
 
-    return homepage;
+    const tempHomepageInfos = parseDocumentData(data[0]);
+    const tempProjects = parseDocumentData(data[1]);
+
+    projects = ((Object.keys(tempProjects).map(key => tempProjects[key])) as ProjectData[]).sort((a: ProjectData, b: ProjectData) => b.order - a.order);
+    homepageInfos = (Object.keys(tempHomepageInfos).map(key => tempHomepageInfos[key]) as HomepageInfo[]).sort((a: HomepageInfo, b: HomepageInfo) => a.order - b.order)
+
+    return [homepageInfos, projects];
 }
 
-async function getProjectsInfo(): Promise<Project[]> {
-    const response = await fetch("https://firestore.googleapis.com/v1/projects/portfoliomardaxtech/databases/(default)/documents/data/projects?alt=json");
-    const data = parseDocumentData(await response.json());
-
-    projects = Object.keys(data).map(key => data[key]);
-    projects.sort((a, b) => b.order - a.order);
-
-    return projects;
-}
-
-function parseDocumentData(data: any): any {
-    const documentData: any = {};
+function parseDocumentData(data: collectionData): map {
+    const map: map = {};
     const fields = data.fields;
 
     for (const key in fields) {
@@ -47,57 +57,53 @@ function parseDocumentData(data: any): any {
             const value = fields[key];
 
             if ("stringValue" in value) {
-                documentData[key] = value.stringValue;
+                map[key] = value.stringValue;
             } else if ("integerValue" in value) {
-                documentData[key] = parseInt(value.integerValue);
+                map[key] = parseInt(value.integerValue ?? "");
             } else if ("doubleValue" in value) {
-                documentData[key] = parseFloat(value.doubleValue);
+                map[key] = parseFloat(value.doubleValue ?? "");
             } else if ("booleanValue" in value) {
-                documentData[key] = value.booleanValue;
+                map[key] = value.booleanValue;
             } else if ("timestampValue" in value) {
-                documentData[key] = new Date(value.timestampValue);
+                map[key] = new Date(value.timestampValue ?? "");
             } else if ("arrayValue" in value) {
-                documentData[key] = parseArrayValue(value.arrayValue);
+                map[key] = parseArrayValue(value.arrayValue ?? {} as array);
             } else if ("mapValue" in value) {
-                documentData[key] = parseMapValue(value.mapValue);
+                map[key] = parseDocumentData(value.mapValue ?? {} as collectionData);
             }
         }
     }
 
-    return documentData;
+    return map;
 }
 
-function parseArrayValue(arrayValue: any): any[] {
-    const arrayData: any[] = [];
+function parseArrayValue(arrayValue: array): unknown[] {
+    const arrayData: unknown[] = [];
 
     for (const value of arrayValue.values) {
-        if (value.hasOwnProperty("stringValue")) {
+        if (Object.prototype.hasOwnProperty.call(value, "stringValue")) {
             arrayData.push(value.stringValue);
-        } else if (value.hasOwnProperty("integerValue")) {
-            arrayData.push(parseInt(value.integerValue));
-        } else if (value.hasOwnProperty("doubleValue")) {
-            arrayData.push(parseFloat(value.doubleValue));
-        } else if (value.hasOwnProperty("booleanValue")) {
+        } else if (Object.prototype.hasOwnProperty.call(value, "integerValue")) {
+            arrayData.push(parseInt(value.integerValue ?? ""));
+        } else if (Object.prototype.hasOwnProperty.call(value, "doubleValue")) {
+            arrayData.push(parseFloat(value.doubleValue ?? ""));
+        } else if (Object.prototype.hasOwnProperty.call(value, "booleanValue")) {
             arrayData.push(value.booleanValue);
-        } else if (value.hasOwnProperty("timestampValue")) {
-            arrayData.push(new Date(value.timestampValue));
-        } else if (value.hasOwnProperty("arrayValue")) {
-            arrayData.push(parseArrayValue(value.arrayValue));
-        } else if (value.hasOwnProperty("mapValue")) {
-            arrayData.push(parseMapValue(value.mapValue));
+        } else if (Object.prototype.hasOwnProperty.call(value, "timestampValue")) {
+            arrayData.push(new Date(value.timestampValue ?? ""));
+        } else if (Object.prototype.hasOwnProperty.call(value, "arrayValue")) {
+            arrayData.push(parseArrayValue(value.arrayValue ?? {} as array));
+        } else if (Object.prototype.hasOwnProperty.call(value, "mapValue")) {
+            arrayData.push(parseDocumentData(value.mapValue ?? {} as collectionData));
         }
     }
 
     return arrayData;
 }
 
-function parseMapValue(mapValue: any): any {
-    return parseDocumentData(mapValue);
-}
-
-async function getProject(id: string): Promise<Project> {
-    if (projects.length === 0) projects = await getProjectsInfo()
-    return projects.find(project => project.id === id) ?? {} as Project;
+async function getProject(id: string): Promise<ProjectData> {
+if (projects.length === 0) projects = (await getData())[1];
+    return projects.find(project => project.id === id) ?? {} as ProjectData;
 }
 
 function getSRC(file = "") {
@@ -110,4 +116,4 @@ function getSRC(file = "") {
     return "https://firebasestorage.googleapis.com/v0/b/portfoliomardaxtech.appspot.com/o" + file + "?alt=media";
 }
 
-export { getProjectsInfo, getHomepageInfo, getProject, getSRC }
+export { getProject, getSRC, getData }
