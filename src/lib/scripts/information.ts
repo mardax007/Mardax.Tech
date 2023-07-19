@@ -17,22 +17,32 @@ let homepageInfos: HomepageInfo[] = [];
 
 async function getData(): Promise<[HomepageInfo[], ProjectData[]]> {
     let language = navigator.language.split("-")[0];
-    console.log(language);
 
-    const supportedLanguages = ["en", "nl", "be"];
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLanguage = urlParams.get("lang");
+
+    const supportedLanguages = ["en", "nl", "be", "school"];
+
+    if (urlLanguage && supportedLanguages.includes(urlLanguage)) {
+        language = urlLanguage;
+    }
 
     switch (language) {
         case "be":
             language = "nl";
             break;
+        case "en":
+        case "nl":
+            break
+        case "school":
+            language = "default";
+            break;
         default:
-            if (!supportedLanguages.includes(language)) {
-                language = "en";
-            }
+            language = "en";
             break;
     }
 
-    const response = await fetch("https://firestore.googleapis.com/v1/projects/portfoliomardaxtech/databases/(default)/documents/default?alt=json");
+    const response = await fetch(`https://firestore.googleapis.com/v1/projects/portfoliomardaxtech/databases/(default)/documents/${language}?alt=json`);
     const data = (await response.json()).documents;
 
     if (!data) {
